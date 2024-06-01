@@ -73,7 +73,7 @@
                                     <a href="#">Mark All As Read</a>
                                 </div>
                             </div>
-                        
+
                             <div class="dropdown-footer text-center">
                                 <a href="#">View All <i class="fas fa-chevron-right"></i></a>
                             </div>
@@ -87,7 +87,7 @@
                                     <a href="#">Mark All As Read</a>
                                 </div>
                             </div>
-                           
+
                         </div>
                     </li> -->
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
@@ -113,15 +113,15 @@
 
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="/dashboard" class="p_white">Nepa-Khabar</a>
+                        <a href="{{ route('dashboard') }}" class="p_white">Nepa-Khabar</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="index.html">St</a>
+                        <a href="index.html">NK</a>
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
                         <li class="dropdown">
-                            <a href="dashboard.php" class="nav-link"><i
+                            <a href="{{ route('dashboard') }}" class="nav-link"><i
                                     class="fas fa-fire"></i><span>Dashboard</span></a>
 
                         </li>
@@ -130,8 +130,8 @@
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-images"></i> <span>Manage Categories</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="/categories">Categories</a></li>
-                                <li><a class="nav-link" href="dashboard.php?page=news_categories">Create Categories</a>
+                                <li><a class="nav-link" href="{{ route('categories.index') }}">Categories</a></li>
+                                <li><a class="nav-link" href="{{ route('categories.create') }}">Create Categories</a>
                                 </li>
                             </ul>
                         </li>
@@ -191,7 +191,7 @@
                             </ul>
                         </li>
 
-                      
+
 
                     </ul>
 
