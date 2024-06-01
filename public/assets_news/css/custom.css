@@ -1,0 +1,53 @@
+:root{
+    --primary_color : rgb(255, 34, 0);
+    --secondary_color : rgb(0, 48, 144);
+}
+a:hover{
+    color: var(--primary_color);
+}
+.header-bottom{
+    background-color: var(--secondary_color);
+    height: 5.5rem;
+    color: white;
+}
+.main-header .main-menu ul li a {color: white;}
+
+.top-h_n{
+    border-top: 1px solid rgb(209, 209, 209);
+
+}
+.head_b h1{
+    font-size: 3.5rem;
+    font-weight: 900;
+}
+.author_image{
+    width: 42px; height: 42px; border-radius: 50%;
+    margin: 10px;
+ 
+}
+.aligment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+.footer-logo{
+    overflow: hidden
+}
+.logo_{
+    width: auto;
+    height: 5rem;
+}
+.bg_l{background-color: white; border-radius: 3px; height: 4.5rem;}
+.icon{
+    color: var(--primary_color);
+}
+
+.footer-area .footer-social a i {
+    color: white;
+}
