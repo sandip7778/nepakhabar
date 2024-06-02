@@ -91,7 +91,7 @@
 
                                         <div class="col-lg-4 col-md-12">
                                             <label class="f_text" for="image">Images</label>
-                                            <input type="file" name="image" class="form-control" value="{{ old('image') }}" required>
+                                            <input type="file" name="image" class="form-control" value="{{ old('image') }}" accept=".png, .jpeg, .jpg, .gif, .svg" required>
                                             @error('image')
                                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                             @enderror

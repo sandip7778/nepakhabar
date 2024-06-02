@@ -40,27 +40,32 @@ class PostController extends Controller
             'description' => 'required|string|min:10',
         ]);
 
-        $imageName = $request->file('image')->getClientOriginalName();
+        $image = $request->file('image')->getClientOriginalName();
+        $imageName = time() . '_' . $image;
 
         // dd($imageName);
-        $path = $request->image->storeAs('images', $imageName);
+        $path = $request->image->storeAs('images', $imageName, 'public');
+
         $post = Post::create([
             'title' => request()->get('title'),
             'path'=> $path,
+            'meta_tag' => request()->get('meta_tag'),
+            'meta_keyword'=> request()->get('meta_keyword'),
             'status' => request()->get('status'),
             'description'=> request()->get('description'),
             'category_id' => request()->get('category'),
             'slug' => Str::slug($request->get('title')),
         ] );
 
-        return redirect()->route('posts.show', $post->slug)->with('success', 'Post created successfully.');
+        return redirect()->route('posts.show', $post->slug)->with('success', 'Post created successfully.')->with('image', $path);;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($slug)
     {
+        $post = Post::where('slug', $slug)->firstOrFail();
         return view('admin.page.news.showPost',compact('post'));
     }
 
