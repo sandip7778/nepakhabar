@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -21,7 +22,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.page.news.cr_post');
+        $categories = Category::all();
+        return view('admin.page.news.cr_post', compact('categories'));
     }
 
     /**
@@ -29,21 +31,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // 'title','slug','category_id', 'meta_tag','meta_keyword','path','status'
+
+        // dd($request->file('image'));
         $request->validate([
             'title' => 'required|string|max:255',
-            'path' =>'',
-            'status' => 'required|boolean|',
+            'image' =>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status' => 'required|boolean',
             'description' => 'required|string|min:10',
-            'category_id' => 'required|exists:categories,id',
         ]);
 
+        $imageName = $request->file('image')->getClientOriginalName();
+
+        // dd($imageName);
+        $path = $request->image->storeAs('images', $imageName);
         $post = Post::create([
             'title' => request()->get('title'),
-            'path'=> request()->get('path'),
+            'path'=> $path,
             'status' => request()->get('status'),
             'description'=> request()->get('description'),
-            'category_id' => request()->get('category_id'),
+            'category_id' => request()->get('category'),
             'slug' => Str::slug($request->get('title')),
         ] );
 
@@ -55,7 +61,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('admin.page.news.showPost',compact('post'));
     }
 
     /**
