@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -28,7 +29,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 'title','slug','category_id', 'meta_tag','meta_keyword','path','status'
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'path' =>'',
+            'status' => 'required|boolean|',
+            'description' => 'required|string|min:10',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        $post = Post::create([
+            'title' => request()->get('title'),
+            'path'=> request()->get('path'),
+            'status' => request()->get('status'),
+            'description'=> request()->get('description'),
+            'category_id' => request()->get('category_id'),
+            'slug' => Str::slug($request->get('title')),
+        ] );
+
+        return redirect()->route('posts.show', $post->slug)->with('success', 'Post created successfully.');
     }
 
     /**

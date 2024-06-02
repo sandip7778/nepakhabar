@@ -25,7 +25,8 @@
                             <h4>News Post</h4>
                         </div>
                         <div class="card-body">
-                            <form id="news_add" method="post">
+                            <form id="news_add" method="post" action="{{ route('posts.create') }}">
+                                @csrf
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12">
                                         <div class="form-group">
@@ -39,7 +40,7 @@
                                     </div>
                                     <div class="col-lg-4 col-md-12">
                                         <div class="form-group">
-                                            <label>Post Titel</label>
+                                            <label>Post Title</label>
                                             <input type="text" name="title" class="form-control">
                                         </div>
                                     </div>

@@ -12,5 +12,5 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'index']) ->name('dashboard');
 
 Route::resource('categories', CategoryController::class);
-Route::resource('posts', PostController::class);
+Route::resource('posts', PostController::class)->parameters(['posts'=>'slug']);
 
