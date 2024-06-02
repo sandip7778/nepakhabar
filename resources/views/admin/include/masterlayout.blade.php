@@ -28,19 +28,6 @@
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/custom.css">
 
-    <!-- Start GA -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-94034622-3');
-    </script>
-    <!-- /END GA -->
 </head>
 
 <body>
@@ -262,6 +249,7 @@
     <script src="assets/js/scripts.js"></script>
     <script src="assets/js/custom.js"></script>
     <script src="pages/jquery/main.js"></script>
+
 </body>
 
 </html>

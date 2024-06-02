@@ -51,7 +51,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.page.news_category.edit_category', compact('category'));
     }
 
     /**
@@ -59,7 +59,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $validate = $request->validate([
+            'name'=> 'required|string|min:2|max:255',
+        ]);
+
+        $category->update($validate);
+
+        return redirect()->route('categories.index')->with('success','Category Updated Successfully.');
     }
 
     /**

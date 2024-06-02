@@ -11,7 +11,7 @@
         transform: scale(1.2)
     }
 </style>
-    <div class="modal fade" id="adddevice" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="addcategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -26,7 +26,7 @@
                         <div class="row ">
                             <div class="col-md-6">
                                 <label class="f_text" for="category_name">Category Name</label>
-                                <input type="text" class="form-control" name="name" id="category_name"
+                                <input type="text" class="form-control" name="name" id="category-name"
                                     placeholder="Name.." required>
                             </div>
                         </div>
@@ -40,13 +40,12 @@
         </div>
     </div>
 
-
     <div class="main-content">
         <section class="section">
             <div class="section-header">
                 <h1>Categories</h1>
                 <div class="section-header-breadcrumb">
-                    <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#adddevice">
+                    <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addcategory">
                         <i class="fas fa-plus"></i>
                         Add Category
                     </a>
@@ -101,7 +100,7 @@
                                                             @method('DELETE')
                                                             <button type="submit" class="action_btn"><i class="fas fa-trash icon_box"></i></button>
                                                         </form>
-                                                        <button class="action_btn" href=""><i class="fas fa-pen icon_box "></i></button>
+                                                        <button class="action_btn" ><a href="{{ route('categories.edit', $category->id) }}" ><i class="fas fa-pen icon_box "></i></a></button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -111,25 +110,6 @@
                                 </div>
                             </div>
                             {{ $categories->links() }}
-                            {{-- <div class="card-footer text-right">
-                                <nav class="d-inline-block">
-                                    <ul class="pagination mb-0">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1"><i
-                                                    class="fas fa-chevron-left"></i></a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
