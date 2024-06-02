@@ -27,19 +27,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/custom.css">
-    <!-- Start GA -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-94034622-3');
-    </script>
-    <!-- /END GA -->
 </head>
 
 <body>
@@ -73,7 +61,7 @@
                                     <a href="#">Mark All As Read</a>
                                 </div>
                             </div>
-                        
+
                             <div class="dropdown-footer text-center">
                                 <a href="#">View All <i class="fas fa-chevron-right"></i></a>
                             </div>
@@ -87,7 +75,7 @@
                                     <a href="#">Mark All As Read</a>
                                 </div>
                             </div>
-                           
+
                         </div>
                     </li> -->
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
@@ -113,15 +101,15 @@
 
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="/dashboard" class="p_white">Nepa-Khabar</a>
+                        <a href="{{ route('dashboard') }}" class="p_white">Nepa-Khabar</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="index.html">St</a>
+                        <a href="index.html">NK</a>
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
                         <li class="dropdown">
-                            <a href="dashboard.php" class="nav-link"><i
+                            <a href="{{ route('dashboard') }}" class="nav-link"><i
                                     class="fas fa-fire"></i><span>Dashboard</span></a>
 
                         </li>
@@ -130,8 +118,8 @@
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-images"></i> <span>Manage Categories</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="/categories">Categories</a></li>
-                                <li><a class="nav-link" href="dashboard.php?page=news_categories">Create Categories</a>
+                                <li><a class="nav-link" href="{{ route('categories.index') }}">Categories</a></li>
+                                <li><a class="nav-link" href="{{ route('categories.create') }}">Create Categories</a>
                                 </li>
                             </ul>
                         </li>
@@ -139,8 +127,8 @@
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-columns"></i> <span>Manage Posts</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="/create_post">Create Post</a></li>
-                                <li><a class="nav-link" href="/posts">Manage News</a></li>
+                                <li><a class="nav-link" href="{{ route('news.create') }}">Create News</a></li>
+                                <li><a class="nav-link" href="{{ route('news.index') }}">Manage News</a></li>
                             </ul>
                         </li>
                         <li class="menu-header">Starter</li>
@@ -191,7 +179,7 @@
                             </ul>
                         </li>
 
-                      
+
 
                     </ul>
 
@@ -261,6 +249,7 @@
     <script src="assets/js/scripts.js"></script>
     <script src="assets/js/custom.js"></script>
     <script src="pages/jquery/main.js"></script>
+
 </body>
 
 </html>
