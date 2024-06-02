@@ -127,8 +127,8 @@
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-columns"></i> <span>Manage Posts</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="/create_post">Create Post</a></li>
-                                <li><a class="nav-link" href="/posts">Manage News</a></li>
+                                <li><a class="nav-link" href="{{ route('news.create') }}">Create News</a></li>
+                                <li><a class="nav-link" href="{{ route('news.index') }}">Manage News</a></li>
                             </ul>
                         </li>
                         <li class="menu-header">Starter</li>
