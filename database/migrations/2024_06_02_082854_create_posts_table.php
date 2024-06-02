@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('meta_tag')->nullable();
             $table->string('meta_keyword')->nullable();
             $table->string('path');
+            $table->unsignedBigInteger('views')->default(0);
             $table->boolean('status')->default(true);
             $table->string('description');
             $table->timestamps();
