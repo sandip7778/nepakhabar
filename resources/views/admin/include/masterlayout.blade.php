@@ -6,27 +6,27 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>Nepa-Khabar-Dashboard</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="assets_news/img/logo/Logo-1.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets_news/img/logo/Logo-1.png') }}">
 
     <!-- General CSS Files -->
-    <link rel="stylesheet" href="assets/modules/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/modules/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/modules/fontawesome/css/all.min.css') }}">
 
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="assets/modules/jqvmap/dist/jqvmap.min.css">
-    <link rel="stylesheet" href="assets/modules/weather-icon/css/weather-icons.min.css">
-    <link rel="stylesheet" href="assets/modules/weather-icon/css/weather-icons-wind.min.css">
-    <link rel="stylesheet" href="assets/modules/summernote/summernote-bs4.css">
+    <link rel="stylesheet" href="{{ asset('assets/modules/jqvmap/dist/jqvmap.min.css') }}">
+    {{-- <link rel="stylesheet" href="assets/modules/weather-icon/css/weather-icons.min.css">
+    <link rel="stylesheet" href="assets/modules/weather-icon/css/weather-icons-wind.min.css"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
 
-    <link rel="stylesheet" href="assets/modules/codemirror/lib/codemirror.css">
+    {{-- <link rel="stylesheet" href="assets/modules/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="assets/modules/codemirror/theme/duotone-dark.css">
     <link rel="stylesheet" href="assets/modules/jquery-selectric/selectric.css">
-    <link rel="stylesheet" href="assets/modules/dropzonejs/dropzone.css">
+    <link rel="stylesheet" href="assets/modules/dropzonejs/dropzone.css"> --}}
 
     <!-- Template CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 
 </head>
 
@@ -80,7 +80,7 @@
                     </li> -->
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                            <img alt="image" src="assets/img/avatar/avatar-5.png" class="rounded-circle mr-1">
+                            <img alt="image" src="{{ asset('assets/img/avatar/avatar-5.png') }}" class="rounded-circle mr-1">
                             <div class="d-sm-none d-lg-inline-block icons">Hi, Guest</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -119,16 +119,14 @@
                                     class="fas fa-images"></i> <span>Manage Categories</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('categories.index') }}">Categories</a></li>
-                                <li><a class="nav-link" href="{{ route('categories.create') }}">Create Categories</a>
-                                </li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-columns"></i> <span>Manage Posts</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="/create_post">Create Post</a></li>
-                                <li><a class="nav-link" href="/posts">Manage News</a></li>
+                                <li><a class="nav-link" href="{{ route('posts.create') }}">Create Post</a></li>
+                                <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>
                             </ul>
                         </li>
                         <li class="menu-header">Starter</li>
@@ -212,43 +210,43 @@
         </div>
     </div>
     <!-- General JS Scripts -->
-    <script src="assets/modules/jquery.min.js"></script>
-    <script src="assets/modules/popper.js"></script>
-    <script src="assets/modules/tooltip.js"></script>
-    <script src="assets/modules/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
-    <script src="assets/modules/moment.min.js"></script>
-    <script src="assets/js/stisla.js"></script>
+    <script src="{{ asset('assets/modules/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/popper.js') }}"></script>
+    <script src="{{ asset('assets/modules/tooltip.js') }}"></script>
+    <script src="{{ asset('assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/js/stisla.js') }}"></script>
 
     <!-- JS Libraies -->
-    <script src="assets/modules/simple-weather/jquery.simpleWeather.min.js"></script>
-    <script src="assets/modules/chart.min.js"></script>
-    <script src="assets/modules/jqvmap/dist/jquery.vmap.min.js"></script>
-    <script src="assets/modules/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-    <script src="assets/modules/summernote/summernote-bs4.js"></script>
+    <script src="{{ asset('assets/modules/simple-weather/jquery.simpleWeather.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/chart.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/jqvmap/dist/jquery.vmap.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+    <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
 
-    <script src="assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
+    <script src="{{ asset('assets/modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
 
-    <script src="assets/modules/codemirror/lib/codemirror.js"></script>
-    <script src="assets/modules/codemirror/mode/javascript/javascript.js"></script>
-    <script src="assets/modules/jquery-selectric/jquery.selectric.min.js"></script>
+    <script src="{{ asset('assets/modules/codemirror/lib/codemirror.js') }}"></script>
+    <script src="{{ asset('assets/modules/codemirror/mode/javascript/javascript.js') }}"></script>
+    <script src="{{ asset('assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
 
     <!-- JS Libraies -->
-    <script src="assets/modules/dropzonejs/min/dropzone.min.js"></script>
+    {{-- <script src="{{ asset('assets/modules/dropzonejs/min/dropzone.min.js') }}"></script> --}}
 
     <!-- Page Specific JS File -->
-    <script src="assets/js/page/components-multiple-upload.js"></script>
+    {{-- <script src="{{ asset('assets/js/page/components-multiple-upload.js') }}"></script> --}}
 
     <!-- Page Specific JS File -->
-    <script src="assets/js/page/index-0.js"></script>
+    {{-- <script src="{{ asset('assets/js/page/index-0.js') }}"></script> --}}
 
     <!-- Template JS File -->
-    <script src="assets/js/scripts.js"></script>
-    <script src="assets/js/custom.js"></script>
-    <script src="pages/jquery/main.js"></script>
+    <script src="{{ asset('assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
+    {{-- <script src="{{ asset('pages/jquery/main.js') }}"></script> --}}
 
 </body>
 
