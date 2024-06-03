@@ -13,6 +13,7 @@
                     <div class="card-header">
                         <h4>Posts Data</h4>
                     </div>
+                    @include('admin.shared.success')
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-striped mb-0">
@@ -29,44 +30,40 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    @foreach ($posts as $index => $post)
                                     <tr>
-                                        <td>pn5602</td>
-                                        <td>First Blogs</td>
-                                        <td>Latest News</td>
-                                        <td>563</td>
+                                        <td>{{ $index+1 }}</td>
+                                        <td>{{ $post->title }}</td>
+                                        <td>{{ $post->category->name }}</td>
+                                        <td>{{ $post->views }}</td>
                                         <td>60</td>
-                                        <td><div class='badge badge-danger'>Dactive</div></td>
-                                        <td>2024-05-6</td>
                                         <td>
-                                            <a href=""><i class="fas fa-trash icon_box"></i></a>    
-                                            <a href=""><i class="fas fa-pen icon_box "></i></a>
-                                            <a href=""><i class="fas fa-eye icon_box "></i></a>
+                                            @if ( $post->status== 1)
+                                            <div class='badge badge-success'>Active</div>
+                                            @else
+                                            <div class='badge badge-danger'>Dactive</div>
+                                            @endif
+                                        </td>
+                                        <td>{{ $post->created_at }}</td>
+                                        <td class="d-flex justify-content-center align-items-center">
+                                            <form class="pointer d-inline" action="{{ route('posts.destroy', $post->slug) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="action_btn"><i class="fas fa-trash icon_box"></i></button>
+                                            </form>
+                                            <a href="{{ route('posts.edit', $post->slug) }}" class="action_btn"><i class="fas fa-pen icon_box "></i></a>
+                                            <a href="{{ route('posts.show', $post->slug) }}" class="action_btn"><i class="fas fa-eye icon_box "></i></a>
                                         </td>
                                     </tr>
+                                    @endforeach
 
-                                    <tr>
-                                        <td>pn5603</td>
-                                        <td>Second Blogs</td>
-                                        <td>Latest News</td>
-                                        <td>563</td>
-                                        <td>60</td>
-                                        <td><div class='badge badge-success'>Active</div></td>
-                                        <td>2024-05-6</td>
-                                        <td>
-                                            <a href=""><i class="fas fa-trash icon_box"></i></a>    
-                                            <a href=""><i class="fas fa-pen icon_box m-1"></i></a>
-                                            <a href=""><i class="fas fa-eye icon_box m-1"></i></a>
-                                        </td>
-                                    </tr>
-
-                                </tbody>
+                                   </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-         
+
         </div>
 
     </section>

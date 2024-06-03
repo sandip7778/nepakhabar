@@ -8,38 +8,50 @@
             <h1>News Posts</h1>
         </div>
         <div class="card-body">
+            <div class="d-flex flex-column">
+                <div class="card-title">
+                    <h5 class="card-title">Title:</h5>
 
-            <p class="fs-6 fw-light text-muted">
-                {{ $post->title }}
-            </p>
-            <div class="d-flex ">
-                <div>
-                    <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1">
-                        </span> {{ $post->views }} </a>
+                    <span> {{ $post->title }}</span>
                 </div>
-                <div>
-                    <span>{{ $post->category->name }}</span>
+                <div class="card-title">
+                    <h5 class="card-title">Category:</h5>
+                    <span> {{ $post->category->name }}</span>
                 </div>
-                <div>
-                    <span>{{ $post->meta_tag }}</span>
+                <div class="card-title">
+                    <h5 class="card-title">Meta Tag:</h5>
+                    <span> {{ $post->meta_tag }}</span>
                 </div>
-                <div>
-                    <span>{{ $post->meta_keyword }}</span>
+                <div class="card-title">
+                    <h5 class="card-title">Meta Keyword:</h5>
+                    <span> {{ $post->meta_keyword }}</span>
                 </div>
-                <div>
-                    <span>{{ $post->status }}</span>
+                <div class="col-3">
+                    <h5 class="card-title">Status</h5>
+                    <span>@if ( $post->status  == 1)
+                        Active
+                    @else
+                        Deactive
+                    @endif</span>
                 </div>
-                <div>
-                    <span>{{ $post->description }}</span>
+                <div class="card-text ">
+                    <h5 class="card-title">Description </h5>
+                    <div class="border border-dark p-2">
+                    <span>{!! $post->description !!}</span>
                 </div>
-                <div>
+                </div>
+                <div >
+                    <h5 class="card-title">Image</h5>
                     <img src="{{Storage::url($post->path) }}" alt="{{ $post->title.' Image' }}" width="300px">
                 </div>
-                <div>
+                <div class="card-title">
+                    <h5 class="card-title">Posted At</h5>
                     <span class="fs-6 fw-light text-muted"> <span class="fas fa-clock"> </span>
                         {{ $post->created_at }} </span>
                 </div>
             </div>
+            <a href="{{ route('posts.edit', $post->slug) }}" class="action_btn"><button type="button" class="btn btn-warning" data-bs-dismiss="modal">Edit</button></i></a>
+            <a href="{{ route('posts.destroy', $post->slug) }}" class="action_btn"><button type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button></a>
         </div>
 
 

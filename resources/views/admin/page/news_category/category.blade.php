@@ -1,16 +1,6 @@
 @extends('admin/include/masterlayout')
 
 @section('content')
-<style>
-    .action_btn{
-        background: none;
-        border: none;
-        cursor: pointer;
-    }
-    .action_btn:hover{
-        transform: scale(1.2)
-    }
-</style>
     <div class="modal fade" id="addcategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">

@@ -17,11 +17,14 @@
                             <label class="f_text" for="category_name">Category Name</label>
                             <input type="text" class="form-control" name="name" id="category_name"
                                 value="{{ $category->name }}" required>
+                                @error('name')
+                                <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="{{ route('categories.index') }}"><button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button></a>
                     <button type="submit" class="btn btn-danger" id="add_member_btn">Edit Category</button>
                 </div>
             </form>
