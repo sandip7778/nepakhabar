@@ -37,7 +37,7 @@
         <div class="main-wrapper main-wrapper-1">
             <div class="navbar-bg"></div>
             <nav class="navbar navbar-expand-lg main-navbar">
-                <form class="form-inline mr-auto">
+                <form class="form-inline mr-auto" method="GET" action="{{ route('dashboard') }}">
                     <ul class="navbar-nav mr-3">
                         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i
                                     class="fas fa-bars icons"></i></a></li>
@@ -45,10 +45,8 @@
                                     class="fas fa-search"></i></a></li>
                     </ul>
                     <div class="search-element">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                            data-width="250">
+                        <input class="form-control" type="search" name="search" placeholder="Search" aria-label="Search" value="{{ request()->input('search') }}" data-width="250" required>
                         <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-                        <div class="search-backdrop"></div>
 
                     </div>
                 </form>

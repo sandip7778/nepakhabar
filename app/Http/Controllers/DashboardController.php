@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.home');
+        $posts = Post::orderBy('created_at','DESC');
+        if(request()->has('search')){
+            $posts = $posts->where('title','like','%'.request()->get('search').'%');
+        }
+           $posts = $posts->paginate(5);
+        // dd($posts);
+        return view('admin.home', compact('posts'));
     }
 }
