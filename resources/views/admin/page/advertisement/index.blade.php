@@ -35,7 +35,6 @@
                                         <td>{{ $advertisement->name }}</td>
                                         <td>{{ $advertisement->description }}</td>
                                         <td>{{ $advertisement->ad_path }}</td>
-                                        <td>60</td>
                                         <td>
                                             @if ( $advertisement->status== true)
                                             <div class='badge badge-success'>Active</div>
@@ -45,13 +44,13 @@
                                         </td>
                                         <td>{{ $advertisement->created_at }}</td>
                                         <td class="d-flex justify-content-center align-items-center">
-                                            <form class="pointer d-inline" action="{{ route('advertisements.destroy', $advertisement->slug) }}" method="POST">
+                                            <form class="pointer d-inline" action="{{ route('advertisements.destroy', $advertisement->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="action_btn"><i class="fas fa-trash icon_box"></i></button>
                                             </form>
-                                            <a href="{{ route('advertisements.edit', $advertisement->slug) }}" class="action_btn"><i class="fas fa-pen icon_box "></i></a>
-                                            <a href="{{ route('advertisements.show', $advertisement->slug) }}" class="action_btn"><i class="fas fa-eye icon_box "></i></a>
+                                            <a href="{{ route('advertisements.edit', $advertisement->id) }}" class="action_btn"><i class="fas fa-pen icon_box "></i></a>
+                                            <a href="{{ route('advertisements.show', $advertisement->id) }}" class="action_btn"><i class="fas fa-eye icon_box "></i></a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -60,6 +59,7 @@
                             </table>
                         </div>
                     </div>
+                    {{ $advertisements->links() }}
                 </div>
             </div>
 
