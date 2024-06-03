@@ -12,19 +12,19 @@
 
         <link rel="stylesheet" href="assets/modules/fontawesome/css/all.min.css">
 		<!-- CSS here -->
-            <link rel="stylesheet" href="assets_news/css/bootstrap.min.css">
-            <link rel="stylesheet" href="assets_news/css/owl.carousel.min.css">
-            <link rel="stylesheet" href="assets_news/css/ticker-style.css">
-            <link rel="stylesheet" href="assets_news/css/flaticon.css">
-            <link rel="stylesheet" href="assets_news/css/slicknav.css">
-            <link rel="stylesheet" href="assets_news/css/animate.min.css">
-            <link rel="stylesheet" href="assets_news/css/magnific-popup.css">
-            <link rel="stylesheet" href="assets_news/css/fontawesome-all.min.css">
-            <link rel="stylesheet" href="assets_news/css/themify-icons.css">
-            <link rel="stylesheet" href="assets_news/css/slick.css">
-            <link rel="stylesheet" href="assets_news/css/nice-select.css">
-            <link rel="stylesheet" href="assets_news/css/style.css">
-            <link rel="stylesheet" href="assets_news/css/custom.css">
+            <link rel="stylesheet" href="{{ asset('assets_news/css/bootstrap.min.css')}}">
+            <link rel="stylesheet" href="{{ asset('assets_news/css/owl.carousel.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets_news/css/ticker-style.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets_news/css/flaticon.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets_news/css/slicknav.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets_news/css/animate.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets_news/css/magnific-popup.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets_news/css/fontawesome-all.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets_news/css/themify-icons.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets_news/css/slick.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets_news/css/nice-select.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets_news/css/style.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets_news/css/custom.css') }}">
    </head>
 
    <body>
@@ -72,12 +72,12 @@
                             <!-- Logo -->
                             <div class="col-xl-3 col-lg-3 col-md-3">
                                 <div class="logo">
-                                    <a href="index.html"><img src="assets_news/img/logo/Logo-5.png" class="logo_" alt=""></a>
+                                    <a href="index.html"><img src="{{ asset('assets_news/img/logo/Logo-5.png') }}" class="logo_" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-9 col-lg-9 col-md-9">
                                 <div class="header-banner f-right ">
-                                    <img src="assets_news/img/hero/header_card.jpg" alt="">
+                                    <img src="{{ asset('assets_news/img/hero/header_card.jpg') }}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -89,13 +89,13 @@
                             <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
                                 <!-- sticky -->
                                     <div class="sticky-logo">
-                                        <a href="index.html"><img src="assets_news/img/logo/Logo-2.png" class="logo_ bg_l" alt=""></a>
+                                        <a href="index.html"><img src="{{asset('assets_news/img/logo/Logo-2.png')}}" class="logo_ bg_l" alt=""></a>
                                     </div>
                                 <!-- Main-menu -->
                                 <div class="main-menu d-none d-md-block">
                                     <nav>                  
                                         <ul id="navigation">    
-                                            <li><a href="index.html">होमपेज</a></li>
+                                            <li><a href="/">होमपेज</a></li>
                                             <li><a href="categori.html">समाचार</a></li>
                                             <li><a href="about.html">बिजनेस</a></li>
                                             <li><a href="about.html">विचार</a></li>

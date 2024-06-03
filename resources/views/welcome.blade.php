@@ -13,7 +13,7 @@
                             <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                             <div class="trending-animated">
                                 <ul id="js-news" class="js-hidden">
-                                    <li class="news-item">Bangladesh dolor sit amet, consectetur adipisicing elit.</li>
+                                    <li class="news-item">गण्डकीको मुख्यमन्त्रीमा सुरेन्द्रराज पाण्डे नियुक्त</li>
                                     <li class="news-item">Spondon IT sit amet, consectetur.......</li>
                                     <li class="news-item">Rem ipsum dolor sit amet, consectetur adipisicing elit.</li>
                                 </ul>
@@ -22,23 +22,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mb-5">
                     <div class="col-xl-12">
                         <div class="">
-                            <img src="assets_news/img/hero/header_card.jpg" alt="">
+                            <img src="assets_news/img/hero/header_card.jpg" style="width:100%" alt="">
                         </div>
                     </div>
                 </div>
+
                 <article>
                     <div class="row top-h_n pt-50 mt-10 pb-50">
                         <div class="col-lg-12">
                             <div class="row justify-content-center head_b">
-                                <h1><a href="details.html">गण्डकीको मुख्यमन्त्रीमा सुरेन्द्रराज पाण्डे नियुक्त</a>
+                                <h1><a href="">गण्डकीको मुख्यमन्त्रीमा सुरेन्द्रराज पाण्डे नियुक्त</a>
                                 </h1>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="row aligment">
-                                    <img src="assets_news/img/trending/trending_top.jpg" class="author_image" alt="">
+                                    <img src="{{ asset('assets_news/img/trending/trending_top.jpg')}}"
+                                        class="author_image" alt="">
                                     <span>author</span>
                                 </div>
                                 <div class="pl-50 aligment">
@@ -47,7 +49,7 @@
                             </div>
                             <div class="trending-top mb-30">
                                 <div class="trend-top-img">
-                                    <img src="assets_news/img/trending/trending_top.jpg" alt="">
+                                    <img src="{{ asset('assets_news/img/trending/trending_top.jpg')}}" alt="">
                                 </div>
 
                             </div>
@@ -61,19 +63,18 @@
                             </div>
                             <div class="row justify-content-center">
                                 <div class="row aligment">
-                                    <img src="assets_news/img/trending/trending_top.jpg" class="author_image" alt="">
+                                    <img src="{{ asset('assets_news/img/trending/trending_top.jpg')}}"
+                                        class="author_image" alt="">
                                     <span>author</span>
                                 </div>
                                 <div class="pl-50 aligment">
                                     <span><i class="fas fa-calendar"></i>&nbsp; &nbsp;Date</span>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </article>
-
+                <hr>
                 <div class="row">
                     <div class="col-lg-8">
                         <!-- Trending Top -->
@@ -128,20 +129,39 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                     <!-- Riht content -->
+                    <!-- size of sidebar ads boxads  height :300px width 350px  -->
                     <div class="col-lg-4">
+                        <aside class="single_sidebar_widget mb-5">
+                            <img class="side_bar_ads" src="{{asset('assets_news/img/post/post_7.png')}}" alt="">
+                        </aside>
+                        <aside class="single_sidebar_widget mb-5">
+                            <!-- size of sidebar ads boxads  height :300px width 350px  -->
+                            <img class="side_bar_ads" src="{{asset('assets_news/img/post/post_7.png')}}" alt="">
+                        </aside>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
-    <!-- Trending Area End -->
-    <!--   Weekly-News start -->
+
+
     <div class="weekly-news-area pt-50">
         <div class="container">
+            <!-- Advertisment box   -->
+            <div class="row mb-5">
+                <div class="col-xl-12">
+                    <div class="">
+                        <img src="assets_news/img/hero/header_card.jpg" style="width:100%" alt="">
+                    </div>
+                </div>
+            </div>
+            <hr>
             <div class="weekly-wrapper">
                 <!-- section Tittle -->
                 <div class="row">
@@ -200,6 +220,14 @@
     <!-- Whats New Start -->
     <section class="whats-news-area pt-50 pb-20">
         <div class="container">
+            <div class="row mb-5">
+                <div class="col-xl-12">
+                    <div class="">
+                        <img src="assets_news/img/hero/header_card.jpg" style="width:100%" alt="">
+                    </div>
+                </div>
+            </div>
+            <hr>
             <div class="row">
                 <div class="col-lg-8">
                     <div class="row d-flex justify-content-between">
@@ -715,6 +743,19 @@
                 <div class="col-12">
                     <div class="video-items-active">
                         <div class="video-items text-center">
+                            <iframe src="https://www.youtube.com/embed/CONfhrASy44" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+
+                        </div>
+
+                        <div class="video-items text-center">
+                            <iframe src="https://www.youtube.com/embed/lq6fL2ROWf8" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+
+                        </div>
+                        <div class="video-items text-center">
                             <iframe src="https://www.youtube.com/embed/CicQIuG8hBo" frameborder="0"
                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
@@ -724,18 +765,7 @@
                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
                         </div>
-                        <div class="video-items text-center">
-                            <iframe src="https://www.youtube.com/embed/CONfhrASy44" frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
 
-                        </div>
-                        <div class="video-items text-center">
-                            <iframe src="https://www.youtube.com/embed/lq6fL2ROWf8" frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-
-                        </div>
                         <div class="video-items text-center">
                             <iframe src="https://www.youtube.com/embed/0VxlQlacWV4" frameborder="0"
                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -757,6 +787,13 @@
                                     dolor sit. Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
                                     eiusmod ipsum dolor sit. Lorem ipsum dolor sit amet consectetur adipisicing elit
                                     sed do eiusmod ipsum dolor sit lorem ipsum dolor sit.</p>
+                            </div>
+                            <div class="row mb-5">
+                                <div class="col-xl-12">
+                                    <div class="">
+                                        <img src="assets_news/img/hero/header_card.jpg" style="width:100%" alt="">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -808,8 +845,7 @@
             </div>
         </div>
     </div>
-    <!-- End Start youtube -->
-    <!--  Recent Articles start -->
+
     <div class="recent-articles">
         <div class="container">
             <div class="recent-wrapper">
@@ -866,8 +902,8 @@
             </div>
         </div>
     </div>
-    <!--Recent Articles End -->
-    <!--Start pagination -->
+
+
     <div class="pagination-area pb-45 text-center">
         <div class="container">
             <div class="row">

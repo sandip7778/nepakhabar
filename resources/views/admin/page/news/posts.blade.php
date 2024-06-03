@@ -29,7 +29,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     <tr>
                                         <td>pn5602</td>
                                         <td>First Blogs</td>
@@ -44,7 +43,6 @@
                                             <a href=""><i class="fas fa-eye icon_box "></i></a>
                                         </td>
                                     </tr>
-
                                     <tr>
                                         <td>pn5603</td>
                                         <td>Second Blogs</td>
