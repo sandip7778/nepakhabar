@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
@@ -13,4 +14,5 @@ Route::get('/dashboard', [DashboardController::class, 'index']) ->name('dashboar
 
 Route::resource('categories', CategoryController::class);
 Route::resource('posts', PostController::class)->parameters(['posts'=>'slug']);
+Route::resource('advertisements', AdvertisementController::class);
 
