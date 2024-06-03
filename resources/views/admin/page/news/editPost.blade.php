@@ -4,36 +4,26 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>News Create</h1>
+                <h1>News Edit</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="#">Post</a></div>
-                    <div class="breadcrumb-item">News Create</div>
+                    <div class="breadcrumb-item">News Edit</div>
                 </div>
             </div>
 
             <div class="section-body">
-                <!-- <h2 class="section-title">Advanced Forms</h2>
-                <p class="section-lead">We provide advanced input fields, such as date picker, color picker, and so on.</p> -->
-
                 <div class="row card">
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="">
                             <div class="card-header">
                                 <h4>News Post</h4>
-                                @if ($errors->any())
-                                <div>
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
                             </div>
                             <div class="card-body">
-                                <form id="news_add" method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+                                {{-- {{ dd($post->category) }} --}}
+                                <form id="news_edit" method="post"  action="{{ route('posts.update',$post->slug) }}" enctype="multipart/form-data">
                                     @csrf
+                                    @method('PUT')
                                     <div class="row">
                                         <div class="col-lg-4 col-md-12">
                                             <div class="form-group">
@@ -48,7 +38,7 @@
                                         <div class="col-lg-4 col-md-12">
                                             <div class="form-group">
                                                 <label>Post Title</label>
-                                                <input type="text" name="title" class="form-control" value="{{ old('title') }}" required>
+                                                <input type="text" name="title" class="form-control" value="{{ $post->title }}" required>
                                                 @error('title')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
@@ -59,7 +49,7 @@
                                                 <label>Post Categories</label>
 
                                                 <select class="form-control" name="category" required>
-                                                    <option value="" selected>Select</option>
+                                                    <option value="{{ $post->category->id }}" selected>{{ $post->category->name }}</option>
                                                     @foreach ($categories as $category)
                                                         <option value="{{ $category->id }}" >{{ $category->name }}</option>
                                                     @endforeach
@@ -73,7 +63,7 @@
                                         <div class="col-lg-4 col-md-12">
                                             <div class="form-group">
                                                 <label>Meta Tag</label>
-                                                <input type="text" name="meta_tag" class="form-control" value="{{ old('meta_tag') }}">
+                                                <input type="text" name="meta_tag" class="form-control" value="{{ $post->meta_tag }}">
                                                 @error('meta_tag')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
@@ -82,7 +72,7 @@
                                         <div class="col-lg-4 col-md-12">
                                             <div class="form-group">
                                                 <label>Meta Keyword</label>
-                                                <input type="text" name="meta_keyword" class="form-control" value="{{ old('meta_keyword') }}">
+                                                <input type="text" name="meta_keyword" class="form-control" value="{{ $post->meta_keyword }}">
                                                 @error('meta_keyword')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
@@ -91,14 +81,14 @@
 
                                         <div class="col-lg-4 col-md-12">
                                             <label class="f_text" for="image">Images</label>
-                                            <input type="file" name="image" class="form-control" value="{{ old('image') }}" accept=".png, .jpeg, .jpg, .gif, .svg" required>
+                                            <input type="file" name="image" class="form-control" value="{{ $post->path }}" accept=".png, .jpeg, .jpg, " >
                                             @error('image')
                                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="col-lg-4 col-md-12">
                                             <label class="f_text" for="exampleInputUsername1">Select Status</label>
-                                            <select class="form-control" name="status" value="{{ old('status') }}" required>
+                                            <select class="form-control" name="status" required>
                                                 <option value="1">Active</option>
                                                 <option value="0">Disable</option>
                                             </select>
@@ -106,10 +96,16 @@
                                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
+                                        @if($post->path)
+                                            <div class="col-lg-4 col-md-12">
+                                                <label class="f_text" for="current_image">Current Image</label>
+                                                <img src="{{ Storage::url($post->path) }}" alt="{{ $post->title.' Image' }}" height="300" width="300">
+                                            </div>
+                                        @endif
                                         <div class="col-lg-12 col-md-12 mt-3">
                                             <div class="form-group">
                                                 <label>Post Description</label>
-                                                <textarea class="summernote"  name="description" value="{{ old('description') }}" required></textarea>
+                                                <textarea class="summernote"  name="description" required>{{ $post->description }}</textarea>
                                                 @error('description')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
