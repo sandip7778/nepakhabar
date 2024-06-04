@@ -221,9 +221,9 @@
     <script src="{{ asset('assets/modules/codemirror/lib/codemirror.js') }}"></script>
     <script src="{{ asset('assets/modules/codemirror/mode/javascript/javascript.js') }}"></script>
     <script src="{{ asset('assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-    </script>
+    </script> --}}
 
     <!-- JS Libraies -->
     {{-- <script src="{{ asset('assets/modules/dropzonejs/min/dropzone.min.js') }}"></script> --}}
@@ -238,6 +238,12 @@
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     {{-- <script src="{{ asset('pages/jquery/main.js') }}"></script> --}}
+    <script>
+        // Initialize tooltips
+        $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip();
+        });
+        </script>
 
 </body>
 

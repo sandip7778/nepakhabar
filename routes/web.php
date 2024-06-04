@@ -14,5 +14,6 @@ Route::get('/dashboard', [DashboardController::class, 'index']) ->name('dashboar
 
 Route::resource('categories', CategoryController::class);
 Route::resource('posts', PostController::class)->parameters(['posts'=>'slug']);
+Route::get('advertisements/{advertisement}/changeStatus', [AdvertisementController::class, 'changeStatus'])->name('advertisements.changeStatus');
 Route::resource('advertisements', AdvertisementController::class);
 
