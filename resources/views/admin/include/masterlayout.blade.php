@@ -112,7 +112,7 @@
                         <a href="{{ route('dashboard') }}" class="p_white">Nepa-Khabar</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="index.html">NK</a>
+                        <a href="{{ route('dashboard') }}">NK</a>
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
@@ -140,26 +140,40 @@
                         <li class="menu-header">Starter</li>
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+
                                     class="fas fa-columns"></i> <span>Manage Advertisment</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('advertisements.create') }}">Create Advertisement</a></li>
                                 <li><a class="nav-link" href="{{ route('advertisements.index') }}">Advertisement</a></li>
-                            </ul>
-                        </li>
 
-                        <li class="dropdown">
-                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-columns"></i> <span>Upcoming Events</span></a>
+                                    class="fas fa-columns"></i> <span>Manage Comments</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="dashboard.php?page=events">Events</a></li>
+                                <li><a class="nav-link" href="{{ route('comments.index') }}">Comments</a></li>
 
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-columns"></i> <span>Manage Team</span></a>
+                                    class="fas fa-columns"></i> <span>Manage Advertisment</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="dashboard.php?page=team_members">Team Members</a></li>
+                                <li><a class="nav-link" href="{{ route('advertisments.index') }}">Advertisment</a></li>
+
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                                    class="fas fa-columns"></i> <span>Manage Users</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="nav-link" href="dashboard.php?page=events"></a></li>
+
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                                    class="fas fa-columns"></i> <span>Manage Members</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="nav-link" href="{{ route('teamsmember.index') }}">Team Members</a></li>
 
                             </ul>
                         </li>
@@ -167,19 +181,19 @@
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-columns"></i> <span>Manage Sites</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="dashboard.php?page=team_members">Site Setting</a></li>
+                                <li><a class="nav-link" href="{{route('site_info')}}">Site Setting</a></li>
                             </ul>
-                             <ul class="dropdown-menu">
+                             <!-- <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="dashboard.php?page=team_members">Deffult SEO </a></li>
                             </ul>
                              <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="dashboard.php?page=team_members">Tags Setting </a></li>
-                            </ul>
+                            </ul> -->
                         </li>
                     </ul>
 
                     <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-                        <a href="http://sfnepal.org" class="btn btn-danger btn-lg btn-block btn-icon-split"
+                        <a href="{{ route('indexN') }}" class="btn btn-danger btn-lg btn-block btn-icon-split"
                             target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-rocket"></i> Website
                         </a>

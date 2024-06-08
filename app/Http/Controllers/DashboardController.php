@@ -17,4 +17,9 @@ class DashboardController extends Controller
         // dd($posts);
         return view('admin.home', compact('posts'));
     }
+
+    public function site_info()
+    {
+        return view('admin.page.others.site_info');
+    } 
 }
