@@ -79,7 +79,7 @@
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="{{ asset('assets/img/avatar/avatar-5.png') }}" class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block icons">Hi, Guest</div>
+                            <div class="d-sm-none d-lg-inline-block icons">Hi, {{ Auth::user()->name }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-title">Logged in 5 min ago</div>
@@ -88,15 +88,25 @@
                             </a> -->
                             <!-- features-profile.html -->
                             <div class="dropdown-divider"></div>
-                            <a href="#" id="logout" class="dropdown-item has-icon text-danger">
-                                <i class="fas fa-sign-out-alt"></i> Logout
-                            </a>
+                            <div>
+                                <a href="{{ route('profile.edit') }}" class="dropdown-item  has-icon text-danger">
+                                    <i class="fas fa-user"></i> <span class="fw-bolder fs-6">Profile</span>
+                                </a>
+                            </div>
+
+                            <div>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item d-flex align-items-center text-danger">
+                                        <i class="fas fa-sign-out-alt"></i> <span class="ml-3 fw-bolder fs-6">Logout</span>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </li>
                 </ul>
             </nav>
             <div class="main-sidebar sidebar-style-2">
-
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
                         <a href="{{ route('dashboard') }}" class="p_white">Nepa-Khabar</a>
@@ -134,7 +144,6 @@
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('advertisements.create') }}">Create Advertisement</a></li>
                                 <li><a class="nav-link" href="{{ route('advertisements.index') }}">Advertisement</a></li>
-
                             </ul>
                         </li>
 
@@ -167,9 +176,6 @@
                                 <li><a class="nav-link" href="dashboard.php?page=team_members">Tags Setting </a></li>
                             </ul>
                         </li>
-
-
-
                     </ul>
 
                     <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
@@ -185,9 +191,6 @@
             <!-- Main Content  -->
             @yield('content')
 
-
-
-            <br>
             <footer class="main-footer">
                 <div class="footer-left">
                     Copyright &copy; 2024-<?php echo date('Y'); ?> <div class="bullet"></div> Develope By <a
@@ -221,9 +224,10 @@
     <script src="{{ asset('assets/modules/codemirror/lib/codemirror.js') }}"></script>
     <script src="{{ asset('assets/modules/codemirror/mode/javascript/javascript.js') }}"></script>
     <script src="{{ asset('assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-    </script> --}}
+    </script>
+
 
     <!-- JS Libraies -->
     {{-- <script src="{{ asset('assets/modules/dropzonejs/min/dropzone.min.js') }}"></script> --}}
