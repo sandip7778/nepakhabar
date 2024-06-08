@@ -37,7 +37,7 @@
         <div class="main-wrapper main-wrapper-1">
             <div class="navbar-bg"></div>
             <nav class="navbar navbar-expand-lg main-navbar">
-                <form class="form-inline mr-auto">
+                <form class="form-inline mr-auto" method="GET" action="{{ route('dashboard') }}">
                     <ul class="navbar-nav mr-3">
                         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i
                                     class="fas fa-bars icons"></i></a></li>
@@ -45,10 +45,8 @@
                                     class="fas fa-search"></i></a></li>
                     </ul>
                     <div class="search-element">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                            data-width="250">
+                        <input class="form-control" type="search" name="search" placeholder="Search" aria-label="Search" value="{{ request()->input('search') }}" data-width="250" required>
                         <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-                        <div class="search-backdrop"></div>
 
                     </div>
                 </form>
@@ -81,7 +79,7 @@
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="{{ asset('assets/img/avatar/avatar-5.png') }}" class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block icons">Hi, Guest</div>
+                            <div class="d-sm-none d-lg-inline-block icons">Hi, {{ Auth::user()->name }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-title">Logged in 5 min ago</div>
@@ -90,15 +88,25 @@
                             </a> -->
                             <!-- features-profile.html -->
                             <div class="dropdown-divider"></div>
-                            <a href="#" id="logout" class="dropdown-item has-icon text-danger">
-                                <i class="fas fa-sign-out-alt"></i> Logout
-                            </a>
+                            <div>
+                                <a href="{{ route('profile.edit') }}" class="dropdown-item  has-icon text-danger">
+                                    <i class="fas fa-user"></i> <span class="fw-bolder fs-6">Profile</span>
+                                </a>
+                            </div>
+
+                            <div>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item d-flex align-items-center text-danger">
+                                        <i class="fas fa-sign-out-alt"></i> <span class="ml-3 fw-bolder fs-6">Logout</span>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </li>
                 </ul>
             </nav>
             <div class="main-sidebar sidebar-style-2">
-
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
                         <a href="{{ route('dashboard') }}" class="p_white">Nepa-Khabar</a>
@@ -132,6 +140,12 @@
                         <li class="menu-header">Starter</li>
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+
+                                    class="fas fa-columns"></i> <span>Manage Advertisment</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="nav-link" href="{{ route('advertisements.create') }}">Create Advertisement</a></li>
+                                <li><a class="nav-link" href="{{ route('advertisements.index') }}">Advertisement</a></li>
+
                                     class="fas fa-columns"></i> <span>Manage Comments</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('comments.index') }}">Comments</a></li>
@@ -176,9 +190,6 @@
                                 <li><a class="nav-link" href="dashboard.php?page=team_members">Tags Setting </a></li>
                             </ul> -->
                         </li>
-
-
-
                     </ul>
 
                     <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
@@ -195,8 +206,6 @@
             @yield('content')
 
 
-
-            <br>
             <footer class="main-footer">
                 <div class="footer-left">
                     Copyright &copy; 2024-<?php echo date('Y'); ?> <div class="bullet"></div> Develope By <a
@@ -234,6 +243,7 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
 
+
     <!-- JS Libraies -->
     {{-- <script src="{{ asset('assets/modules/dropzonejs/min/dropzone.min.js') }}"></script> --}}
 
@@ -247,6 +257,12 @@
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     {{-- <script src="{{ asset('pages/jquery/main.js') }}"></script> --}}
+    <script>
+        // Initialize tooltips
+        $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip();
+        });
+        </script>
 
 </body>
 

@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class News extends Model
+class Advertisement extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name','description','ad_path','status'];
+
 }
