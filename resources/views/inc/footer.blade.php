@@ -8,7 +8,7 @@
                            <div class="single-footer-caption">
                                <!-- logo -->
                                <div class="footer-logo">
-                                   <a href="index.html"><img src="assets_news/img/logo/Logo-4.png" class="logo_"
+                                   <a href="index.html"><img src="{{asset('assets_news/img/logo/Logo-4.png')}}" class="logo_"
                                            alt=""></a>
                                </div>
                                <div class="footer-tittle">
@@ -147,6 +147,65 @@
    <!-- Jquery Plugins, main Jquery -->
    <script src="{{ asset('assets_news/js/plugins.js')}}"></script>
    <script src="{{ asset('assets_news/js/main.js')}}"></script>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
+
+     <!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      freeMode: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 50,
+        },
+      },
+  });
+
+
+  var swiper = new Swiper(".recentMy", {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      freeMode: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 50,
+        },
+      },
+  });
+</script>
 
    </body>
 
