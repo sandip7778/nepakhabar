@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('ad_path');
+            $table->string('position');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

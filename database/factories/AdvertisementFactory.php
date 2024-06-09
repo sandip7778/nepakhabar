@@ -20,6 +20,7 @@ class AdvertisementFactory extends Factory
             'name' => $this->faker->company,
             'description' => $this->faker->paragraph,
             'ad_path' => $this->faker->imageUrl(640, 480, 'business', true),
+            'position' => fake()->streetName(),
             'status' => $this->faker->boolean(80),
         ];
     }

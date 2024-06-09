@@ -13,9 +13,7 @@ use App\Http\Controllers\commentController;
 use App\Http\Controllers\AdvertismentController;
 use App\Http\Controllers\TeamMController;
 use App\Http\Controllers\NewShow;
-
-
-
+use App\Http\Middleware\CheckUserType;
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -28,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth','verified'])->group(function (){
+Route::middleware(['auth','verified',CheckUserType::class])->group(function (){
     Route::resource('categories', CategoryController::class);
     Route::resource('posts', PostController::class)->parameters(['posts'=>'slug']);
     Route::get('advertisements/{advertisement}/changeStatus', [AdvertisementController::class, 'changeStatus'])->name('advertisements.changeStatus');
