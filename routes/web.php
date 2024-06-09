@@ -12,6 +12,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\commentController;
 use App\Http\Controllers\AdvertismentController;
 use App\Http\Controllers\TeamMController;
+use App\Http\Controllers\NewShow;
+
 
 
 

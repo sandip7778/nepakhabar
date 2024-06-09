@@ -64,7 +64,6 @@ class PostController extends Controller
         ]);
 
         return redirect()->route('posts.show', $post->slug)->with('success', 'Post created successfully.')->with('image', $path);
-        ;
     }
 
     /**

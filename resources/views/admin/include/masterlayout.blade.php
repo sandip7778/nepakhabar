@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Nepa-Khabar-Dashboard</title>
+    <title>@yield('title')</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets_news/img/logo/Logo-1.png') }}">
 
@@ -137,35 +137,27 @@
                                 <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>
                             </ul>
                         </li>
-                        <li class="menu-header">Starter</li>
+                        {{-- <li class="menu-header">Starter</li> --}}
                         <li class="dropdown">
-                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-
-                                    class="fas fa-columns"></i> <span>Manage Advertisment</span></a>
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                                <i class="fas fa-columns"></i> <span>Manage Advertisment</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('advertisements.create') }}">Create Advertisement</a></li>
                                 <li><a class="nav-link" href="{{ route('advertisements.index') }}">Advertisement</a></li>
-
-                                    class="fas fa-columns"></i> <span>Manage Comments</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{ route('comments.index') }}">Comments</a></li>
-
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-columns"></i> <span>Manage Advertisment</span></a>
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                                <i class="fas fa-columns"></i> <span>Manage Comments</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{ route('advertisments.index') }}">Advertisment</a></li>
-
+                                <li><a class="nav-link" href="{{ route('comments.index') }}">Comments</a></li>
                             </ul>
                         </li>
-
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-columns"></i> <span>Manage Users</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="dashboard.php?page=events"></a></li>
+                                <li><a class="nav-link" href="dashboard.php?page=events">Users</a></li>
 
                             </ul>
                         </li>
@@ -183,12 +175,6 @@
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{route('site_info')}}">Site Setting</a></li>
                             </ul>
-                             <!-- <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="dashboard.php?page=team_members">Deffult SEO </a></li>
-                            </ul>
-                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="dashboard.php?page=team_members">Tags Setting </a></li>
-                            </ul> -->
                         </li>
                     </ul>
 
