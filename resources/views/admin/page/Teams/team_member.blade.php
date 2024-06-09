@@ -6,7 +6,7 @@
             <div class="section-header">
                 <h1>Members</h1>
                 <div class="section-header-breadcrumb">
-                    <a href="#" class="btn btn-dark">
+                    <a href="{{ route('users.create') }}" class="btn btn-dark">
                         <i class="fas fa-plus"></i>
                         Add Members
                     </a>
@@ -45,25 +45,42 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                            @foreach ($users as $index => $user)
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>Jhon </td>
-                                                    <td>img</td>
-                                                    <td>jhon@gmail.com</td>
-                                                    <td>L</td>
-                                                    <td>Active</td>
-                                                    <td>2024-06-06</td>
-                                                    <td>
-                                                        <form class="pointer d-inline" action="" method="POST">
-                                                            <!-- @csrf
-                                                            @method('DELETE') -->
-                                                            <button type="submit" class="action_btn"><i class="fas fa-trash icon_box"></i></button>
-                                                        </form>
-                                                        <button class="action_btn" ><a href="" ><i class="fas fa-pen icon_box "></i></a></button>
-                                                    </td>
-                                                </tr>
+                                                    <td>{{ $index + 1 }}</td>
+                                                    <td>{{ $user->name }}</td>
+                                                    <td><img src="{{ Storage::url($user->path) }}"
+                                                        alt="{{ $user->name . ' Image' }}" height="100px"></td>
+                                                    <td>{{ $user->email }}</td>
+                                                    <td>{{ $user->userType }}</td>
+                                                    <td> @if ($user->status ===1)
+                                                        Active
+                                                        @elseif ($user->status === 0)
+                                                        <span class="text-danger">Inactive</span>
+                                                    @endif</td>
+                                                    <td>{{ $user->created_at }}</td>
 
+                                                        <td class="d-flex justify-content-center align-items-center">
+                                                            <a href="{{ route('users.changeStatus', $user->id) }}"
+                                                                class="action_btn">
+                                                                @if ($user->status == true)
+                                                                    <button type="button" class="action_btn" data-toggle="tooltip"
+                                                                        data-placement="bottom" title="Disable">
+                                                                        <i class="fas fa-eye-slash icon_box"></i>
+                                                                    </button>
+                                                                @else
+                                                                    <button type="button" class="action_btn" data-toggle="tooltip"
+                                                                        data-placement="bottom" title="Enable">
+                                                                        <i class="fas fa-eye icon_box"></i>
+                                                                    </button>
+                                                                @endif
+                                                            </a>
+
+                                                            <a href="{{ route('users.edit', $user->id) }}" class="action_btn"><i class="fas fa-pen icon_box "></i></a>
+                                                        </td>
+
+                                                </tr>
+                                                @endforeach
 
                                         </tbody>
                                     </table>
@@ -73,7 +90,7 @@
                         </div>
                     </div>
                 </div>
-
+                {{ $users->links() }}
             </div>
         </section>
     </div>

@@ -165,7 +165,7 @@
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-columns"></i> <span>Manage Members</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{ route('teamsmember.index') }}">Team Members</a></li>
+                                <li><a class="nav-link" href="{{ route('users.index') }}">Team Members</a></li>
 
                             </ul>
                         </li>
