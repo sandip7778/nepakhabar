@@ -10,7 +10,7 @@
         <div class="row">
 
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <a href="dashboard.php?page=gallery">
+                <a href="{{ route('posts.index') }}">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-warning">
                             <i class="fas fa-file"></i>
@@ -29,7 +29,7 @@
             </div>
 
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <a href="dashboard.php?page=gallery">
+                <a href="{{ route('categories.index') }}">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-success">
                             <i class="fas fa-link"></i>
@@ -45,9 +45,11 @@
                     </div>
                 </a>
             </div>
+            @if (Auth::user()->isAdmin())
+
 
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <a href="dashboard.php?page=gallery">
+                <a href="{{ route('users.index') }}">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-success">
                             <i class="fas fa-users"></i>
@@ -57,22 +59,44 @@
                                 <h4>Total Team Members </h4>
                             </div>
                             <div class="card-body">
-                                <h6>0</h6>
+                                <h6> Active : {{ $taMember }}</h6>
+                                <h6 class="text-danger"> Inactive : {{ $tdMember }}</h6>
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
 
+
+
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <a href="dashboard.php?page=gallery">
+                <a href="{{ route('guests.index') }}">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-primary">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Total Users </h4>
+                            </div>
+                            <div class="card-body">
+                                <h6> Active : {{ $taGuest }}</h6>
+                                <h6 class="text-danger"> Inactive : {{ $tdGuest }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endif
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                <a href="{{ route('advertisements.index') }}">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-danger">
                             <i class="fas fa-images"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Advertisment </h4>
+                                <h4>Total Advertisement </h4>
                             </div>
                             <div class="card-body">
                                 <h6> Active : {{ $taAdvertisement }}</h6>
@@ -83,26 +107,6 @@
                     </div>
                 </a>
             </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <a href="dashboard.php?page=gallery">
-                    <div class="card card-statistic-1">
-                        <div class="card-icon bg-primary">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>Total Users </h4>
-                            </div>
-                            <div class="card-body">
-                                <h4>0</h4>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-
 
         </div>
         <div class="row">

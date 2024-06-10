@@ -15,18 +15,30 @@ class CheckUserType
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next)
+    // public function handle(Request $request, Closure $next)
+    // {
+    //     if (Auth::check() && Auth::user()->userType === 'admin') {
+    //         return $next($request);
+    //     } elseif (Auth::check() && Auth::user()->userType === 'editor') {
+    //         return $next($request);
+    //     } elseif (Auth::check() && Auth::user()->userType === 'reporter') {
+    //         return $next($request);
+    //     } else {
+    //         // Redirect the user if they are not of the specified type
+    //         return redirect('/');
+    //     }
+
+    // }
+
+    public function handle($request, Closure $next, $role)
     {
-        if (Auth::check() && Auth::user()->userType === 'admin') {
-            return $next($request);
-        } elseif (Auth::check() && Auth::user()->userType === 'editor') {
-            return $next($request);
-        } elseif (Auth::check() && Auth::user()->userType === 'reporter') {
-            return $next($request);
-        } else {
-            // Redirect the user if they are not of the specified type
-            return redirect('/');
+        $user = Auth::user();
+        if (!$user || $user->userType !== $role) {
+            abort(403, 'Unauthorized');
         }
+
+        return $next($request);
+
 
     }
 }
