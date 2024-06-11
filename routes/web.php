@@ -9,13 +9,13 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckUserType;
 use App\Http\Controllers\GuestController;
-
-
-
-use App\Http\Controllers\commentController;
-use App\Http\Controllers\NewShow;
 use App\Http\Controllers\NewsPageController;
+use App\Http\Controllers\ReactController;
 use App\Models\Post;
+
+
+use App\Http\Controllers\NewShow;
+
 
 // Route::get('/', function () {
 //     $posts = Post::orderBy('updated_at', 'desc')->paginate(10);
@@ -35,6 +35,7 @@ Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(func
     Route::get('advertisements/{advertisement}/changeStatus', [AdvertisementController::class, 'changeStatus'])->name('advertisements.changeStatus');
     Route::resource('advertisements', AdvertisementController::class);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/comments/{comment}',[ReactController::class, 'deleteComment'])->name('deleteComment');
 
     Route::middleware(['role:admin'])->group(function () {
         Route::get('users/{user}/changeStatus', [UserController::class, 'changeStatus'])->name('users.changeStatus');
@@ -47,7 +48,8 @@ Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(func
 
 
 
-Route::resource('comments', commentController::class);
+// Route::resource('comments', commentController::class);
+Route::get('/comments',[ReactController::class, 'index'])->name('comments.index');
 
 
 // Route::controller(NewShow::class)->group(function () {
@@ -62,6 +64,10 @@ Route::controller(NewsPageController::class)->group(function(){
     Route::get('/','index')->name('index');
     Route::get('/showNews/{slug}','showNews')->name('showNews');
 
+});
+
+Route::controller(ReactController::class)->middleware('auth')->group(function(){
+    Route::post('/showNews/{slug}/comments','storeComment')->name('storeComment');
 });
 
 

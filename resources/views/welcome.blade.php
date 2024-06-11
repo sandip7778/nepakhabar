@@ -36,7 +36,7 @@
                 @foreach ($posts as $index => $post)
                 <div class="single-post border mb-3">
                     <article>
-                        <a href="{{ route('showNews ',$post->slug)}}">
+                        <a href="{{ route('showNews',$post->slug)}}">
                             <div class="blog_details justify-content-center">
                                 <div class="row justify-content-center">
                                     <h2 class="text-align-center">{{ $post->title }}</h2>
