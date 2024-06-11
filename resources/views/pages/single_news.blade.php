@@ -20,7 +20,7 @@
                         <h2>{{ $post->title }}
                         </h2>
                         <ul class="blog-info-link mt-3 mb-4">
-                            <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
+                            <li><a href="#">{{ $post->category->name }}</a></li>
                             <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
                         </ul>
                         <div>
@@ -42,7 +42,7 @@
                             <li><a href="#"><i class="fab fa-behance"></i></a></li>
                         </ul>
                     </div>
-                  
+
                 </div>
                 <div class="blog-author">
                     <div class="media align-items-center">
@@ -113,7 +113,7 @@
                             </div>
                         </div>
                     </div>
-                  
+
                 </div>
                 <div class="comment-form">
                     <h4>Comment</h4>
@@ -168,7 +168,7 @@
                             <li>
                                 <a href="#" class="d-flex">
                                     <p>{{$category->name}}</p>
-                                    <p>(0)</p>
+                                    <p>({{ $category->posts->count() }})</p>
                                 </a>
                             </li>
                             @endforeach
@@ -176,11 +176,11 @@
                     </aside>
                     <aside class="single_sidebar_widget popular_post_widget">
                         <h3 class="widget_title">Recent Post</h3>
-                        @foreach ($posts as $posts_data)
+                        @foreach ($recentPosts as $posts_data)
                         <div class="media post_item">
-                            <img src="{{$posts_data->path}}" alt="post">
+                            <img src="{{Storage::url($posts_data->path) }}" alt="post" width="50px">
                             <div class="media-body">
-                                <a href="{{route('post',$posts_data->slug)}}">
+                                <a href="{{route('showNews',$posts_data->slug)}}">
                                     <h3>{{$posts_data->title}}</h3>
                                 </a>
                                 <p>{{$posts_data->created_at}}</p>

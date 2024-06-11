@@ -14,6 +14,7 @@ use App\Http\Controllers\GuestController;
 
 use App\Http\Controllers\commentController;
 use App\Http\Controllers\NewShow;
+use App\Http\Controllers\NewsPageController;
 use App\Models\Post;
 
 // Route::get('/', function () {
@@ -49,13 +50,20 @@ Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(func
 Route::resource('comments', commentController::class);
 
 
-Route::controller(NewShow::class)->group(function () {
-    Route::get('/', 'indexN')->name('indexN');
-    Route::get('/content/{id}', 'Categories')->name('content');
-    Route::get('/news', 'NewShow')->name('news');
-    Route::get('/Team_member', 'TeamMemeber')->name('team_member');
-    Route::get('/post/{id}', 'SingleNews')->name('post');
+// Route::controller(NewShow::class)->group(function () {
+//     Route::get('/', 'indexN')->name('indexN');
+//     Route::get('/content/{id}', 'Categories')->name('content');
+//     Route::get('/news', 'NewShow')->name('news');
+//     Route::get('/Team_member', 'TeamMemeber')->name('team_member');
+//     Route::get('/post/{id}', 'SingleNews')->name('post');
+// });
+
+Route::controller(NewsPageController::class)->group(function(){
+    Route::get('/','index')->name('index');
+    Route::get('/showNews/{slug}','showNews')->name('showNews');
+
 });
+
 
 
 require __DIR__ . '/auth.php';

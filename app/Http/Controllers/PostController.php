@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Mews\Purifier\Facades\Purifier;
 
@@ -51,7 +52,7 @@ class PostController extends Controller
 
         // dd($imageName);
         $path = $request->image->storeAs('images', $imageName, 'public');
-
+        // dd(Auth::user()->id);
         $post = Post::create([
             'title' => request()->get('title'),
             'path' => $path,
@@ -60,6 +61,7 @@ class PostController extends Controller
             'status' => request()->get('status'),
             'description' => request()->get('description'),
             'category_id' => request()->get('category'),
+            'user_id' => Auth::user()->id,
             'slug' => Str::slug($request->get('title')),
         ]);
 

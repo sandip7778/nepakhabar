@@ -87,13 +87,13 @@
                        <div class="col-xl-12">
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="header-info-left">
-                                    <ul>     
+                                    <ul>
                                         <li><img src="assets_news/img/icon/header_icon1.png" alt="">34ºc, Sunny </li>
                                         <li><img src="assets_news/img/icon/header_icon1.png" alt="">Tuesday, 18th June, 2019</li>
                                     </ul>
                                 </div>
                                 <div class="header-info-right">
-                                    <ul class="header-social">    
+                                    <ul class="header-social">
                                         <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                         <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                                        <li> <a href="#"><i class="fab fa-pinterest-p"></i></a></li>
@@ -135,19 +135,22 @@
                                 <div class="main-menu d-none d-md-block header-flex">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="/">होमपेज</a></li>
-                                            <li><a href="categori.html">समाचार</a></li>
-                                            <li><a href="about.html">बिजनेस</a></li>
+                                            <li><a href="{{ route('index') }}">होमपेज</a></li>
+                                            @foreach ($categories as $category)
+
+                                            <li><a href="{{ route('categories.show',$category->id) }}">{{ $category->name }}</a></li>
+                                            {{-- <li><a href="about.html">बिजनेस</a></li>
                                             <li><a href="about.html">विचार</a></li>
                                             <li><a href="about.html">खेलकुद</a></li>
                                             <li><a href="latest_news.html">नवीनतम समाचार</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="#">अन्य</a>
-                                                <ul class="submenu">
+                                            <li><a href="contact.html">Contact</a></li> --}}
+                                            @endforeach
+                                            <li><a href="#">{{ $other->name }}</a>
+                                                {{-- <ul class="submenu">
                                                     <li><a href="elements.html"> <i class="fas fa-user user_border"></i>
                                                             &nbsp; Login</a></li>
 
-                                                </ul>
+                                                </ul> --}}
                                             </li>
                                         </ul>
                                     </nav>

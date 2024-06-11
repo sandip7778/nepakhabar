@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Mews\Purifier\Facades\Purifier;
+
 
 class CategoryController extends Controller
 {
@@ -41,9 +44,12 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        //
+        // dd($category);
+        $post = Post::where('category_id', $id)->firstOrFail();
+        $post->description = Purifier::clean($post->description);
+        return view('pages.category', compact('post',));
     }
 
     /**

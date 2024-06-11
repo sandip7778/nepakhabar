@@ -184,7 +184,7 @@
                     </ul>
 
                     <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-                        <a href="{{ route('indexN') }}" class="btn btn-danger btn-lg btn-block btn-icon-split"
+                        <a href="{{ route('index') }}" class="btn btn-danger btn-lg btn-block btn-icon-split"
                             target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-rocket"></i> Website
                         </a>
