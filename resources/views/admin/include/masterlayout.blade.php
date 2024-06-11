@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Nepa-Khabar-Dashboard</title>
+    <title>@yield('title')</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets_news/img/logo/Logo-1.png') }}">
 
@@ -45,7 +45,7 @@
                                     class="fas fa-search"></i></a></li>
                     </ul>
                     <div class="search-element">
-                        <input class="form-control" type="search" name="search" placeholder="Search" aria-label="Search" value="{{ request()->input('search') }}" data-width="250" required>
+                        <input class="form-control" type="search" name="search" placeholder="Search Posts.." aria-label="Search" value="{{ request()->input('search') }}" data-width="250" required>
                         <button class="btn" type="submit"><i class="fas fa-search"></i></button>
 
                     </div>
@@ -79,10 +79,10 @@
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="{{ asset('assets/img/avatar/avatar-5.png') }}" class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block icons">Hi, {{ Auth::user()->name }}</div>
+                            <div class="d-sm-none d-lg-inline-block icons" >Hi, {{ Auth::user()->name }} <i class="fas fa-caret-down"></i></div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <div class="dropdown-title">Logged in 5 min ago</div>
+                            <div class="dropdown-title"><span class="text-xl">{{ Auth::user()->userType }}</span></div>
                             <!-- <a href="#" class="dropdown-item has-icon">
                                 <i class="far fa-user"></i> Profile
                             </a> -->
@@ -137,35 +137,28 @@
                                 <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>
                             </ul>
                         </li>
-                        <li class="menu-header">Starter</li>
+                        {{-- <li class="menu-header">Starter</li> --}}
                         <li class="dropdown">
-                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-
-                                    class="fas fa-columns"></i> <span>Manage Advertisment</span></a>
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                                <i class="fas fa-columns"></i> <span>Manage Advertisment</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('advertisements.create') }}">Create Advertisement</a></li>
                                 <li><a class="nav-link" href="{{ route('advertisements.index') }}">Advertisement</a></li>
-
-                                    class="fas fa-columns"></i> <span>Manage Comments</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{ route('comments.index') }}">Comments</a></li>
-
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-columns"></i> <span>Manage Advertisment</span></a>
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                                <i class="fas fa-columns"></i> <span>Manage Comments</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{ route('advertisments.index') }}">Advertisment</a></li>
-
+                                <li><a class="nav-link" href="{{ route('comments.index') }}">Comments</a></li>
                             </ul>
                         </li>
-
+                        @if (Auth::user()->isAdmin())
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-columns"></i> <span>Manage Users</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="dashboard.php?page=events"></a></li>
+                                <li><a class="nav-link" href="{{ route('guests.index') }}">Users</a></li>
 
                             </ul>
                         </li>
@@ -173,8 +166,7 @@
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-columns"></i> <span>Manage Members</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{ route('teamsmember.index') }}">Team Members</a></li>
-
+                                <li><a class="nav-link" href="{{ route('users.index') }}">Team Members</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -183,13 +175,8 @@
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{route('site_info')}}">Site Setting</a></li>
                             </ul>
-                             <!-- <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="dashboard.php?page=team_members">Deffult SEO </a></li>
-                            </ul>
-                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="dashboard.php?page=team_members">Tags Setting </a></li>
-                            </ul> -->
                         </li>
+                        @endif
                     </ul>
 
                     <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

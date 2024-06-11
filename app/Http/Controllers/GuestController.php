@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdvertismentController extends Controller
+
+class GuestController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.page.advertisment.advertisment');
+        $guests = User::where('userType','guest')->orderBy('created_at', 'desc')->paginate(15);
+        return view('admin.page.others.guestUsers', compact('guests'));
     }
 
     /**
@@ -60,5 +63,20 @@ class AdvertismentController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function changeStatus(Request $request, $id)
+    {
+        $guest = User::find($id);
+        // dd($guest -> status);
+        if ($guest && $guest->status == true) {
+            $guest->update(['status' => false]);
+            // dd($guest->status);
+            return redirect()->route('guests.index')->with('success', 'User disabled successfully.');
+        } else if ($guest && $guest->status == false) {
+            $guest->update(['status' => true]);
+            return redirect()->route('guests.index')->with('success', 'User enabled successfully.');
+        }
+        return response("User may not exist.");
     }
 }

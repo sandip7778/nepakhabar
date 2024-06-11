@@ -22,7 +22,43 @@ class User extends Authenticatable implements MustVerifyEmailContract
         'name',
         'email',
         'password',
+        'path',
+        'userType',
+        'status',
     ];
+
+    const ROLE_GUEST = 'guest';
+    const ROLE_EDITOR = 'editor';
+    const ROLE_REPORTER = 'reporter';
+    const ROLE_ADMIN = 'admin';
+
+    // Check if the user is an admin
+    public function isAdmin()
+    {
+        return $this->userType === self::ROLE_ADMIN;
+    }
+
+    // Check if the user is an editor
+    public function isEditor()
+    {
+        return $this->userType === self::ROLE_EDITOR;
+    }
+
+    // Check if the user is a reporter
+    public function isReporter()
+    {
+        return $this->userType === self::ROLE_REPORTER;
+    }
+
+    // Check if the user is a guest
+    public function isGuest()
+    {
+        return $this->userType === self::ROLE_GUEST;
+    }
+
+
+
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -45,5 +81,10 @@ class User extends Authenticatable implements MustVerifyEmailContract
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function post()
+    {
+        return $this->hasMany(Post::class);
     }
 }

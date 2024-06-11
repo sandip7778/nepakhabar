@@ -45,32 +45,34 @@
                                                 <td>{{ $advertisement->created_at }}</td>
                                                 <td class="d-flex justify-content-center align-items-center">
 
-                                                        <a href="{{ route('advertisements.changeStatus', $advertisement->id) }}"
-                                                            class="action_btn">
-                                                            @if ($advertisement->status == 1)
-                                                            <button type="button" class="action_btn"
-                                                            data-toggle="tooltip" data-placement="bottom" title="Disable">
+                                                    <a href="{{ route('advertisements.changeStatus', $advertisement->id) }}"
+                                                        class="action_btn">
+                                                        @if ($advertisement->status == 1)
+                                                            <button type="button" class="action_btn" data-toggle="tooltip"
+                                                                data-placement="bottom" title="Disable">
                                                                 <i class="fas fa-eye-slash icon_box"></i>
                                                             </button>
-                                                    @else
-                                                            <button type="button"
-                                                                class="action_btn"
-                                                                data-toggle="tooltip" data-placement="bottom" title="Enable">
+                                                        @else
+                                                            <button type="button" class="action_btn" data-toggle="tooltip"
+                                                                data-placement="bottom" title="Enable">
                                                                 <i class="fas fa-eye icon_box"></i>
-                                                            </button></a>
-                                                    @endif
+                                                            </button>
+                                                        @endif
+                                                    </a>
+
 
                                                     <a href="{{ route('advertisements.edit', $advertisement->id) }}"
-                                                        class="action_btn" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fas fa-pen icon_box "></i></a>
+                                                        class="action_btn" data-toggle="tooltip" data-placement="bottom"
+                                                        title="Edit"><i class="fas fa-pen icon_box "></i></a>
                                                     <form class="pointer d-inline"
                                                         action="{{ route('advertisements.destroy', $advertisement->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="action_btn"
-                                                        data-toggle="tooltip" data-placement="bottom" title="Permanently delete">
-                                                                <i class="fas fa-trash icon_box"></i>
-                                                            </button>
+                                                        <button type="submit" class="action_btn" data-toggle="tooltip"
+                                                            data-placement="bottom" title="Permanently delete">
+                                                            <i class="fas fa-trash icon_box"></i>
+                                                        </button>
                                                     </form>
 
                                                 </td>

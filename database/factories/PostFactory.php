@@ -20,13 +20,16 @@ class PostFactory extends Factory
         $title = fake()->sentence;
         return [
             'title' => $title,
-            'description' => $this->faker->paragraph,
-            'path' => $this->faker->imageUrl(640, 480, 'business', true),
+            'slug' => Str::slug($title),
+            'category_id' => $this->faker->numberBetween(1, 25),
             'meta_tag' => fake()->words(3,true),
             'meta_keyword' => fake()->words(5,true),
+            'path' => $this->faker->imageUrl(640, 480, 'business', true),
             'status' => $this->faker->boolean(80),
-            'category_id' => $this->faker->numberBetween(1, 10),
-            'slug' => Str::slug($title),
+            'description' => $this->faker->paragraph,
+            'user_id' => fake()->numberBetween(1,10),
+
+
         ];
     }
 }

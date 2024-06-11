@@ -24,14 +24,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title">Delete User</h5>
-                                @include('profile.partials.delete-user-form')
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>

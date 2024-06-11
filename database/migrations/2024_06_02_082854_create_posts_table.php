@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('path');
             $table->unsignedBigInteger('views')->default(0);
             $table->boolean('status')->default(true);
-            $table->string('description');
+            $table->longText('description');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
