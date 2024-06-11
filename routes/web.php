@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'verified','role:editor|reporter'])->group(function () {
+Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('posts', PostController::class)->parameters(['posts' => 'slug']);
     Route::get('advertisements/{advertisement}/changeStatus', [AdvertisementController::class, 'changeStatus'])->name('advertisements.changeStatus');

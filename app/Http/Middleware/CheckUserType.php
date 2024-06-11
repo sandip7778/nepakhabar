@@ -30,15 +30,31 @@ class CheckUserType
 
     // }
 
-    public function handle($request, Closure $next, $role)
+    public function handle($request, Closure $next, $roles)
     {
+        // $user = Auth::user();
+        // if (!$user || $user->userType !== $role) {
+        //     abort(403, 'Unauthorized');
+        // }
+        // return $next($request);
+
+        // $user = Auth::user();
+        // $rolesArray = explode(',', $roles);
+        // if (!$user || !in_array($user->userType, $rolesArray)) {
+        //     abort(403, 'Unauthorized action.');
+        // }
+        // return $next($request);
+
+        $rolesArray = explode('|', $roles); // Convert roles string to array
         $user = Auth::user();
-        if (!$user || $user->userType !== $role) {
-            abort(403, 'Unauthorized');
+
+        if(!$user || $user->userType=='guest'){
+            return redirect('/');
+        }elseif (!$user || !in_array($user->userType, $rolesArray)) {
+            abort(403, 'Unauthorized action.');
         }
 
         return $next($request);
-
 
     }
 }
