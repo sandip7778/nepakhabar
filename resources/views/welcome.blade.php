@@ -1,4 +1,6 @@
-@include('inc.header')
+@extends('inc.newsLayout')
+
+@section('content')
 
 <main>
     <!-- Trending Area Start -->
@@ -13,9 +15,11 @@
                             <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                             <div class="trending-animated">
                                 <ul id="js-news" class="js-hidden">
-                                    <li class="news-item">गण्डकीको मुख्यमन्त्रीमा सुरेन्द्रराज पाण्डे नियुक्त</li>
-                                    <li class="news-item">Spondon IT sit amet, consectetur.......</li>
-                                    <li class="news-item">Rem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                                    @foreach ($posts as $post)
+                                    <li class="news-item">{{ $post->title }}</li>
+                                    @endforeach
+                                    {{-- <li class="news-item">Spondon IT sit amet, consectetur.......</li>
+                                    <li class="news-item">Rem ipsum dolor sit amet, consectetur adipisicing elit.</li> --}}
                                 </ul>
                             </div>
 
@@ -32,20 +36,22 @@
                 @foreach ($posts as $index => $post)
                 <div class="single-post border mb-3">
                     <article>
-                        <a href="{{ route('post',$post->slug)}}">
+                        <a href="{{ route('showNews',$post->slug)}}">
                             <div class="blog_details justify-content-center">
                                 <div class="row justify-content-center">
                                     <h2 class="text-align-center">{{ $post->title }}</h2>
                                 </div>
 
                                 <ul class="blog-info-link row justify-content-center">
-                                    <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="#">&nbsp; &nbsp; <i class="fa fa-calendar"></i>
-                                            {{ $post->created_at }}</a>
+                                    <li><a href="{{ route('categories.show',$post->category_id) }}"> {{ $post->category->name }}</a></li>
+                                    <li>&nbsp; &nbsp; <i class="fa fa-calendar"></i>
+                                            {{ $post->created_at }}
                                     </li>
+                                    <li>&nbsp; &nbsp; <i class="fa fa-user"></i>
+                                        {{ $post->user->name }}</li>
                                 </ul>
                                 <div class="row justify-content-center mt-3">
-                                    <img src="assets_news/img/trending/trending_top.jpg" class="tranding_image" alt="">
+                                    <img src="{{Storage::url($post->path) }}" alt="{{ $post->title.' Image' }}" class="tranding_image" >
                                 </div>
                             </div>
                         </a>
@@ -62,8 +68,7 @@
                             <div class="trend-top-img">
                                 <img src="assets_news/img/trending/trending_top.jpg" alt="">
                                 <div class="trend-top-cap">
-                                    <span class="text_limit"> </span>
-                                    <h2 class="text_limit"><a href="details.html">{{ $post->title }}</a></h2>
+                                    <span class="text_limit"> </span>hh</a></h2>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +140,7 @@
 
                                 @foreach ($posts as $index => $post)
                                 <div class="swiper-slide">
-                                    <a href="{{ route('post',$post->slug)}}">
+                                    <a href="{{ route('posts.show',$post->slug)}}">
                                         <div class="weekly2-single ">
                                             <div class="weekly2-img">
                                                 <img src="assets_news/img/news/weekly2News1.jpg" alt="">
@@ -190,7 +195,7 @@
 
                                 @foreach ($posts as $index => $post)
                                 <div class="swiper-slide">
-                                    <a href="{{ route('post',$post->slug)}}">
+                                    <a href="{{ route('posts.show',$post->slug)}}">
                                       <div class="news_box">
                                         <div class="text_side">
                                             <H1>Testing</H1>
@@ -465,7 +470,7 @@
 
                                 @foreach ($posts as $index => $post)
                                 <div class="swiper-slide">
-                                    <a href="{{ route('post',$post->slug)}}">
+                                    <a href="{{ route('posts.show',$post->slug)}}">
                                         <div class="weekly2-single ">
                                             <div class="weekly2-img">
                                                 <img src="assets_news/img/news/weekly2News1.jpg"
@@ -667,4 +672,4 @@
     <!-- End pagination  -->
 </main>
 
-@include('inc.footer')
+@endsection

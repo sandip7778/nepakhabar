@@ -87,4 +87,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
     {
         return $this->hasMany(Post::class);
     }
+    public function react()
+    {
+        return $this->hasMany(React::class);
+    }
+
 }

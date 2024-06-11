@@ -37,6 +37,8 @@
         <div class="main-wrapper main-wrapper-1">
             <div class="navbar-bg"></div>
             <nav class="navbar navbar-expand-lg main-navbar">
+            @if(!Auth::user()->isGuest())
+
                 <form class="form-inline mr-auto" method="GET" action="{{ route('dashboard') }}">
                     <ul class="navbar-nav mr-3">
                         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i
@@ -50,6 +52,7 @@
 
                     </div>
                 </form>
+                @endif
                 <ul class="navbar-nav navbar-right">
                     <!-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
                             class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope icons"></i></a>
@@ -106,6 +109,7 @@
                     </li>
                 </ul>
             </nav>
+            @if(!Auth::user()->isGuest())
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
@@ -180,7 +184,7 @@
                     </ul>
 
                     <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-                        <a href="{{ route('indexN') }}" class="btn btn-danger btn-lg btn-block btn-icon-split"
+                        <a href="{{ route('index') }}" class="btn btn-danger btn-lg btn-block btn-icon-split"
                             target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-rocket"></i> Website
                         </a>
@@ -188,6 +192,7 @@
                     </div>
                 </aside>
             </div>
+            @endif
 
             <!-- Main Content  -->
             @yield('content')

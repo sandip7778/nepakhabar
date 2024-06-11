@@ -10,7 +10,7 @@
                     <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">*</button> -->
                     <i class="mdi mdi-close-circle" data-bs-dismiss="modal" aria-label="Close"></i>
                 </div>
-                <form method="post" id="add_category" action="{{ route('comments.store') }}">
+                <form method="post" id="add_category" action="/">
                     @csrf
                     <div class="modal-body">
                         <div class="row ">
@@ -81,30 +81,31 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        
+                                            @foreach ($comments as $index => $comment)
                                                 <tr>
-                                               
-                                                    <td>1</td>
-                                                    <td>Sandip </td>
-                                                    <td>News4554</td>
-                                                    <td>Comments</td>
-                                                    <td>2024-06-06</td>
-                                                    <td>
-                                                        <form class="pointer d-inline" action="" method="POST">
+                                                    <td>{{ $index+1 }}</td>
+                                                    <td>{{ $comment->user->name }}</td>
+                                                    <td>{{ $comment->post->title }}</td>
+                                                    <td>{{ $comment->content }}</td>
+                                                    <td>{{ $comment->updated_at }}</td>
+                                                    <td class="d-flex justify-content-center align-items-center">
+
+                                                        <form class="pointer d-inline" action="{{ route('deleteComment', $comment->id) }}" >
                                                             <!-- @csrf
                                                             @method('DELETE') -->
                                                             <button type="submit" class="action_btn"><i class="fas fa-trash icon_box"></i></button>
                                                         </form>
-                                                        <button class="action_btn" ><a href="" ><i class="fas fa-pen icon_box "></i></a></button>
+                                                        <button class="action_btn" ><a href="" ><i class="fas fa-reply icon_box "></i></a></button>
                                                     </td>
                                                 </tr>
-                                        
+                                                @endforeach
+
 
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                  
+
                         </div>
                     </div>
                 </div>
