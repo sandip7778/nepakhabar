@@ -53,9 +53,15 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        $comments = Comment::orderBy('updated_at','DESC')->get();
+        $comments = Comment::orderBy('updated_at', 'DESC')->get();
+        // $lastReply = $comments->replies->orderBy('updated_at', 'DESC')->take(1);
+        // foreach ($comments as $comment) {
+        //     if ($comment->parent_id) {
+        //         $lastReply = $comment->replies->orderBy('updated_at', 'DESC')->take(1);
+        //     }
+        // }
         // dd($comments);
-        return view('admin.page.comment.comment',compact('comments'));
+        return view('admin.page.comment.comment', compact('comments'));
     }
 
     /**
@@ -81,12 +87,13 @@ class CommentController extends Controller
     {
         // dd($comment);
         $comment->delete();
-        return redirect()->back()->with('success','Comment Deleted Successfully.');
+        return redirect()->back()->with('success', 'Comment Deleted Successfully.');
     }
 
-    public function comments(){
-        $comments = Comment::orderBy('updated_at','DESC')->get();
+    public function comments()
+    {
+        $comments = Comment::orderBy('updated_at', 'DESC')->get();
         // dd($comments);
-        return view('admin.page.comment.comment',compact('comments'));
+        return view('admin.page.comment.comment', compact('comments'));
     }
 }

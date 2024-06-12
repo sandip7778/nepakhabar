@@ -81,6 +81,7 @@
                                                 <th>Post</th>
                                                 <th>Comment</th>
                                                 <th>Updated Date</th>
+                                                <th>Last Reply</th>
                                                 <th>Reply</th>
                                                 <th>Action</th>
                                             </tr>
@@ -88,12 +89,14 @@
                                         <tbody>
                                             @foreach ($comments as $index => $comment)
                                                 @if (!$comment->parent_id)
+                                                @include('admin.shared.success')
                                                     <tr>
                                                         <td>{{ $index + 1 }}</td>
                                                         <td>{{ $comment->user->name }}</td>
                                                         <td>{{ $comment->post->title }}</td>
                                                         <td>{{ $comment->content }}</td>
-                                                        <td>{{ $comment->updated_at }}</td>
+                                                        <td>{{ $comment->reply->updated_at }}</td>
+                                                        <td>{{ $comment->reply->content }}</td>
                                                         <td>
                                                             <div class="reply-btn">
                                                                 <form action="{{ route('posts.comments.store', $comment->post->slug) }}" method="POST">

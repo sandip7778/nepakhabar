@@ -31,4 +31,8 @@ class Comment extends Model
     {
         return $this->hasMany(Comment::class, 'parent_id');
     }
+    public function reply()
+    {
+        return $this->hasOne(Comment::class, 'parent_id')->orderBy('updated_at', 'DESC');
+    }
 }
