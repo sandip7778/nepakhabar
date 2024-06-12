@@ -10,7 +10,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','slug','category_id','user_id', 'meta_tag','meta_keyword','path','status','description'];
+    protected $fillable = ['title','slug','category_id','user_id','like','share', 'meta_tag','meta_keyword','path','status','description'];
 
     public static function boot()
     {
@@ -37,7 +37,7 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
     public function comments(){
-        return $this->hasMany(React::class);
+        return $this->hasMany(Comment::class);
 
     }
 }

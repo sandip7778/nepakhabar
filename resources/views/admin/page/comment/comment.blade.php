@@ -1,16 +1,16 @@
 @extends('admin/include/masterlayout')
 
 @section('content')
-    <div class="modal fade" id="addComment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="addReply" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Add News Comments</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Reply to Comment</h5>
                     <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">*</button> -->
-                    <i class="mdi mdi-close-circle" data-bs-dismiss="modal" aria-label="Close"></i>
+                    <i class="mdi mdi-close-circle" data-bs-dismiss="modal" aria-label="Close">X</i>
                 </div>
-                <form method="post" id="add_category" action="/">
+                <form method="post" id="add_reply" action="/">
                     @csrf
                     <div class="modal-body">
                         <div class="row ">
@@ -35,16 +35,20 @@
             <div class="section-header">
                 <h1>Comments</h1>
                 <div class="section-header-breadcrumb">
-                    <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addComment">
-                        <i class="fas fa-plus"></i>
-                        Add Comments
-                    </a>
-
                     <!-- <div class="breadcrumb-item active"><a href="#" class="p_color">Dashboard</a></div>
-                            <div class="breadcrumb-item"><a href="#" class="p_color">slider</a></div>
-                            <div class="breadcrumb-item">sliders</div> -->
+                                <div class="breadcrumb-item"><a href="#" class="p_color">slider</a></div>
+                                <div class="breadcrumb-item">sliders</div> -->
                 </div>
             </div>
+            @if ($errors->any())
+                                <div>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
             <div class="section-body">
                 <div class="row">
@@ -55,16 +59,16 @@
                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                             @enderror
                             <div class="card-header">
-                                <h4>Categories Data</h4>
+                                <h4>All Comments</h4>
                                 <div class="card-header-form">
                                     <!-- <form>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Search">
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" placeholder="Search">
+                                                        <div class="input-group-btn">
+                                                            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </form> -->
+                                                </form> -->
                                 </div>
                             </div>
                             <div class="card-body p-0">
@@ -77,30 +81,42 @@
                                                 <th>Post</th>
                                                 <th>Comment</th>
                                                 <th>Updated Date</th>
+                                                <th>Reply</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($comments as $index => $comment)
-                                                <tr>
-                                                    <td>{{ $index+1 }}</td>
-                                                    <td>{{ $comment->user->name }}</td>
-                                                    <td>{{ $comment->post->title }}</td>
-                                                    <td>{{ $comment->content }}</td>
-                                                    <td>{{ $comment->updated_at }}</td>
-                                                    <td class="d-flex justify-content-center align-items-center">
-
-                                                        <form class="pointer d-inline" action="{{ route('deleteComment', $comment->id) }}" >
-                                                            <!-- @csrf
-                                                            @method('DELETE') -->
-                                                            <button type="submit" class="action_btn"><i class="fas fa-trash icon_box"></i></button>
-                                                        </form>
-                                                        <button class="action_btn" ><a href="" ><i class="fas fa-reply icon_box "></i></a></button>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-
-
+                                                @if (!$comment->parent_id)
+                                                    <tr>
+                                                        <td>{{ $index + 1 }}</td>
+                                                        <td>{{ $comment->user->name }}</td>
+                                                        <td>{{ $comment->post->title }}</td>
+                                                        <td>{{ $comment->content }}</td>
+                                                        <td>{{ $comment->updated_at }}</td>
+                                                        <td>
+                                                            <div class="reply-btn">
+                                                                <form action="{{ route('posts.comments.store', $comment->post->slug) }}" method="POST">
+                                                                    @csrf
+                                                                    <input type="hidden" name="post_id" value="{{ $comment->post->id }}">
+                                                                    <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+                                                                    <textarea name="content" required></textarea>
+                                                                    <button type="submit" class="btn-outline-info btn-sm">Reply</button>
+                                                                </form>
+                                                                {{-- <a href="#" class="btn-reply text-uppercase">reply</a> --}}
+                                                            </div>
+                                                        </td>
+                                                        <td class="d-flex justify-content-center align-items-center">
+                                                            <form class="pointer d-inline" action="{{ route('comments.destroy',$comment->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="action_btn"><i
+                                                                        class="fas fa-trash icon_box"></i></button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

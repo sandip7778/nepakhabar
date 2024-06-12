@@ -154,7 +154,7 @@
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                                 <i class="fas fa-columns"></i> <span>Manage Comments</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{ route('comments.index') }}">Comments</a></li>
+                                <li><a class="nav-link" href="{{ route('comments') }}">Comments</a></li>
                             </ul>
                         </li>
                         @if (Auth::user()->isAdmin())
