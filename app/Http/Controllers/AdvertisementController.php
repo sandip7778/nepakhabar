@@ -42,19 +42,20 @@ class AdvertisementController extends Controller
         $request->validate([
             'c_name' => 'required|string|max:255',
             'ad_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'position' => 'required|string',
             'ad_description' => 'required|string|min:10',
         ]);
 
-        // dd($request->ad_image);
         $image = $request->file('ad_image')->getClientOriginalName();
         $imageName = time() . '_' . $image;
 
         // dd($imageName);
-        $ad_path = $request->ad_image->storeAs('Ad_Images', $imageName, 'public');
+        $ad_path = $request->ad_image->storeAs('He_Images', $imageName, 'public');
 
         Advertisement::create([
             'name' => request()->get('c_name'),
             'description' => request()->get('ad_description'),
+            'position' => request()->get('position'),
             'ad_path' => $ad_path,
             'status' => true,
 
@@ -86,6 +87,7 @@ class AdvertisementController extends Controller
         $request->validate([
             'c_name' => 'required|string|max:255',
             'ad_image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'position' => 'required|string',
             'ad_description' => 'required|string|min:10',
         ]);
         if ($request->hasFile('ad_image')) {
@@ -95,17 +97,19 @@ class AdvertisementController extends Controller
             $image = $request->file('ad_image')->getClientOriginalName();
             $imageName = time() . '_' . $image;
 
-            $ad_path = $request->ad_image->storeAs('Ad_images', $imageName, 'public');
+            $ad_path = $request->ad_image->storeAs('He_images', $imageName, 'public');
             $advertisement->update([
                 'name' => request()->get('c_name'),
                 'description' => request()->get('ad_description'),
                 'ad_path' => $ad_path,
+                'position' => request()->get('position'),
                 'status' => true,
             ]);
         } else {
             $advertisement->update([
                 'name' => request()->get('c_name'),
                 'description' => request()->get('ad_description'),
+                'position' => request()->get('position'),
                 'status' => true,
             ]);
         }
