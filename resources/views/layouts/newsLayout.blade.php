@@ -172,18 +172,22 @@
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
-                                        <p>Suscipit mauris pede for con sectetuer sodales adipisci for cursus fames
-                                            lectus tempor da blandit gravida sodales Suscipit mauris pede for con
-                                            sectetuer sodales adipisci for cursus fames lectus tempor da blandit gravida
-                                            sodales Suscipit mauris pede for sectetuer.</p>
+                                        <p>{{ $site->metaDescription }}</p>
                                     </div>
+                                </div>
+
+                                <!-- contact -->
+                                <div class="footer-contact">
+                                    <a href="mailto:{{ $site->email }}"><i class="fab fa-email icon"></i>{{ $site->email }} </a>
+                                    <a href="tel:{{ $site->phone }}"><i class="fab fa-phone icon"></i>{{ $site->phone }} </a>
                                 </div>
                                 <!-- social -->
                                 <div class="footer-social">
-                                    <a href="#"><i class="fab fa-twitter icon"></i></a>
-                                    <a href="#"><i class="fab fa-instagram icon"></i></a>
-                                    <a href="#"><i class="fab fa-facebook icon"></i></a>
-                                    <a href="#"><i class="fab fa-youtube icon"></i></a>
+                                    <a href="{{ $site->twitter }}"><i class="fab fa-twitter icon"></i></a>
+                                    <a href="{{ $site->instagram }}"><i class="fab fa-instagram icon"></i></a>
+                                    <a href="{{ $site->facebook }}"><i class="fab fa-facebook icon"></i></a>
+                                    <a href="{{ $site->youtube }}"><i class="fab fa-youtube icon"></i></a>
+                                    <a href="{{ $site->thread }}"><i class="fa-brands fa-threads"></i></a>
 
                                 </div>
                             </div>

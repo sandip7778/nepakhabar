@@ -43,13 +43,4 @@ class DashboardController extends Controller
         }
     }
 
-    public function site_info()
-    {
-
-        if (Auth::user()->isAdmin()) {
-            return view('admin.page.others.site_info');
-        } else {
-            return redirect('/');
-        }
-    }
 }

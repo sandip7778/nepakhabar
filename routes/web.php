@@ -14,13 +14,7 @@ use App\Models\Post;
 
 
 use App\Http\Controllers\NewShow;
-
-
-// Route::get('/', function () {
-//     $posts = Post::orderBy('updated_at', 'desc')->paginate(10);
-//         return view('welcome', compact('posts'));
-
-// })->name('index');
+use App\Http\Controllers\SiteController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -42,34 +36,17 @@ Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(func
         Route::resource('/users', UserController::class);
         Route::get('guests/{guest}/changeStatus', [GuestController::class, 'changeStatus'])->name('guests.changeStatus');
         Route::resource('/guests', GuestController::class);
-        Route::get('/site_info', [DashboardController::class, 'site_info'])->name('site_info');
+        // Route::get('/site_info', [DashboardController::class, 'site_info'])->name('site_info');
+        Route::resource('/site',SiteController::class)->only('show','update');
     });
 });
 
-
-
-// Route::resource('comments', commentController::class);
-// Route::get('/comments',[ReactController::class, 'index'])->name('comments.index');
-
-
-// Route::controller(NewShow::class)->group(function () {
-//     Route::get('/', 'indexN')->name('indexN');
-//     Route::get('/content/{id}', 'Categories')->name('content');
-//     Route::get('/news', 'NewShow')->name('news');
-//     Route::get('/Team_member', 'TeamMemeber')->name('team_member');
-//     Route::get('/post/{id}', 'SingleNews')->name('post');
-// });
 
 Route::controller(NewsPageController::class)->group(function(){
     Route::get('/','index')->name('index');
     Route::get('/showNews/{slug}','showNews')->name('showNews');
 
 });
-
-// Route::controller(ReactController::class)->middleware('auth')->group(function(){
-//     Route::post('/showNews/{slug}/comments','storeComment')->name('storeComment');
-//     Route::get('/react/{react}/share/{platform}',  'updateShareCount')->name('react.updateShareCount');
-// });
 
 Route::resource('posts.comments',CommentController::class)->shallow()->middleware('auth');
 

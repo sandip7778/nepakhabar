@@ -177,7 +177,7 @@
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-columns"></i> <span>Manage Sites</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{route('site_info')}}">Site Setting</a></li>
+                                <li><a class="nav-link" href="{{route('site.show',1)}}">Site Setting</a></li>
                             </ul>
                         </li>
                         @endif
