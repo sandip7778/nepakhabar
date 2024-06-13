@@ -1,5 +1,5 @@
-@include('inc.header')
-
+@extends('layouts.newsLayout')
+@section('content')
 <!--================Blog Area =================-->
 <section class="blog_area single-post-area pt-20">
     <div class="container">
@@ -243,4 +243,4 @@
 <!--================ Blog Area end =================-->
 
 
-@include('inc.footer')
+@endsection

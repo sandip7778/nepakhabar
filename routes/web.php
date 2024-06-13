@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(function () {
-    Route::resource('categories', CategoryController::class);
+    Route::resource('categories', CategoryController::class)->except('show');
     Route::resource('posts', PostController::class)->parameters(['posts' => 'slug']);
     Route::get('advertisements/{advertisement}/changeStatus', [AdvertisementController::class, 'changeStatus'])->name('advertisements.changeStatus');
     Route::resource('advertisements', AdvertisementController::class);
@@ -45,9 +45,9 @@ Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(func
 Route::controller(NewsPageController::class)->group(function(){
     Route::get('/','index')->name('index');
     Route::get('/showNews/{slug}','showNews')->name('showNews');
-
 });
 
+Route::resource('categories', CategoryController::class)->only('show');
 Route::resource('posts.comments',CommentController::class)->shallow()->middleware('auth');
 
 
