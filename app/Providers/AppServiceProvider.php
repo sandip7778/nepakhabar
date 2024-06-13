@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Advertisement;
 use App\Models\Category;
+use App\Models\Site;
 use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
@@ -26,9 +27,9 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
         $categories = Category::where('id', '!=', 1)->orderBy('updated_at', 'ASC')->get();
         $other = Category::find(1);
+        $site = Site::find(1);
 
         // advertisements catching
-
         $uniquePositions = Advertisement::where('status', true)->distinct()->pluck('position')->toArray();
         $advertisements = collect();
         foreach ($uniquePositions as $position) {
@@ -43,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
 
         View::share('categories', $categories);
         View::share('other', $other);
+        View::share('site', $site);
         View::share('advertisements',$advertisements);
 
     }
