@@ -29,6 +29,7 @@
                         </ul>
                         <div>
                             {!! $post->description !!}
+
                         </div>
 
                     </div>
@@ -41,50 +42,75 @@
                             <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
                         </div>
                         <ul class="social-icons">
-                            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('showNews',$post->slug)) }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="https://twitter.com/intent/tweet?url={{ urlencode(route('showNews',$post->slug)) }}&text={{ urlencode($post->title) }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="whatsapp://send?text={{ urlencode($post->title . ' ' . route('showNews',$post->slug)) }}" data-action="share/whatsapp/share" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
-                            <li><a href="https://www.linkedin.com/shareArticle?url={{ urlencode(route('showNews',$post->slug)) }}" target="_blank"><i class="fab fa-linkedin" ></i></a></li>
+                            <li><a href="/" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a></li>
+                            <li><a href="https://twitter.com/intent/tweet?url={{ urlencode(route('showNews', $post->slug)) }}&text={{ urlencode($post->title) }}"
+                                    target="_blank"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="whatsapp://send?text={{ urlencode($post->title . ' ' . route('showNews', $post->slug)) }}"
+                                    data-action="share/whatsapp/share" target="_blank"><i
+                                        class="fab fa-whatsapp"></i></a></li>
+                            <li><a href="https://www.linkedin.com/shareArticle?url={{ urlencode(route('showNews', $post->slug)) }}"
+                                    target="_blank"><i class="fab fa-linkedin"></i></a></li>
                         </ul>
                     </div>
 
                 </div>
                 <div class="comments-area">
                     <h4>{{ $post->comments->count() }} Comments</h4>
+                    <div class="comment-list">
                     @foreach ($post->comments as $comment)
-                        <div class="comment-list">
+
                             <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="{{ asset('assets_news/img/blog/author.png') }}" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <p class="comment">
-                                            {{ $comment->content }}
-                                        </p>
-                                        <div class="d-flex justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <h5>
-                                                    <a href="#">{{ $comment->user->name }}</a>
-                                                </h5>
-                                                <p class="date">{{ $comment->created_at }} </p>
-                                            </div>
-                                            <div class="reply-btn">
-                                                <a href="#" class="btn-reply text-uppercase">reply</a>
+                                <div class="user justify-content-between d-flex flex-column">
+                                    @if (!$comment->parent_id)
+                                        <div class="thumb mt-4">
+                                            <img src="{{ asset('assets_news/img/blog/author.png') }}" alt="">
+                                        </div>
+                                        <div class="desc">
+                                            <p class="bold mb-0">
+                                                {{ $comment->content }}
+                                            </p>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <small>
+                                                        Commented by {{ $comment->user->name }}
+                                                    </small>
+                                                    <small class="date">{{ $comment->created_at }} </small>
+                                                </div>
                                             </div>
                                         </div>
+                                    @endif
+                                    @foreach ($comment->replies as $reply)
+                                        <div style="margin-left: 30px;">
+                                            <p style="margin-bottom: 0px">{{ $reply->content }}</p>
+                                            <small>Replied by {{ $reply->user->name }}</small>
+                                            <small> on {{ $reply->updated_at }}</small>
+                                        </div>
+                                    @endforeach
+                                    @if (!$comment->parent_id)
+                                    <div class="reply-btn">
+                                        <form action="{{ route('posts.comments.store', $post->slug) }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                            <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+                                            <textarea name="content" required></textarea>
+                                            <button type="submit" class="btn-outline-info btn-sm">Reply</button>
+                                        </form>
+                                        {{-- <a href="#" class="btn-reply text-uppercase">reply</a> --}}
                                     </div>
+                                    @endif
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
 
+                    @endforeach
+                </div>
 
                 </div>
                 <div class="comment-form">
                     <h4>Comment</h4>
-                    @include('admin.shared.success')
-                    <form class="form-contact comment_form" action="{{ route('storeComment', $post->slug) }}"
+
+                    <form class="form-contact comment_form" action="{{ route('posts.comments.store', $post->slug) }}"
                         id="commentForm" method="post">
                         @csrf
                         <div class="row">
@@ -96,6 +122,7 @@
                                         <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                     @enderror
                                     <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                    {{-- <input type="hidden" name="parent_id" value="{{ $parentComment->id ?? '' }}"> <!-- Include this when replying to a comment --> --}}
                                 </div>
                             </div>
                         </div>

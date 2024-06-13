@@ -22,7 +22,7 @@
                                         <th>SN</th>
                                         <th>Title</th>
                                         <th>Categories</th>
-                                        <th>Views</th>
+                                        <th>Likes</th>
                                         <th>Comment</th>
                                         <th>Status</th>
                                         <th>Create Date</th>
@@ -35,13 +35,13 @@
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $post->title }}</td>
                                         <td>{{ $post->category->name }}</td>
-                                        <td>{{ $post->views }}</td>
+                                        <td>{{ $post->like }}</td>
                                         <td>60</td>
                                         <td>
                                             @if ( $post->status== 1)
                                             <div class='badge badge-success'>Active</div>
                                             @else
-                                            <div class='badge badge-danger'>Dactive</div>
+                                            <div class='badge badge-danger'>Inactive</div>
                                             @endif
                                         </td>
                                         <td>{{ $post->created_at }}</td>

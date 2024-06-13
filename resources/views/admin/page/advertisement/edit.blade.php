@@ -46,6 +46,21 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-12">
+                                            <div class="form-group">
+                                                <label>Position</label>
+                                                <select class="form-control" name="position" required>
+                                                    <option value="" selected>Select Position</option>
+                                                        <option value="header" {{ $advertisement->position == 'header' ? 'selected' : '' }}>Header</option>
+                                                        <option value="center" {{ $advertisement->position == 'center' ? 'selected' : '' }}>Center</option>
+                                                        <option value="sidebar" {{ $advertisement->position == 'sidebar' ? 'selected' : '' }}>Sidebar</option>
+                                                        <option value="footer" {{ $advertisement->position == 'footer' ? 'selected' : '' }}>Footer</option>
+                                                </select>
+                                                @error('position')
+                                                    <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12">
                                             <label class="f_text" for="ad_image">Images</label>
                                             <input type="file" name="ad_image" class="form-control"  accept=".png, .jpeg, .jpg, .gif, .svg" >
                                             @error('ad_image')

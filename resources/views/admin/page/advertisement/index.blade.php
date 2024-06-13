@@ -5,6 +5,11 @@
         <section class="section">
             <div class="section-header">
                 <h1>Advertisements</h1>
+                <div class="section-header-breadcrumb">
+                    <a href="{{ route('advertisements.create') }}" class="btn btn-dark"><i class="fas fa-plus"></i>
+                        Add Advertisement
+                    </a>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-12 col-sm-12">
@@ -21,6 +26,7 @@
                                             <th>SN</th>
                                             <th>Name</th>
                                             <th>Description</th>
+                                            <th>Position</th>
                                             <th>Image</th>
                                             <th>Status</th>
                                             <th>Create Date</th>
@@ -33,8 +39,9 @@
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ $advertisement->name }}</td>
                                                 <td>{!! $advertisement->description !!}</td>
+                                                <td>{{ $advertisement->position }}</td>
                                                 <td><img src="{{ Storage::url($advertisement->ad_path) }}"
-                                                        alt="{{ $advertisement->name . ' Image' }}" height="100px"></td>
+                                                        alt="{{ $advertisement->name . ' Image' }}" height="50px"></td>
                                                 <td>
                                                     @if ($advertisement->status == true)
                                                         <div class='badge badge-success'>Active</div>
