@@ -10,11 +10,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\NewsPageController;
-use App\Models\Post;
-
-
-use App\Http\Controllers\NewShow;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\VideoController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,6 +35,7 @@ Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(func
         Route::resource('/guests', GuestController::class);
         // Route::get('/site_info', [DashboardController::class, 'site_info'])->name('site_info');
         Route::resource('/site',SiteController::class)->only('show','update');
+        Route::resource('/videos',VideoController::class);
     });
 });
 
