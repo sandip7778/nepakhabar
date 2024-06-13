@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Nepa-Khabar-Dashboard</title>
+    <title>@yield('title')</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets_news/img/logo/Logo-1.png') }}">
 
@@ -37,7 +37,9 @@
         <div class="main-wrapper main-wrapper-1">
             <div class="navbar-bg"></div>
             <nav class="navbar navbar-expand-lg main-navbar">
-                <form class="form-inline mr-auto">
+            @if(!Auth::user()->isGuest())
+
+                <form class="form-inline mr-auto" method="GET" action="{{ route('dashboard') }}">
                     <ul class="navbar-nav mr-3">
                         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i
                                     class="fas fa-bars icons"></i></a></li>
@@ -45,13 +47,12 @@
                                     class="fas fa-search"></i></a></li>
                     </ul>
                     <div class="search-element">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                            data-width="250">
+                        <input class="form-control" type="search" name="search" placeholder="Search Posts.." aria-label="Search" value="{{ request()->input('search') }}" data-width="250" required>
                         <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-                        <div class="search-backdrop"></div>
 
                     </div>
                 </form>
+                @endif
                 <ul class="navbar-nav navbar-right">
                     <!-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
                             class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope icons"></i></a>
@@ -81,24 +82,35 @@
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="{{ asset('assets/img/avatar/avatar-5.png') }}" class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block icons">Hi, Guest</div>
+                            <div class="d-sm-none d-lg-inline-block icons" >Hi, {{ Auth::user()->name }} <i class="fas fa-caret-down"></i></div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <div class="dropdown-title">Logged in 5 min ago</div>
+                            <div class="dropdown-title"><span class="text-xl">{{ Auth::user()->userType }}</span></div>
                             <!-- <a href="#" class="dropdown-item has-icon">
                                 <i class="far fa-user"></i> Profile
                             </a> -->
                             <!-- features-profile.html -->
                             <div class="dropdown-divider"></div>
-                            <a href="#" id="logout" class="dropdown-item has-icon text-danger">
-                                <i class="fas fa-sign-out-alt"></i> Logout
-                            </a>
+                            <div>
+                                <a href="{{ route('profile.edit') }}" class="dropdown-item  has-icon text-danger">
+                                    <i class="fas fa-user"></i> <span class="fw-bolder fs-6">Profile</span>
+                                </a>
+                            </div>
+
+                            <div>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item d-flex align-items-center text-danger">
+                                        <i class="fas fa-sign-out-alt"></i> <span class="ml-3 fw-bolder fs-6">Logout</span>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </li>
                 </ul>
             </nav>
+            @if(!Auth::user()->isGuest())
             <div class="main-sidebar sidebar-style-2">
-
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
                         <a href="{{ route('dashboard') }}" class="p_white">Nepa-Khabar</a>
@@ -129,29 +141,28 @@
                                 <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>
                             </ul>
                         </li>
-                        <li class="menu-header">Starter</li>
+                        {{-- <li class="menu-header">Starter</li> --}}
                         <li class="dropdown">
-                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-columns"></i> <span>Manage Comments</span></a>
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                                <i class="fas fa-columns"></i> <span>Manage Advertisment</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{ route('comments.index') }}">Comments</a></li>
-
+                                <li><a class="nav-link" href="{{ route('advertisements.create') }}">Create Advertisement</a></li>
+                                <li><a class="nav-link" href="{{ route('advertisements.index') }}">Advertisement</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-columns"></i> <span>Manage Advertisment</span></a>
+                            <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                                <i class="fas fa-columns"></i> <span>Manage Comments</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{ route('advertisments.index') }}">Advertisment</a></li>
-
+                                <li><a class="nav-link" href="{{ route('comments') }}">Comments</a></li>
                             </ul>
                         </li>
-
+                        @if (Auth::user()->isAdmin())
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-columns"></i> <span>Manage Users</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="dashboard.php?page=events"></a></li>
+                                <li><a class="nav-link" href="{{ route('guests.index') }}">Users</a></li>
 
                             </ul>
                         </li>
@@ -159,8 +170,7 @@
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-columns"></i> <span>Manage Members</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{ route('teamsmember.index') }}">Team Members</a></li>
-
+                                <li><a class="nav-link" href="{{ route('users.index') }}">Team Members</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -169,20 +179,12 @@
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{route('site_info')}}">Site Setting</a></li>
                             </ul>
-                             <!-- <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="dashboard.php?page=team_members">Deffult SEO </a></li>
-                            </ul>
-                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="dashboard.php?page=team_members">Tags Setting </a></li>
-                            </ul> -->
                         </li>
-
-
-
+                        @endif
                     </ul>
 
                     <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-                        <a href="{{ route('indexN') }}" class="btn btn-danger btn-lg btn-block btn-icon-split"
+                        <a href="{{ route('index') }}" class="btn btn-danger btn-lg btn-block btn-icon-split"
                             target="_blank" rel="noopener noreferrer">
                             <i class="fas fa-rocket"></i> Website
                         </a>
@@ -190,13 +192,12 @@
                     </div>
                 </aside>
             </div>
+            @endif
 
             <!-- Main Content  -->
             @yield('content')
 
 
-
-            <br>
             <footer class="main-footer">
                 <div class="footer-left">
                     Copyright &copy; 2024-<?php echo date('Y'); ?> <div class="bullet"></div> Develope By <a
@@ -234,6 +235,7 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
 
+
     <!-- JS Libraies -->
     {{-- <script src="{{ asset('assets/modules/dropzonejs/min/dropzone.min.js') }}"></script> --}}
 
@@ -247,6 +249,12 @@
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     {{-- <script src="{{ asset('pages/jquery/main.js') }}"></script> --}}
+    <script>
+        // Initialize tooltips
+        $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip();
+        });
+        </script>
 
 </body>
 

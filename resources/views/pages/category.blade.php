@@ -1,4 +1,6 @@
-@include('inc.header')
+@extends('layouts.newsLayout')
+
+@section('content')
 
 <div class="trending-area fix mt-5">
     <div class="container">
@@ -29,7 +31,7 @@
                                         <h4 class="text_limit"><a href="details.html">Detials</a></h4>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="col-lg-4">
                                 <div class="single-bottom mb-35">
                                     <div class="trend-bottom-img mb-30">
@@ -40,7 +42,7 @@
                                         <h4><a href="details.html">Detials</a></h4>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="col-lg-4">
                                 <div class="single-bottom mb-35">
                                     <div class="trend-bottom-img mb-30">
@@ -51,23 +53,28 @@
                                         <h4><a href="details.html">Detials</a></h4>
                                     </div>
                                 </div>
-                            </div> 
-                            
-                            
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
                 <!-- Riht content -->
                 <!-- size of sidebar ads boxads  height :300px width 350px  -->
                 <div class="col-lg-4">
+                    @foreach ($advertisements as $advertisement)
                     <aside class="single_sidebar_widget mb-5">
-                        <img class="side_bar_ads" src="{{asset('assets_news/img/blog/zb-refer-banner.webp')}}" alt="">
+                        @if ($advertisement->position == 'sidebar1')
+                            <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }}"
+                                alt="{{ $advertisement->name }} Image">
+                        @endif
                     </aside>
-                   
+                    @endforeach
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-@include('inc.footer')
+@endsection

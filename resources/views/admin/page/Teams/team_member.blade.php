@@ -1,46 +1,12 @@
 @extends('admin/include/masterlayout')
 
 @section('content')
-    <div class="modal fade" id="addads" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Add Member</h5>
-                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">*</button> -->
-                    <i class="mdi mdi-close-circle" data-bs-dismiss="modal" aria-label="Close"></i>
-                </div>
-                <form method="post" id="add_category" action="{{ route('comments.store') }}">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="row ">
-                            <div class="col-md-6">
-                                <label class="f_text" for="category_name">Title</label>
-                                <input type="text" class="form-control" name="name" id="category-name"
-                                    placeholder="Name.." required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="f_text" for="category_name">Images</label>
-                                <input type="file" class="form-control" name="name" id="category-name"
-                                    placeholder="Name.." required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger" id="add_member_btn">Add Advertisment</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <div class="main-content">
         <section class="section">
             <div class="section-header">
                 <h1>Members</h1>
                 <div class="section-header-breadcrumb">
-                    <a href="#" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addads">
+                    <a href="{{ route('users.create') }}" class="btn btn-dark">
                         <i class="fas fa-plus"></i>
                         Add Members
                     </a>
@@ -60,17 +26,8 @@
                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                             @enderror
                             <div class="card-header">
-                                <h4>Categories Data</h4>
-                                <div class="card-header-form">
-                                    <!-- <form>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Search">
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                                    </div>
-                                                </div>
-                                            </form> -->
-                                </div>
+                                <h4>Member List</h4>
+
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
@@ -88,35 +45,52 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        
+                                            @foreach ($users as $index => $user)
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>Jhon </td>
-                                                    <td>img</td>
-                                                    <td>jhon@gmail.com</td>
-                                                    <td>L</td>
-                                                    <td>Active</td>
-                                                    <td>2024-06-06</td>
-                                                    <td>
-                                                        <form class="pointer d-inline" action="" method="POST">
-                                                            <!-- @csrf
-                                                            @method('DELETE') -->
-                                                            <button type="submit" class="action_btn"><i class="fas fa-trash icon_box"></i></button>
-                                                        </form>
-                                                        <button class="action_btn" ><a href="" ><i class="fas fa-pen icon_box "></i></a></button>
-                                                    </td>
+                                                    <td>{{ $index + 1 }}</td>
+                                                    <td>{{ $user->name }}</td>
+                                                    <td><img src="{{ Storage::url($user->path) }}"
+                                                        alt="{{ $user->name . ' Image' }}" height="100px"></td>
+                                                    <td>{{ $user->email }}</td>
+                                                    <td>{{ $user->userType }}</td>
+                                                    <td> @if ($user->status ===1)
+                                                        Active
+                                                        @elseif ($user->status === 0)
+                                                        <span class="text-danger">Inactive</span>
+                                                    @endif</td>
+                                                    <td>{{ $user->created_at }}</td>
+
+                                                        <td class="d-flex justify-content-center align-items-center">
+                                                            <a href="{{ route('users.changeStatus', $user->id) }}"
+                                                                class="action_btn">
+                                                                @if ($user->status == true)
+                                                                    <button type="button" class="action_btn" data-toggle="tooltip"
+                                                                        data-placement="bottom" title="Disable">
+                                                                        <i class="fas fa-eye-slash icon_box"></i>
+                                                                    </button>
+                                                                @else
+                                                                    <button type="button" class="action_btn" data-toggle="tooltip"
+                                                                        data-placement="bottom" title="Enable">
+                                                                        <i class="fas fa-eye icon_box"></i>
+                                                                    </button>
+                                                                @endif
+                                                            </a>
+
+                                                            <a href="{{ route('users.edit', $user->id) }}" class="action_btn"><i class="fas fa-pen icon_box "></i></a>
+                                                        </td>
+
                                                 </tr>
-                                        
+                                                @endforeach
 
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                  
+
                         </div>
                     </div>
                 </div>
-
+                {{ $users->links() }}
             </div>
         </section>
     </div>
