@@ -16,31 +16,7 @@ class NewsPageController extends Controller
     public function index()
     {
         $posts = Post::orderBy('created_at', 'DESC')->get()->take(3);
-        $categories = Category::where('id', '!=', 1)->orderBy('updated_at', 'ASC')->get();
-        $other = Category::find(1);
-        $uniquePositions = Advertisement::where('status', true)->distinct()->pluck('position')->toArray();
-        // $advertisements = Advertisement::where('status', true)->whereIn('position', $uniquePositions)->inRandomOrder()->get();
-
-
-        $advertisements = collect();
-
-        foreach ($uniquePositions as $position) {
-            $advertisement = Advertisement::where('status', true)
-                ->where('position', $position)
-                ->inRandomOrder()
-                ->first();
-            if ($advertisement) {
-                $advertisements->push($advertisement);
-            }
-        }
-        // $headerAdvertisements = Advertisement::where('status',true)->where('position','header')->inRandomOrder()->take(1)->get();
-        // $sidebarAdvertisements = Advertisement::where('status',true)->where('position','sidebar')->inRandomOrder()->take(3)->get();
-        // $footerAdvertisements = Advertisement::where('status',true)->where('position','footer')->inRandomOrder()->take(1)->get();
-        // $centerAdvertisements = Advertisement::where('status',true)->where('position','center')->inRandomOrder()->take(3)->get();
-
-        // $user = User::all();
-        // dd($advertisements);
-        return view('welcome', compact('posts', 'categories', 'other', 'advertisements'));
+        return view('welcome', compact('posts'));
     }
 
     public function showNews($slug)

@@ -1,4 +1,5 @@
-@extends('inc.newsLayout')
+@extends('layouts.newsLayout')
+
 
 @section('content')
     <main>
