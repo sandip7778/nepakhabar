@@ -39,4 +39,8 @@ class NewShow extends Controller
 
         return view('pages.team_m');
     }
+    public function Contactus(){
+
+        return view('pages.contact');
+    }
 }

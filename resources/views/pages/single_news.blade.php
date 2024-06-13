@@ -1,7 +1,7 @@
 @include('inc.header')
 
 <!--================Blog Area =================-->
-<section class="blog_area single-post-area pt-20">
+<section class="blog_area single-post-area pt-20 pb-50">
     <div class="container">
         <div class="row">
 
@@ -24,25 +24,27 @@
                             <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
                         </ul>
                         <div>
-                            {!!  $post->description !!}
+                            {!! $post->description !!}
                         </div>
 
                     </div>
                 </div>
                 <div class="navigation-top">
                     <div class="d-sm-flex justify-content-between text-center">
-                        <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span>Share This Post On Your Friends</p>
+                        <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span>Share This
+                            Post On Your Friends</p>
                         <div class="col-sm-4 text-center my-2 my-sm-0">
                             <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
                         </div>
                         <ul class="social-icons">
-                            <li><a href="https://www.facebook.com/sharer/sharer.php?u="><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.facebook.com/sharer/sharer.php?u="><i
+                                        class="fab fa-facebook-f"></i></a></li>
                             <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                             <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
                             <li><a href="#"><i class="fab fa-behance"></i></a></li>
                         </ul>
                     </div>
-                  
+
                 </div>
                 <div class="blog-author">
                     <div class="media align-items-center">
@@ -113,7 +115,7 @@
                             </div>
                         </div>
                     </div>
-                  
+
                 </div>
                 <div class="comment-form">
                     <h4>Comment</h4>
@@ -138,6 +140,45 @@
                         <img src="{{ asset('assets_news/img/hero/header_card.jpg')}}" style="width:100%" alt="">
                     </div>
                 </div>
+
+                <div class="weekly2-news-area pt-20 pb-30 gray-bg mt-5">
+                    <div class="container">
+                        <div class="weekly2-wrapper">
+                            <!-- section Tittle -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="section-tittle mb-30">
+                                        <h3 class="">Recomended</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="swiper single_blog">
+                                        <div class="swiper-wrapper">
+                                            @foreach ($posts as $index => $post)
+                                            <div class="swiper-slide">
+                                                <a href="{{ route('post',$post->slug)}}">
+                                                    <div class="news_box h15">
+                                                        <div class="text__">
+                                                            <h1 class="text-white text_limit">गण्डकीको मुख्यमन्त्रीमा
+                                                                सुरेन्द्रराज पाण्डे नियुक्त</h1>
+                                                        </div>
+
+                                                        <img src="{{asset('assets_news/img/blog/Oleg-Kononenko-768x512.jpg')}}"
+                                                            alt="">
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="col-lg-4">
                 <div class="blog_right_sidebar">
@@ -146,27 +187,13 @@
 
                         <img class="side_bar_ads" src="{{asset('assets_news/img/post/post_7.png')}}" alt="">
                     </aside>
-                    <aside class="single_sidebar_widget search_widget">
-                        <form action="#">
-                            <div class="form-group">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder='Search Keyword'
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
-                                    <div class="input-group-append">
-                                        <button class="btns" type="button"><i class="ti-search"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                type="submit">Search</button>
-                        </form>
-                    </aside>
+                   
                     <aside class="single_sidebar_widget post_category_widget">
                         <h4 class="widget_title">Category</h4>
                         <ul class="list cat-list">
                             @foreach ($categories as $category)
                             <li>
-                                <a href="#" class="d-flex">
+                                <a href="{{route('content',$category->id)}}" class="d-flex">
                                     <p>{{$category->name}}</p>
                                     <p>(0)</p>
                                 </a>
@@ -188,51 +215,13 @@
                         </div>
                         @endforeach
                     </aside>
-                    <aside class="single_sidebar_widget tag_cloud_widget">
-                        <h4 class="widget_title">Tag Clouds</h4>
-                        <ul class="list">
-                            <li>
-                                <a href="#">project</a>
-                            </li>
-                            <li>
-                                <a href="#">love</a>
-                            </li>
-                            <li>
-                                <a href="#">technology</a>
-                            </li>
-                            <li>
-                                <a href="#">travel</a>
-                            </li>
-                            <li>
-                                <a href="#">restaurant</a>
-                            </li>
-                            <li>
-                                <a href="#">life style</a>
-                            </li>
-                            <li>
-                                <a href="#">design</a>
-                            </li>
-                            <li>
-                                <a href="#">illustration</a>
-                            </li>
-                        </ul>
-                    </aside>
+                   
                     <aside class="single_sidebar_widget ">
                         <!-- size of sidebar ads boxads  height :300px width 350px  -->
                         <img class="side_bar_ads" src="{{asset('assets_news/img/post/post_7.png')}}" alt="">
                     </aside>
 
-                    <aside class="single_sidebar_widget newsletter_widget">
-                        <h4 class="widget_title">Newsletter</h4>
-                        <form action="#">
-                            <div class="form-group">
-                                <input type="email" class="form-control" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
-                            </div>
-                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                type="submit">Subscribe</button>
-                        </form>
-                    </aside>
+                  
                 </div>
             </div>
         </div>

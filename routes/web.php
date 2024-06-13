@@ -29,5 +29,7 @@ Route::controller(NewShow::class)->group(function(){
     Route::get('/news','NewShow')->name('news');
     Route::get('/Team_member','TeamMemeber')->name('team_member');
     Route::get('/post/{id}','SingleNews')->name('post');
+    Route::get('/contact-us','Contactus')->name('contactus');
+    Route::get('/team-member','TeamMemeber')->name('TeamMemeber');
 });
 

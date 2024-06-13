@@ -97,7 +97,8 @@
                                <ul>
                                    <li><a href="#">Terms of use</a></li>
                                    <li><a href="#">Privacy Policy</a></li>
-                                   <li><a href="#">Contact</a></li>
+                                   <li><a href="{{route('contactus')}}">Contact</a></li>
+                                   <li><a href="{{route('TeamMemeber')}}">Team Members</a></li>
                                </ul>
                            </div>
                        </div>
@@ -168,15 +169,63 @@
       breakpoints: {
         640: {
           slidesPerView: 2,
-          spaceBetween: 20,
+          spaceBetween: 10,
         },
         768: {
-          slidesPerView: 2,
-          spaceBetween: 40,
+          slidesPerView: 3,
+          spaceBetween: 30,
         },
         1024: {
           slidesPerView: 4,
-          spaceBetween: 50,
+          spaceBetween: 40,
+        },
+      },
+  });
+  
+  var swiper = new Swiper(".weekly", {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      freeMode: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 10,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 10,
+        },
+      },
+  });  
+  
+  var swiper = new Swiper(".single_blog", {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      freeMode: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
+        1024: {
+          slidesPerView: 2,
+          spaceBetween: 10,
         },
       },
   });

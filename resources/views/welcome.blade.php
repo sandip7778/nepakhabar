@@ -34,17 +34,23 @@
                     <article>
                         <a href="{{ route('post',$post->slug)}}">
                             <div class="blog_details justify-content-center">
-                                <div class="row justify-content-center">
+                                <div class="col-lg-12">
+                                    <div class="row justify-content-center">
                                     <h2 class="text-align-center">{{ $post->title }}</h2>
+                                    </div>
+                                    
                                 </div>
 
-                                <ul class="blog-info-link row justify-content-center">
+                                <ul class="blog-info-link col-lg-12">
+                                    <div class="row justify-content-center">
                                     <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
                                     <li><a href="#">&nbsp; &nbsp; <i class="fa fa-calendar"></i>
                                             {{ $post->created_at }}</a>
                                     </li>
+                                    </div>
+                                   
                                 </ul>
-                                <div class="row justify-content-center mt-3">
+                                <div class="col-lg-12 justify-content-center mt-3">
                                     <img src="assets_news/img/trending/trending_top.jpg" class="tranding_image" alt="">
                                 </div>
                             </div>
@@ -117,7 +123,7 @@
         </div>
     </div>
 
-    <div class="weekly2-news-area pt-50 pb-30 dark-bg">
+    <div class="weekly2-news-area pt-50 pb-30 gray-bg">
         <div class="container">
             <div class="weekly2-wrapper">
                 <!-- section Tittle -->
@@ -130,9 +136,8 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <div class="swiper mySwiper">
+                        <div class="swiper weekly">
                             <div class="swiper-wrapper">
-
                                 @foreach ($posts as $index => $post)
                                 <div class="swiper-slide">
                                     <a href="{{ route('post',$post->slug)}}">
@@ -143,7 +148,7 @@
                                             <div class="weekly2-caption">
                                                 <span class="color1">{{ $post->category->name }}</span>
                                                 <p>{{ $post->created_at }}</p>
-                                                <h4 class="text_limit"><a href="#">{{ $post->title }}</a></h4>
+                                                <h4 class="text_limit"><a href="{{ route('post',$post->slug)}}">{{ $post->title }}</a></h4>
                                             </div>
                                         </div>
                                     </a>
@@ -179,7 +184,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle mb-30">
-                            <h3>Weekly Top News</h3>
+                            <h3 class="text-white">Business</h3>
                         </div>
                     </div>
                 </div>
@@ -187,15 +192,15 @@
                     <div class="col-12">
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
-
                                 @foreach ($posts as $index => $post)
                                 <div class="swiper-slide">
                                     <a href="{{ route('post',$post->slug)}}">
                                       <div class="news_box">
-                                        <div class="text_side">
-                                            <H1>Testing</H1>
+                                        <div class="text__">
+                                       <h1 class="text-white text_limit">गण्डकीको मुख्यमन्त्रीमा सुरेन्द्रराज पाण्डे नियुक्त</h1>
                                         </div>
-                                        <img src="assets_news/img/trending/trending_top.jpg" alt="">
+                                       
+                                        <img src="assets_news/img/blog/Oleg-Kononenko-768x512.jpg" alt="">
                                       </div>
                                     </a>
                                 </div>
@@ -210,7 +215,6 @@
             </div>
         </div>
     </div>
-
     <!-- End Weekly-News -->
     <!-- Whats New Start -->
     <section class="whats-news-area pt-50 pb-20">
@@ -460,13 +464,13 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <div class="swiper mySwiper">
+                        <div class="swiper weekly">
                             <div class="swiper-wrapper">
 
                                 @foreach ($posts as $index => $post)
                                 <div class="swiper-slide">
                                     <a href="{{ route('post',$post->slug)}}">
-                                        <div class="weekly2-single ">
+                                        <div class="weekly2-single card p-1 ">
                                             <div class="weekly2-img">
                                                 <img src="assets_news/img/news/weekly2News1.jpg"
                                                     alt="{{ $post->title }}">
