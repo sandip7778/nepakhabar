@@ -24,15 +24,14 @@ class NewsPageController extends Controller
         $post = Post::where('slug', $slug)->firstOrFail();
         $post->description = Purifier::clean($post->description);
         // $posts = Post::orderBy('created_at','DESC')->get()->take(3);
-        $categories = Category::where('id', '!=', 1)->orderBy('updated_at', 'ASC')->get();
-        $other = Category::find(1);
+
 
         $recentPosts = Post::orderBy('created_at', 'DESC')->get()->take(3);
 
 
         // $comments = React::where('slug')
 
-        return view('pages.single_news', compact('post', 'categories', 'other', 'recentPosts', 'headerAdvertisements'));
+        return view('pages.single_news', compact('post', 'recentPosts'));
     }
 
 }

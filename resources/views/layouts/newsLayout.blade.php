@@ -178,8 +178,8 @@
 
                                 <!-- contact -->
                                 <div class="footer-contact">
-                                    <a href="mailto:{{ $site->email }}"><i class="fab fa-email icon"></i>{{ $site->email }} </a>
-                                    <a href="tel:{{ $site->phone }}"><i class="fab fa-phone icon"></i>{{ $site->phone }} </a>
+                                    <a href="mailto:{{ $site->email }}"><i class="fas fa-envelope icon"></i> &nbsp;{{ $site->email }} </a> <br>
+                                    <a href="tel:{{ $site->phone }}"><i class="fas fa-phone icon"></i> &nbsp;{{ $site->phone }} </a>
                                 </div>
                                 <!-- social -->
                                 <div class="footer-social">
