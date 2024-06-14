@@ -71,7 +71,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Video Description</label>
-                                            <textarea class="summernote" name="description" value="" required>{{ old('description') }}</textarea>
+                                            <textarea class="summernote" name="description" value="" required maxlength="300">{{ old('description') }}</textarea>
                                             @error('description')
                                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                             @enderror

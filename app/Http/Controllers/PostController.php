@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -75,7 +76,16 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $slug)->firstOrFail();
         $post->description = Purifier::clean($post->description);
-        return view('admin.page.news.showPost', compact('post'));
+        // $posts = Post::orderBy('created_at','DESC')->get()->take(3);
+        $recentPosts = Post::orderBy('created_at', 'DESC')->get()->take(3);
+
+
+        // $comments = React::where('slug')
+
+        return view('pages.single_news', compact('post', 'recentPosts'));
+        // $post = Post::where('slug', $slug)->firstOrFail();
+        // $post->description = Purifier::clean($post->description);
+        // return view('admin.page.news.showPost', compact('post'));
     }
 
     /**
@@ -85,7 +95,8 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $slug)->firstOrFail();
         $categories = Category::all();
-        return view('admin.page.news.editPost', compact('post', 'categories'));
+        $users = User::where('userType','!=','guest')->get();
+        return view('admin.page.news.editPost', compact('post', 'categories','users'));
     }
 
     /**
@@ -100,6 +111,7 @@ class PostController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status' => 'required|boolean',
             'description' => 'required|string|min:10',
+            'user_id' => 'required|exists:users,id',
         ]);
         if ($request->hasFile('image')) {
             if ($post->path) {
@@ -110,9 +122,9 @@ class PostController extends Controller
 
             $path = $request->image->storeAs('images', $imageName, 'public');
             $post->path = $path;
-            $post->update($request->only('title', 'category_id', 'meta_tag', 'meta_keyword','path', 'status', 'description'));
+            $post->update($request->only('title', 'category_id','user_id', 'meta_tag', 'meta_keyword','path', 'status', 'description'));
         }else{
-            $post->update($request->only('title', 'category_id', 'meta_tag', 'meta_keyword', 'status', 'description'));
+            $post->update($request->only('title', 'category_id','user_id', 'meta_tag', 'meta_keyword', 'status', 'description'));
         }
         $post->slug == Str::slug($post->title);
         $post->save();
