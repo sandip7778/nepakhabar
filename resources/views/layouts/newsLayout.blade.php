@@ -117,7 +117,6 @@
                             <!-- Mobile Menu -->
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-md-none"></div>
-                                <!-- <i class="fas fa-user user_border"></i> -->
                             </div>
                         </div>
                     </div>

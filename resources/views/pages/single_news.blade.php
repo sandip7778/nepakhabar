@@ -43,7 +43,7 @@
                     <div class="navigation-top">
                         <div class="d-sm-flex justify-content-between text-center">
                             <p class="like-info">
-                                <span class="align-middle">
+                                {{-- <span class="align-middle">
                                     @if (Auth::user()->likesPost($post))
                                     <form action="{{ route('posts.unlike',$post->id) }}" method="post">
                                         @csrf
@@ -56,7 +56,7 @@
                                         <button type="submit" class="action_btn"><i class="far fa-heart"></i></button>
                                     {{ $post->likes->count() }}
                                 </form>
-                                    @endif
+                                    @endif --}}
 
                                 </span>Share This Post On Your Friends </p>
                             <span>{{ $post->share }} shares</span>
