@@ -130,7 +130,7 @@
                                     @if ($post->status == 1)
                                         <tr>
                                             <td>{{ $post->title }}</td>
-                                            <td>{{ $post->created_at }}</td>
+                                            <td>{{ toFormattedNepaliDate($post->created_at) }}</td>
                                             <td class="d-flex justify-content-center align-items-center">
                                                 <form class="pointer d-inline"
                                                     action="{{ route('posts.destroy', $post->slug) }}"

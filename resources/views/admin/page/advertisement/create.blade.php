@@ -1,4 +1,7 @@
 @extends('admin/include/masterlayout')
+@section('title')
+    Create Advertisement
+@endsection
 
 @section('content')
     <div class="main-content">
@@ -6,8 +9,8 @@
             <div class="section-header">
                 <h1>Advertisement Create</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Post</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item"><a href="{{ route('posts.index') }}">Post</a></div>
                     <div class="breadcrumb-item">Advertisement Create</div>
                 </div>
             </div>

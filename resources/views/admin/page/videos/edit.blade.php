@@ -1,15 +1,15 @@
 @extends('admin/include/masterlayout')
-
+@section('title')
+    Edit Video
+@endsection
 @section('content')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
                 <h1>Edit Video Details</h1>
-                <!-- <div class="section-header-breadcrumb">
-                        <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                        <div class="breadcrumb-item"><a href="#">Post</a></div>
-                        <div class="breadcrumb-item">News Edit</div>
-                    </div> -->
+                <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+                        <div class="breadcrumb-item"><a href="{{ route('videos.index') }}">Videos</a></div>
+                        <div class="breadcrumb-item">Edit Video</div>
             </div>
 
             <div class="section-body">

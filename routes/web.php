@@ -10,6 +10,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\NewShow;
 use App\Http\Controllers\NewsPageController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\VideoController;
@@ -44,6 +45,10 @@ Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(func
 
 Route::controller(NewsPageController::class)->group(function(){
     Route::get('/','index')->name('index');
+    Route::get('/teams','team')->name('team');
+    Route::get('/contact-us','contactUs')->name('contactus');
+
+
     // Route::get('/showNews/{slug}','showNews')->name('showNews');
 });
 
@@ -57,9 +62,9 @@ Route::middleware('auth')->group(function(){
 });
 Route::get('posts/{post}/share/{network}',[NewsPageController::class,'share'])->name('posts.share');
 Route::controller(NewShow::class)->group(function(){
-    Route::get('/contents/{id}','Categories')->name('contents');
-    Route::get('/teams','TeamMemeber')->name('team');
-    Route::get('/contact-us','Contactus')->name('contactus');
+    // Route::get('/contents/{id}','Categories')->name('contents');
+    // Route::get('/teams','TeamMemeber')->name('team');
+    // Route::get('/contact-us','Contactus')->name('contactus');
 });
 
 

@@ -1,11 +1,19 @@
 @extends('admin/include/masterlayout')
-
+@section('title')
+    News
+@endsection
 @section('content')
 
 <div class="main-content">
     <section class="section">
         <div class="section-header">
             <h1>News Posts</h1>
+            <div class="section-header-breadcrumb">
+                <a href="{{ route('posts.create') }}" class="btn btn-dark">
+                    <i class="fas fa-plus"></i>
+                    Create Post
+                </a>
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12 col-sm-12">
@@ -44,7 +52,7 @@
                                             <div class='badge badge-danger'>Inactive</div>
                                             @endif
                                         </td>
-                                        <td>{{ $post->created_at }}</td>
+                                        <td>{{ toFormattedNepaliDate($post->created_at) }}</td>
                                         <td class="d-flex justify-content-center align-items-center">
                                             <a href="{{ route('posts.changeStatus', $post->slug) }}"
                                                 class="action_btn">

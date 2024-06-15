@@ -1,5 +1,7 @@
 @extends('admin/include/masterlayout')
-
+@section('title')
+    Manage Videos
+@endsection
 @section('content')
     <div class="main-content">
         <section class="section">
@@ -10,10 +12,6 @@
                         <i class="fas fa-plus"></i>
                         Add Video
                     </a>
-
-                    <!-- <div class="breadcrumb-item active"><a href="#" class="p_color">Dashboard</a></div>
-                            <div class="breadcrumb-item"><a href="#" class="p_color">slider</a></div>
-                            <div class="breadcrumb-item">sliders</div> -->
                 </div>
             </div>
 
@@ -54,7 +52,7 @@
                                                     </td>
                                                     <td>{{ $video->category->name }}</td>
                                                     <td>{{ $video->description }}</td>
-                                                    <td>{{ $video->created_at }}</td>
+                                                    <td>{{ toFormattedNepaliDate($video->created_at)}}</td>
 
                                                         <td class="d-flex justify-content-center align-items-center">
                                                             <form class="pointer d-inline" action="{{ route('videos.destroy',$video->id) }}" method="POST">

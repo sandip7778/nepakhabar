@@ -1,5 +1,7 @@
 @extends('admin/include/masterlayout')
-
+@section('title')
+    Edit Member
+@endsection
 @section('content')
     <div class="main-content">
         <section class="section">
@@ -57,9 +59,9 @@
                                         <div class="col-lg-4 col-md-12">
                                             <label class="f_text" for="userType">User Type</label>
                                             <select class="form-control" name="userType" required>
-                                                <option value="editor" >Editor</option>
-                                                <option value="reporter">Reporter</option>
-                                                <option value="admin">Admin</option>
+                                                <option value="editor" {{ $user->userType=='editor'?'selected':'' }}>Editor</option>
+                                                <option value="reporter" {{ $user->userType=='reporter'?'selected':'' }}>Reporter</option>
+                                                <option value="admin" {{ $user->userType=='admin'?'selected':'' }}>Admin</option>
                                             </select>
                                             @error('userType')
                                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>

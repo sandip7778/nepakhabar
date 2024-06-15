@@ -33,6 +33,6 @@ class Comment extends Model
     }
     public function reply()
     {
-        return $this->hasOne(Comment::class, 'parent_id')->orderBy('updated_at', 'DESC');
+        return $this->hasOne(Comment::class, 'parent_id')->orderBy('created_at', 'DESC');
     }
 }

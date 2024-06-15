@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Mews\Purifier\Facades\Purifier;
+use Pratiksh\Nepalidate\Facades\NepaliDate;
 
 class PostController extends Controller
 {
@@ -80,12 +81,7 @@ class PostController extends Controller
         $recentPosts = Post::orderBy('created_at', 'DESC')->get()->take(3);
         $post->increment('views');
 
-        // $comments = React::where('slug')
-
         return view('pages.single_news', compact('post', 'recentPosts'));
-        // $post = Post::where('slug', $slug)->firstOrFail();
-        // $post->description = Purifier::clean($post->description);
-        // return view('admin.page.news.showPost', compact('post'));
     }
 
     /**

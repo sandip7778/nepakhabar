@@ -17,26 +17,32 @@ class NewsPageController extends Controller
     public function index()
     {
         $threeDay = Carbon::now()->subDays(3);
+        $sevenDay = Carbon::now()->subDays(7);
 
-        $posts = Post::where('created_at','>=',$threeDay)->where('status',true)->inRandomOrder()->limit(4)->get();
+        if (request()->has('search')) {
+            $posts = Post::orderBy('created_at', 'DESC');
+            $posts = $posts->orwhere('title', 'like', '%' . request()->get('search') . '%')
+                            ->orWhere('description', 'like', '%' . request()->get('search') . '%')
+                            ->paginate(8);
+        }else{
+            $posts = Post::where('created_at','>=',$threeDay)->where('status',true)->inRandomOrder()->limit(8)->get();
+        }
+
+
         $videos = Video::inRandomOrder()->limit(5)->get();
-        $recentArticles = Post::orderBy('updated_at', 'DESC')->get()->take(3);
+        $recentArticles = Post::where('status',true)->orderBy('updated_at', 'DESC')->get()->take(10);
+
+        $trendings = Post::where('created_at','>=',$threeDay)->where('status',true)->orderBy('created_at','DESC')->limit(7)->get();
+        $weeklyTopPosts = Post::where('created_at','>=',$sevenDay)->where('status',true)->orderBy('created_at','DESC')->limit(15)->get();
+
 
         foreach ($videos as $video)
         {
             $video->description = Purifier::clean($video->description);
         }
 
-        // $video_ids = [];
-        // foreach ($videos as $video) {
-        //     // Extract the video ID from the YouTube URL
-        //     preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $video->url, $matches);
-        //     if (isset($matches[1])) {
-        //         $video_ids[] = $matches[1];
-        //     }
-        // }
 
-        return view('welcome', compact('posts','videos','recentArticles'));
+        return view('welcome', compact('posts','videos','trendings','weeklyTopPosts','recentArticles'));
     }
 
     public function share(Request $request, Post $post, $network)
@@ -57,6 +63,17 @@ class NewsPageController extends Controller
             default:
                 abort(404);
         }
+    }
+
+    public function team(){
+        $teams = User::where('userType','!=','guest')->get();
+        return view('pages.team_m',compact('teams'));
+    }
+
+    public function contactUs(){
+        $sevenDay = Carbon::now()->subDays(7);
+        $posts = Post::where('created_at','<=',$sevenDay)->orderBy('views','DESC')->take(15);
+        return view('pages.contact', compact('posts'));
     }
 
 }

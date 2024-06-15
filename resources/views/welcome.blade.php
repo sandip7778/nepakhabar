@@ -18,7 +18,7 @@
                                         @foreach ($posts as $post)
                                             <li class="news-item">{{ $post->title }}</li>
                                         @endforeach
-                                     
+
                                     </ul>
                                 </div>
 
@@ -26,65 +26,81 @@
                         </div>
                     </div>
                     <div class="row mb-5">
-                            <div class="col-xl-12">
-                                <div class="">
-                                    <img src="assets_news/img/hero/header_card.jpg" style="width:100%" alt="">
-                                </div>
+                        <div class="col-xl-12">
+                            <div class="">
+                                <img src="assets_news/img/hero/header_card.jpg" style="width:100%" alt="">
                             </div>
                         </div>
-                    @foreach ($posts as $index => $post)
-                        <div class="single-post border mb-3">
-                            <article>
-                                <a href="{{ route('posts.show', $post->slug) }}">
-                                    <div class="blog_details justify-content-center">
-                                        <div class="row justify-content-center">
-                                            <h2 class="text-align-center">{{ $post->title }}</h2>
+                    </div>
+                    @if ($posts->count())
+                        @foreach ($posts as $index => $post)
+                            <div class="single-post border mb-3">
+                                <article>
+                                    <a href="{{ route('posts.show', $post->slug) }}">
+                                        <div class="blog_details justify-content-center">
+                                            <div class="row justify-content-center">
+                                                <h2 class="text-align-center">{{ $post->title }}</h2>
+                                            </div>
+
+                                            <ul class="blog-info-link row justify-content-center">
+                                                <li><a href="{{ route('categories.show', $post->category_id) }}">
+                                                        {{ $post->category->name }}</a></li>
+                                                <li>&nbsp; &nbsp; <i class="fa fa-calendar"></i>
+                                                    {{ toFormattedNepaliDate($post->created_at) }}
+                                                </li>
+                                                <li>&nbsp; &nbsp; <i class="fa fa-user"></i>
+                                                    {{ $post->user->name }}</li>
+                                            </ul>
+                                            <div class="row justify-content-center mt-3">
+                                                <img src="{{ Storage::url($post->path) }}" alt="" class="">
+                                            </div>
                                         </div>
+                                    </a>
 
-                                        <ul class="blog-info-link row justify-content-center">
-                                            <li><a href="{{ route('categories.show', $post->category_id) }}">
-                                                    {{ $post->category->name }}</a></li>
-                                            <li>&nbsp; &nbsp; <i class="fa fa-calendar"></i>
-                                                {{ $post->created_at->format('d-M') }}
-                                            </li>
-                                            <li>&nbsp; &nbsp; <i class="fa fa-user"></i>
-                                                {{ $post->user->name }}</li>
-                                        </ul>
-                                        <div class="row justify-content-center mt-3">
-                                            <img src="{{ Storage::url($post->path) }}" alt=""
-                                                class="">
-                                        </div>
-                                    </div>
-                                </a>
+                                </article>
+                            </div>
+                        @endforeach
+                    @else
+                        @if (request()->has('search'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                No posts found for the search term"{{ request()->input('search') }}".
+                                <button type="button" class="btn-close action_btn" data-bs-dismiss="alert"
+                                    aria-label="Close">X</button>
+                            </div>
+                        @endif
+                    @endif
 
-                            </article>
 
-                        </div>
-                    @endforeach
                     <hr>
                     <div class="row">
                         <div class="col-lg-8">
                             <!-- Trending Top -->
-                            <div class="trending-top mb-30">
-                                <div class="trend-top-img">
-                                    <img src="assets_news/img/trending/trending_top.jpg" alt="">
-                                    <div class="trend-top-cap">
-                                       <h2 class="text_limit"><a href=""></a> </h2>
+                            @foreach ($trendings->take(1) as $trending)
+                                <div class="trending-top mb-30">
+                                    <div class="trend-top-img">
+                                        <img src="{{ Storage::url($trending->path) }}" alt="{{ $trending->title }}">
+                                        <div class="trend-top-cap">
+                                            <h2 class="text_limit"><a
+                                                    href="{{ route('posts.show', $trending->slug) }}">{{ $trending->title }}</a>
+                                            </h2>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                             <!-- Trending Bottom -->
                             <div class="trending-bottom">
                                 <div class="row">
-                                    @foreach ($posts as $index => $post)
+                                    @foreach ($trendings->skip(1) as $trending)
                                         <div class="col-lg-4">
                                             <div class="single-bottom mb-35">
                                                 <div class="trend-bottom-img mb-30">
-                                                    <img src="assets_news/img/trending/trending_bottom1.jpg" alt="">
+                                                    <img src="{{ Storage::url($trending->path) }}"
+                                                        alt="{{ $trending->title }}">
                                                 </div>
                                                 <div class="trend-bottom-cap">
-                                                    <span class="color1">{{ $post->category->name }}</span>
-                                                    <h4 class="text_limit"><a href="details.html">{{ $post->title }}</a>
+                                                    <span class="color1">{{ $trending->category->name }}</span>
+                                                    <h4 class="text_limit"><a
+                                                            href="{{ route('posts.show', $trending->slug) }}">{{ $trending->title }}</a>
                                                     </h4>
                                                 </div>
                                             </div>
@@ -151,7 +167,7 @@
                         <div class="col-12">
                             <div class="swiper mySwiper">
                                 <div class="swiper-wrapper">
-                                    @foreach ($posts as $index => $post)
+                                    @foreach ($weeklyTopPosts as $post)
                                         <div class="swiper-slide">
                                             <a href="{{ route('posts.show', $post->slug) }}">
                                                 <div class="weekly2-single ">
@@ -160,8 +176,9 @@
                                                     </div>
                                                     <div class="weekly2-caption">
                                                         <span class="color1">{{ $post->category->name }}</span>
-                                                        <p>{{ $post->created_at->format('d-M') }}</p>
-                                                        <h4 class="text_limit text-white"><a href="#">{{ $post->title }}</a>
+                                                        <p>{{ toFormattedNepaliDate($post->created_at) }}</p>
+                                                        <h4 class="text_limit text-white"><a
+                                                                href="#">{{ $post->title }}</a>
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -195,44 +212,52 @@
         </div>
         <hr>
 
-        <div class="weekly2-news-area pt-50 pb-30 yelgray-bg mt-5">
-            <div class="container">
-                <div class="weekly2-wrapper">
-                    <!-- section Tittle -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="section-tittle mb-30">
-                                <h1 class="text-white">साहित्य</h1>
+        @foreach ($categories as $category)
+            @if ($category->id !== 1)
+                <div class="weekly2-news-area pt-50 pb-30 yelgray-bg mt-5">
+                    <div class="container">
+                        <div class="weekly2-wrapper">
+                            <!-- section Tittle -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="section-tittle mb-30">
+                                        <h1 class="text-white"><a
+                                                href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
+                                        </h1>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="swiper mySwiper">
-                                <div class="swiper-wrapper">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="swiper mySwiper">
+                                        <div class="swiper-wrapper">
 
-                                    @foreach ($posts as $index => $post)
-                                        <div class="swiper-slide">
-                                            <a href="{{ route('posts.show', $post->slug) }}">
-                                                <div class="news_box">
-                                                    <div class="text_side">
-                                                        <H1 class="text_limit">{{ $post->title }}</H1>
-                                                    </div>
-                                                    <img src="assets_news/img/trending/trending_top.jpg" alt="">
+                                            @foreach ($category->posts as $post)
+                                                <div class="swiper-slide">
+                                                    <a href="{{ route('posts.show', $post->slug) }}">
+                                                        <div class="news_box">
+                                                            <div class="text_side">
+                                                                <H1 class="text_limit">{{ $post->title }}</H1>
+                                                            </div>
+                                                            <img src="{{ Storage::url($post->path) }}"
+                                                                alt="{{ $post->title }}">
+                                                        </div>
+                                                    </a>
                                                 </div>
-                                            </a>
+                                            @endforeach
+
                                         </div>
-                                    @endforeach
+
+                                    </div>
 
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            @endif
+        @endforeach
+
 
         <!-- End Weekly-News -->
         <!-- Whats New Start -->
@@ -254,59 +279,6 @@
         </section>
         <!-- Whats New End -->
 
-        <!--   Weekly2-News start -->
-        <div class="weekly2-news-area  weekly2-pading gray-bg">
-            <div class="container">
-                <div class="weekly2-wrapper">
-                    <!-- section Tittle -->
-                    <div class="row btn-border">
-                        <div class="col-lg-10 col-md-4 mb-20">
-                            <div class="">
-                                <h3>Weekly Top News</h3>
-                            </div>
-                        </div>
-                        {{-- <div class="col-lg-2 d-none d-lg-block">
-                            <div class="more">
-                                <a href="http://">>></a>
-                            </div>
-                        </div> --}}
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="swiper mySwiper">
-                                <div class="swiper-wrapper">
-
-                                    @foreach ($posts as $index => $post)
-                                        <div class="swiper-slide">
-                                            <a href="{{ route('posts.show', $post->slug) }}">
-                                                <div class="weekly2-single ">
-                                                    <div class="weekly2-img">
-                                                        <img src="{{ Storage::url($post->path) }}"
-                                                            alt="{{ $post->title }} image">
-                                                    </div>
-                                                    <div class="weekly2-caption">
-                                                        <span class="color1">{{ $post->category->name }}</span>
-                                                        <p>{{ $post->created_at->format('d-M') }}</p>
-                                                        <h4 class="text_limit"><a href="#">{{ $post->title }}</a>
-                                                        </h4>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    @endforeach
-
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Weekly-News -->
         <!-- Start Youtube -->
         <div class="youtube-area video-padding">
             <div class="container">
@@ -391,11 +363,14 @@
                                             <div class="swiper-slide">
                                                 <div class="single-recent mb-100">
                                                     <div class="what-img">
-                                                        <img src="{{ Storage::url($recentArticle->path) }}" alt="{{ $recentArticle->title }} image.">
+                                                        <img src="{{ Storage::url($recentArticle->path) }}"
+                                                            alt="{{ $recentArticle->title }} image.">
                                                     </div>
                                                     <div class="what-cap">
                                                         <span class="color1">{{ $recentArticle->category->name }}</span>
-                                                        <h4 class="text_limit"><a href="{{ route('posts.show',$recentArticle->slug) }}">{{ $recentArticle->title }}</a></h4>
+                                                        <h4 class="text_limit"><a
+                                                                href="{{ route('posts.show', $recentArticle->slug) }}">{{ $recentArticle->title }}</a>
+                                                        </h4>
                                                     </div>
                                                 </div>
                                             </div>

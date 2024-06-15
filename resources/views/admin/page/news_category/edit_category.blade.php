@@ -1,5 +1,7 @@
 @extends('admin/include/masterlayout')
-
+@section('title')
+    Edit Category
+@endsection
 @section('content')
     <div class="main-content">
         <section class="section">
