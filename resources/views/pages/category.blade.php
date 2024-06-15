@@ -35,7 +35,6 @@
                                 </div>
                             </div>
                             @endforeach
-
                         </div>
                     </div>
                 </div>
@@ -45,8 +44,8 @@
                     @foreach ($advertisements as $advertisement)
                     <aside class="single_sidebar_widget mb-5">
                         @if ($advertisement->position == 'sidebar1')
-                            <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }}"
-                                alt="{{ $advertisement->name }} Image">
+                        <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }}"
+                            alt="{{ $advertisement->name }} Image">
                         @endif
                     </aside>
                     @endforeach

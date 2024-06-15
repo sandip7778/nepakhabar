@@ -54,10 +54,13 @@ Route::middleware('auth')->group(function(){
     Route::resource('posts.comments',CommentController::class)->shallow();
     Route::post('posts/{post}/like',[LikeController::class,'like'])->name('posts.like');
     Route::post('posts/{post}/unlike',[LikeController::class,'unlike'])->name('posts.unlike');
-
 });
-
 Route::get('posts/{post}/share/{network}',[NewsPageController::class,'share'])->name('posts.share');
+Route::controller(NewShow::class)->group(function(){
+    Route::get('/contents/{id}','Categories')->name('contents');
+    Route::get('/teams','TeamMemeber')->name('team');
+    Route::get('/contact-us','Contactus')->name('contactus');
+});
 
 
 require __DIR__ . '/auth.php';

@@ -1,4 +1,7 @@
-@include('inc.header')
+@extends('layouts.newsLayout')
+
+
+@section('content')
 
 <div class="trending-area fix mt-150 mb-150">
     <div class="container">
@@ -65,8 +68,7 @@
                             
                          
 
-                          
-                          
+                
                         </div>
                     </div>
                 </div>
@@ -75,4 +77,4 @@
     </div>
 </div>
 
-@include('inc.footer')
+@endsection

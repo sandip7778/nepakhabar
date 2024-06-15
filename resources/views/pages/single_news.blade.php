@@ -39,13 +39,13 @@
                             </div>
 
                         </div>
-
                     </div>
                     <div class="navigation-top">
                         <div class="d-sm-flex justify-content-between text-center">
                             <p class="like-info">
                                 <span class="align-middle">
                                     @if (Auth::check() && Auth::user()->likesPost($post))
+
                                     <form action="{{ route('posts.unlike',$post->id) }}" method="post">
                                         @csrf
                                         <button type="submit" class="action_btn"><i class="fas fa-heart"></i></button>

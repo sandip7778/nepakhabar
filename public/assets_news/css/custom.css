@@ -123,7 +123,7 @@ a:hover{
     transition: all 0.5s;
 }
 
-.text__{
+.text_side{
     width: 100%;
     position: absolute;
     top: 80%;
@@ -136,7 +136,7 @@ a:hover{
     font-size: 10px;
     padding-bottom: 10px;
 }
-.text__ h1{font-size: 25px;}
+.text_side h1{font-size: 25px;  color: white;}
 
 .news_box::before{
     content: '';
@@ -145,7 +145,7 @@ a:hover{
     position: absolute;
     top: 0;
     left: 0;
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.68), transparent, transparent, transparent);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.937), rgba(0, 0, 0, 0.68), transparent, transparent, transparent);
     z-index: 1;
 }
 .height_25{
@@ -169,8 +169,12 @@ a:hover{
 
 .dark-bg{
     color: white;
-    background-color: rgba(3, 8, 15, 0.81);
-}
+    background-color: rgba(7, 25, 51, 0.864);
+}  
+.yelgray-bg{
+    color: white;
+    background-color: rgba(30, 51, 7, 0.864);
+}  
 
 .btn-border{
     border-bottom: 4px solid rgba(0, 0, 0, 0.992);

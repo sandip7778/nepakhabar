@@ -1,6 +1,7 @@
-@include('inc.header')
+@extends('layouts.newsLayout')
 
 
+@section('content')
     <!-- ================ contact section start ================= -->
     <section class="contact-section">
             <div class="container">
@@ -44,28 +45,68 @@
                             <div class="media-body">
                                 <h3>NepaKhabar Nepal Pvt.Ltd
                                </h3>
-                                <p> New Baneshwor, Kathmandu, Nepal.</p>
+                                <p>{{ $site->address }}</p>
                             </div>
                         </div>
                         <div class="media contact-info">
                             <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                             <div class="media-body">
-                                <h3>+1 253 565 2365</h3>
+                                <h3>{{ $site->phone }}</h3>
                                 <p>Mon to Fri 9am to 6pm</p>
                             </div>
                         </div>
                         <div class="media contact-info">
                             <span class="contact-info__icon"><i class="ti-email"></i></span>
                             <div class="media-body">
-                                <h3>support@colorlib.com</h3>
+                                <h3>{{ $site->email }}</h3>
                                 <p>Send us your query anytime!</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="weekly2-news-area pt-50 pb-30 yelgray-bg mt-5">
+            <div class="container">
+                <div class="weekly2-wrapper">
+                    <!-- section Tittle -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-tittle mb-30">
+                                <h1 class="text-white">Recomended</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+
+                                    @foreach ($posts as $index => $post)
+                                        <div class="swiper-slide">
+                                            <a href="{{ route('posts.show', $post->slug) }}">
+                                                <div class="news_box">
+                                                    <div class="text_side">
+                                                        <H1 class="text_limit">{{ $post->title }}</H1>
+                                                    </div>
+                                                    <img src="assets_news/img/trending/trending_top.jpg" alt="">
+                                                </div>
+                                            </a>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </section>
     <!-- ================ contact section end ================= -->
 
-
-@include('inc.footer')
+@endsection
