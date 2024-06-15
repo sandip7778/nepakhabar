@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>@yield('title')</title>
+    <title>@yield('title','NepaKhabar-Dashboard')</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets_news/img/logo/Logo-1.png') }}">
 
@@ -81,7 +81,7 @@
                     </li> -->
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                            <img alt="image" src="{{ asset('assets/img/avatar/avatar-5.png') }}" class="rounded-circle mr-1">
+                            <img alt="{{ Auth::user()->name }} image" src="{{ Auth::user()->path ? Storage::url(Auth::user()->path) : asset('assets/img/avatar/avatar-5.png') }}" class="rounded-circle mr-1">
                             <div class="d-sm-none d-lg-inline-block icons" >Hi, {{ Auth::user()->name }} <i class="fas fa-caret-down"></i></div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -170,6 +170,7 @@
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-columns"></i> <span>Manage Members</span></a>
                             <ul class="dropdown-menu">
+                                <li><a class="nav-link" href="{{ route('users.create') }}">Create Member</a></li>
                                 <li><a class="nav-link" href="{{ route('users.index') }}">Team Members</a></li>
                             </ul>
                         </li>

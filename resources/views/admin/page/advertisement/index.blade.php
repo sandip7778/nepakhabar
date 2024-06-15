@@ -1,5 +1,7 @@
 @extends('admin/include/masterlayout')
-
+@section('title')
+    Advertisements
+@endsection
 @section('content')
     <div class="main-content">
         <section class="section">
@@ -49,7 +51,7 @@
                                                         <div class='badge badge-danger'>Deactive</div>
                                                     @endif
                                                 </td>
-                                                <td>{{ $advertisement->created_at }}</td>
+                                                <td>{{ toFormattedNepaliDate($advertisement->created_at) }}</td>
                                                 <td class="d-flex justify-content-center align-items-center">
 
                                                     <a href="{{ route('advertisements.changeStatus', $advertisement->id) }}"

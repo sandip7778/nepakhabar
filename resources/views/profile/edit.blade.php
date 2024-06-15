@@ -1,4 +1,7 @@
 @extends('admin/include/masterlayout')
+@section('title')
+        NepaKhabar-Profile
+    @endsection
 
 @section('content')
     <div class="main-content">

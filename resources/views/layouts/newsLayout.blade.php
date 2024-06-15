@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Nepa Khabar | </title>
+    <title>@yield('title', 'NepaKhabar-Home') </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -41,18 +41,18 @@
                             <!-- Logo -->
                             <div class="col-xl-3 col-lg-3 col-md-3">
                                 <div class="logo">
-                                    <a href="/"><img src="{{ asset('assets_news/img/logo/Logo-5.png') }}" class="logo_"
-                                            alt=""></a>
+                                    <a href="/"><img src="{{ asset('assets_news/img/logo/Logo-5.png') }}"
+                                            class="logo_" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-9 col-lg-9 col-md-9">
                                 @foreach ($advertisements as $advertisement)
-                                <div class="header-banner f-right ">
-                                    @if ($advertisement->position == 'header')
-                                    <img src="{{ Storage::url($advertisement->ad_path) }}"
-                                        alt="{{ $advertisement->name }} Image" height="100px">
-                                    @endif
-                                </div>
+                                    <div class="header-banner f-right ">
+                                        @if ($advertisement->position == 'header')
+                                            <img src="{{ Storage::url($advertisement->ad_path) }}"
+                                                alt="{{ $advertisement->name }} Image" height="100px">
+                                        @endif
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -74,44 +74,53 @@
                                         <ul id="navigation">
                                             <li><a href="{{ route('index') }}">होमपेज</a></li>
                                             @foreach ($categories as $category)
-                                                @if ($category->id !== 1)
-                                                    <li><a
-                                                            href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
-                                                    </li>
-                                                @endif
+                                                <li><a
+                                                        href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
+                                                </li>
                                             @endforeach
-                                            @foreach ($categories as $category)
-                                                @if ($category->id == 1)
-                                                    <li><a
-                                                            href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
-                                                        {{-- <ul class="submenu">
-                                                    <li><a href="elements.html"> <i class="fas fa-user user_border"></i>
-                                                            &nbsp; Login</a></li>
-                                                            </ul> --}}
+                                            <li> <a href="#">अन्य</a>
+                                                <ul class="submenu">
+                                                    <li>
+                                                        <a href="{{ route('team') }}"> <i
+                                                                class="fas fa-user user_border"></i>
+                                                            &nbsp; हाम्राे टिम</a>
                                                     </li>
-                                                @endif
-                                            @endforeach
-
+                                                    <li>
+                                                        <a href="{{ route('contactus') }}"> <i
+                                                                class="fas fa-phone user_border"></i>
+                                                            &nbsp; सम्पर्क </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
 
-                            <div class="col-xl-2 col-lg-2 col-md-4 d-none d-lg-block">
+                            <div class="col-xl-4 col-lg-4 col-md-4 d-none d-lg-block">
                                 <div class="d-flex">
-                                    @auth
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <button type="submit" class=""><i class="fas fa-sign-out-alt"></i>
-                                            &nbsp;</button>
-                                    </form>
-
+                                    <div>
+                                        @auth
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit" class=""><i class="fas fa-sign-out-alt"></i>
+                                                &nbsp;</button>
+                                        </form>
                                     @else
-                                    <a href="{{ route('login') }}"><i class="fas fa-user user_border"></i>
-                                        &nbsp;</a>
+                                        <a href="{{ route('login') }}"><i class="fas fa-user user_border"></i>
+                                            &nbsp;</a>
                                     @endauth
-
+                                    </div>
+                                    <nav class="navbar bg-body-tertiary">
+                                        <div class="container-fluid">
+                                          <form class="d-flex" role="search" method="GET" action="{{ route('index') }}">
+                                            <input class="form-control me-2" type="search" name="search" placeholder="Search" value="{{ request()->input('search') }}" aria-label="Search">
+                                            <button class="action_btn" type="submit"><i class="fas fa-search"></i></button>
+                                          </form>
+                                        </div>
+                                      </nav>
                                 </div>
+
                             </div>
 
                             <!-- Mobile Menu -->
@@ -156,11 +165,16 @@
                                 </div>
                                 <!-- social -->
                                 <div class="footer-social">
-                                    <a href="{{ $site->twitter }}" class="action_btn"><i class="fab fa-twitter icon"></i></a>
-                                    <a href="{{ $site->instagram }}" class="action_btn"><i class="fab fa-instagram icon"></i></a>
-                                    <a href="{{ $site->facebook }}" class="action_btn"><i class="fab fa-facebook icon"></i></a>
-                                    <a href="{{ $site->youtube }}" class="action_btn"><i class="fab fa-youtube icon"></i></a>
-                                    <a href="{{ $site->thread }}" class="action_btn"><i class="fa-brands fa-threads"></i></a>
+                                    <a href="{{ $site->twitter }}" class="action_btn"><i
+                                            class="fab fa-twitter icon"></i></a>
+                                    <a href="{{ $site->instagram }}" class="action_btn"><i
+                                            class="fab fa-instagram icon"></i></a>
+                                    <a href="{{ $site->facebook }}" class="action_btn"><i
+                                            class="fab fa-facebook icon"></i></a>
+                                    <a href="{{ $site->youtube }}" class="action_btn"><i
+                                            class="fab fa-youtube icon"></i></a>
+                                    <a href="{{ $site->thread }}" class="action_btn"><i
+                                            class="fa-brands fa-threads"></i></a>
 
                                 </div>
                             </div>
@@ -171,10 +185,9 @@
                             <div class="footer-tittle">
                                 <h4>Pages</h4>
                                 @foreach ($categories as $category)
-
-                                <li><a href="{{ route('categories.show', $category->id) }}"><span
-
-                                class="flaticon-arrow right-arrow"></span> &nbsp;{{ $category->name }}</a></li>
+                                    <li><a href="{{ route('categories.show', $category->id) }}">
+                                            <span class="flaticon-arrow right-arrow"></span>
+                                            &nbsp;{{ $category->name }}</a></li>
                                 @endforeach
                                 <!-- Form -->
                                 <div class="footer-form">
@@ -192,7 +205,8 @@
                             </div>
                             <div class="instagram-gellay">
                                 <ul class="insta-feed">
-                                    <li><a href="#"><img src="assets_news/img/post/instra1.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="assets_news/img/post/instra1.jpg"
+                                                alt=""></a></li>
 
                                 </ul>
                             </div>
@@ -211,9 +225,9 @@
                                 <p>
                                     &copy;
                                     <script>
-                                    document.write(new Date().getFullYear());
-                                    </script> All rights reserved | Developed by <a href="https://linkupnepal.com"
-                                        target="_blank">Linkup Nepal Pvt ltd</a>
+                                        document.write(new Date().getFullYear());
+                                    </script> All rights reserved | Developed by <a
+                                        href="https://linkupnepal.com" target="_blank">Linkup Nepal Pvt ltd</a>
                                 </p>
                             </div>
                         </div>
@@ -221,8 +235,8 @@
                             <div class="footer-menu f-right">
                                 <ul>
                                     <li><a href="#">Terms of use</a></li>
-                                    <li><a href="{{route('team')}}">Team Members</a></li>
-                                    <li><a href="{{route('contactus')}}">Contact</a></li>
+                                    <li><a href="{{ route('team') }}">Team Members</a></li>
+                                    <li><a href="{{ route('contactus') }}">Contact</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -282,55 +296,55 @@
 
     <!-- Initialize Swiper -->
     <script>
-    var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        freeMode: true,
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-        },
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            freeMode: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
 
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 40,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 50,
+                },
             },
-            768: {
-                slidesPerView: 2,
-                spaceBetween: 40,
-            },
-            1024: {
-                slidesPerView: 4,
-                spaceBetween: 50,
-            },
-        },
-    });
+        });
 
 
-    var swiper = new Swiper(".recentMy", {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        freeMode: true,
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-        },
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
+        var swiper = new Swiper(".recentMy", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            freeMode: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
             },
-            768: {
-                slidesPerView: 2,
-                spaceBetween: 40,
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 40,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 50,
+                },
             },
-            1024: {
-                slidesPerView: 3,
-                spaceBetween: 50,
-            },
-        },
-    });
+        });
     </script>
 
 </body>

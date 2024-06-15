@@ -1,5 +1,7 @@
 @extends('admin/include/masterlayout')
-
+@section('title')
+    Manage Users
+@endsection
 @section('content')
     <div class="main-content">
         <section class="section">
@@ -7,7 +9,7 @@
                 <h1>Guest Users</h1>
                 <div class="section-header-breadcrumb">
 
-                    <div class="breadcrumb-item active"><a href="#" class="p_color">Dashboard</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
                     <div class="breadcrumb-item">Guest Users</div>
                 </div>
             </div>
@@ -33,7 +35,7 @@
                                                 <th>Name</th>
                                                 <th>Email</th>
                                                 <th>Status</th>
-                                                <th>Updated Date</th>
+                                                <th>Joined Date</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -48,7 +50,7 @@
                                                         @elseif ($guest->status === 0)
                                                         <span class="text-danger">Inactive</span>
                                                     @endif</td>
-                                                    <td>{{ $guest->created_at }}</td>
+                                                    <td>{{ $guest->created_at->format('d-M-Y') }}</td>
 
                                                         <td class="d-flex justify-content-center align-items-center">
                                                             <a href="{{ route('guests.changeStatus', $guest->id) }}"

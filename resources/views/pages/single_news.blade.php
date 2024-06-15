@@ -1,6 +1,8 @@
 @extends('layouts.newsLayout')
+@section('title')
+    NepaKhabar-{{ $post->title }}
+@endsection
 @section('content')
-
     <!--================Blog Area =================-->
     <section class="blog_area single-post-area pt-20">
         <div class="container">
@@ -28,7 +30,7 @@
                             <ul class="blog-info-link mt-3 mb-4">
                                 <li><a href="#">{{ $post->category->name }}</a></li>
                                 <li>&nbsp; &nbsp; <i class="fa fa-calendar"></i>
-                                    {{ $post->created_at }}
+                                    {{ toFormattedNepaliDate($post->created_at) }}
                                 </li>
                                 <li>&nbsp; &nbsp; <i class="fa fa-user"></i>
                                     {{ $post->user->name }}</li>
@@ -45,27 +47,31 @@
                             <p class="like-info">
                                 <span class="align-middle">
                                     @if (Auth::check() && Auth::user()->likesPost($post))
-
-                                    <form action="{{ route('posts.unlike',$post->id) }}" method="post">
-                                        @csrf
-                                        <button type="submit" class="action_btn"><i class="fas fa-heart"></i></button>
-                                    {{ $post->likes->count() }} likes
-                                </form>
+                                        <form action="{{ route('posts.unlike', $post->id) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="action_btn"><i class="fas fa-heart"></i></button>
+                                            {{ $post->likes->count() }} likes
+                                        </form>
                                     @else
-                                    <form action="{{ route('posts.like',$post->id) }}" method="post">
-                                        @csrf
-                                        <button type="submit" class="action_btn"><i class="far fa-heart"></i></button>
-                                    {{ $post->likes->count() }} likes
-                                </form>
+                                        <form action="{{ route('posts.like', $post->id) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="action_btn"><i class="far fa-heart"></i></button>
+                                            {{ $post->likes->count() }} likes
+                                        </form>
                                     @endif
-                                <span><i class="fas fa-eye"></i> &nbsp; {{ $post->views }} views</span>
-                                </span>Share This Post On Your Friends </p>
+                                    <span><i class="fas fa-eye"></i> &nbsp; {{ $post->views }} views</span>
+                                </span>Share This Post On Your Friends
+                            </p>
                             <span>{{ $post->share }} shares</span>
                             <ul class="social-icons">
-                                <li><a href="{{ route('posts.share', ['post' => $post, 'network' => 'facebook']) }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="{{ route('posts.share', ['post' => $post, 'network' => 'twitter']) }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="{{ route('posts.share', ['post' => $post, 'network' => 'whatsapp']) }}" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
-                                <li><a href="{{ route('posts.share', ['post' => $post, 'network' => 'linkedin']) }}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                                <li><a href="{{ route('posts.share', ['post' => $post, 'network' => 'facebook']) }}"
+                                        target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="{{ route('posts.share', ['post' => $post, 'network' => 'twitter']) }}"
+                                        target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="{{ route('posts.share', ['post' => $post, 'network' => 'whatsapp']) }}"
+                                        target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                                <li><a href="{{ route('posts.share', ['post' => $post, 'network' => 'linkedin']) }}"
+                                        target="_blank"><i class="fab fa-linkedin"></i></a></li>
                             </ul>
                         </div>
 
@@ -117,7 +123,6 @@
                                         @endif
                                     </div>
                                 </div>
-
                             @endforeach
                         </div>
 
@@ -191,22 +196,9 @@
                             <h4 class="widget_title">Category</h4>
                             <ul class="list cat-list">
                                 @foreach ($categories as $category)
-                                    @if ($category->id !== 1)
                                         <li><a
                                                 href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
                                         </li>
-                                    @endif
-                                @endforeach
-                                @foreach ($categories as $category)
-                                    @if ($category->id == 1)
-                                        <li><a
-                                                href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
-                                            {{-- <ul class="submenu">
-                                <li><a href="elements.html"> <i class="fas fa-user user_border"></i>
-                                        &nbsp; Login</a></li>
-                                        </ul> --}}
-                                        </li>
-                                    @endif
                                 @endforeach
                             </ul>
                         </aside>
