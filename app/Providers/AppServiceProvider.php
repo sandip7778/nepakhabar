@@ -25,8 +25,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFive();
-        $categories = Category::where('id', '!=', 1)->orderBy('updated_at', 'ASC')->get();
-        $other = Category::find(1);
+        $categories = Category::orderBy('updated_at', 'ASC')->get();
+        // $other = Category::find(1);
         $site = Site::find(1);
 
         // advertisements catching
@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         View::share('categories', $categories);
-        View::share('other', $other);
+        // View::share('other', $other);
         View::share('site', $site);
         View::share('advertisements',$advertisements);
 

@@ -27,16 +27,16 @@
                         </div>
                     </div>
                     <!-- <div class="row mb-5">
-                            <div class="col-xl-12">
-                                <div class="">
-                                    <img src="assets_news/img/hero/header_card.jpg" style="width:100%" alt="">
-                                </div>
-                            </div>
-                        </div> -->
+                                    <div class="col-xl-12">
+                                        <div class="">
+                                            <img src="assets_news/img/hero/header_card.jpg" style="width:100%" alt="">
+                                        </div>
+                                    </div>
+                                </div> -->
                     @foreach ($posts as $index => $post)
                         <div class="single-post border mb-3">
                             <article>
-                                <a href="{{ route('showNews', $post->slug) }}">
+                                <a href="{{ route('posts.show', $post->slug) }}">
                                     <div class="blog_details justify-content-center">
                                         <div class="row justify-content-center">
                                             <h2 class="text-align-center">{{ $post->title }}</h2>
@@ -46,7 +46,7 @@
                                             <li><a href="{{ route('categories.show', $post->category_id) }}">
                                                     {{ $post->category->name }}</a></li>
                                             <li>&nbsp; &nbsp; <i class="fa fa-calendar"></i>
-                                                {{ $post->created_at }}
+                                                {{ $post->created_at->format('d-M') }}
                                             </li>
                                             <li>&nbsp; &nbsp; <i class="fa fa-user"></i>
                                                 {{ $post->user->name }}</li>
@@ -162,7 +162,7 @@
                                                     </div>
                                                     <div class="weekly2-caption">
                                                         <span class="color1">{{ $post->category->name }}</span>
-                                                        <p>{{ $post->created_at }}</p>
+                                                        <p>{{ $post->created_at->format('d-M') }}</p>
                                                         <h4 class="text_limit"><a href="#">{{ $post->title }}</a>
                                                         </h4>
                                                     </div>
@@ -493,11 +493,11 @@
                                 <h3>Weekly Top News</h3>
                             </div>
                         </div>
-                        <div class="col-lg-2 d-none d-lg-block">
+                        {{-- <div class="col-lg-2 d-none d-lg-block">
                             <div class="more">
                                 <a href="http://">>></a>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
 
@@ -511,12 +511,12 @@
                                             <a href="{{ route('posts.show', $post->slug) }}">
                                                 <div class="weekly2-single ">
                                                     <div class="weekly2-img">
-                                                        <img src="assets_news/img/news/weekly2News1.jpg"
-                                                            alt="{{ $post->title }}">
+                                                        <img src="{{ Storage::url($post->path) }}"
+                                                            alt="{{ $post->title }} image">
                                                     </div>
                                                     <div class="weekly2-caption">
                                                         <span class="color1">{{ $post->category->name }}</span>
-                                                        <p>{{ $post->created_at }}</p>
+                                                        <p>{{ $post->created_at->format('d-M') }}</p>
                                                         <h4 class="text_limit"><a href="#">{{ $post->title }}</a>
                                                         </h4>
                                                     </div>
@@ -540,37 +540,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <div class="video-items-active">
-                            <div class="video-items text-center">
-                                <iframe src="https://www.youtube.com/embed/CONfhrASy44" frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen></iframe>
+                        @foreach ($videos->take(1) as $video)
+                            <div class="video-items-active">
+                                <div class="video-items text-center">
+                                    <iframe src="{{ $video->url }}" frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                                </div>
 
                             </div>
-
-                            <div class="video-items text-center">
-                                <iframe src="https://www.youtube.com/embed/lq6fL2ROWf8" frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen></iframe>
-
-                            </div>
-                            <div class="video-items text-center">
-                                <iframe src="https://www.youtube.com/embed/CicQIuG8hBo" frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen></iframe>
-                            </div>
-                            <div class="video-items text-center">
-                                <iframe src="https://www.youtube.com/embed/rIz00N40bag" frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen></iframe>
-                            </div>
-
-                            <div class="video-items text-center">
-                                <iframe src="https://www.youtube.com/embed/0VxlQlacWV4" frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen></iframe>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="video-info">
@@ -578,15 +556,14 @@
                         <div class="col-lg-6">
                             <div class="video-caption">
                                 <div class="top-caption">
-                                    <span class="color1">Politics</span>
+                                    <span class="color1">{{ $video->category->name }}</span>
                                 </div>
                                 <div class="bottom-caption">
-                                    <h2>Welcome To The Best Model Winner Contest At Look of the year</h2>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod ipsum
-                                        dolor sit. Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                        eiusmod ipsum dolor sit. Lorem ipsum dolor sit amet consectetur adipisicing elit
-                                        sed do eiusmod ipsum dolor sit lorem ipsum dolor sit.</p>
+                                    <h2>{{ $video->title }}</h2>
+                                    <p>{!! $video->description !!}</p>
                                 </div>
+                                @endforeach
+
                                 <div class="row mb-5">
                                     <div class="col-xl-12">
                                         <div class="">
@@ -603,46 +580,17 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="testmonial-nav text-center">
-                                <div class="single-video">
-                                    <iframe src="https://www.youtube.com/embed/CicQIuG8hBo" frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
-                                    <div class="video-intro">
-                                        <h4>Welcotme To The Best Model Winner Contest</h4>
+                                @foreach ($videos->skip(1) as $video)
+                                    <div class="single-video">
+                                        <iframe src="{{ $video->url }}" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                        <div class="video-intro">
+                                            <h4>{{ $video->title }}</h4>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="single-video">
-                                    <iframe src="https://www.youtube.com/embed/rIz00N40bag" frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
-                                    <div class="video-intro">
-                                        <h4>Welcotme To The Best Model Winner Contest</h4>
-                                    </div>
-                                </div>
-                                <div class="single-video">
-                                    <iframe src="https://www.youtube.com/embed/CONfhrASy44" frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
-                                    <div class="video-intro">
-                                        <h4>Welcotme To The Best Model Winner Contest</h4>
-                                    </div>
-                                </div>
-                                <div class="single-video">
-                                    <iframe src="https://www.youtube.com/embed/lq6fL2ROWf8" frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
-                                    <div class="video-intro">
-                                        <h4>Welcotme To The Best Model Winner Contest</h4>
-                                    </div>
-                                </div>
-                                <div class="single-video">
-                                    <iframe src="https://www.youtube.com/embed/0VxlQlacWV4" frameborder="0"
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
-                                    <div class="video-intro">
-                                        <h4>Welcotme To The Best Model Winner Contest</h4>
-                                    </div>
-                                </div>
+                                @endforeach
+
                             </div>
                         </div>
                     </div>
@@ -667,17 +615,15 @@
                                 <div class="swiper recentMy">
                                     <div class="swiper-wrapper">
 
-                                        @foreach ($posts as $index => $post)
+                                        @foreach ($recentArticles as $recentArticle)
                                             <div class="swiper-slide">
                                                 <div class="single-recent mb-100">
                                                     <div class="what-img">
-                                                        <img src="assets_news/img/news/recent1.jpg" alt="">
+                                                        <img src="{{ Storage::url($recentArticle->path) }}" alt="{{ $recentArticle->title }} image.">
                                                     </div>
                                                     <div class="what-cap">
-                                                        <span class="color1">Night party</span>
-                                                        <h4 class="text_limit"><a href="#">Welcome To The Best Model
-                                                                Winner
-                                                                Contest</a></h4>
+                                                        <span class="color1">{{ $recentArticle->category->name }}</span>
+                                                        <h4 class="text_limit"><a href="{{ route('posts.show',$recentArticle->slug) }}">{{ $recentArticle->title }}</a></h4>
                                                     </div>
                                                 </div>
                                             </div>
@@ -865,7 +811,7 @@
         </div>
 
 
-        <div class="pagination-area pb-45 text-center">
+        {{-- <div class="pagination-area pb-45 text-center">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
@@ -885,7 +831,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- End pagination  -->
     </main>
 @endsection

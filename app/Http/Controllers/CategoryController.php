@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Mews\Purifier\Facades\Purifier;
 
@@ -16,6 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::orderBy('updated_at', 'desc')->paginate(10);
+        $posts = Post::all();
         return view('admin.page.news_category.category' , compact('categories'));
     }
 
@@ -47,9 +49,14 @@ class CategoryController extends Controller
     public function show($id)
     {
         // dd($category);
-        $post = Post::where('category_id', $id)->firstOrFail();
-        $post->description = Purifier::clean($post->description);
-        return view('pages.category', compact('post',));
+        $threeDay = Carbon::now()->subDays(3);
+        $posts = Post::where('category_id', $id)->paginate(20);
+        foreach($posts as $post)
+        {
+            $post->description = Purifier::clean($post->description);
+        }
+        $trendings = Post::where('updated_at','>=',$threeDay)->inRandomOrder()->limit(3)->get();
+        return view('pages.category', compact('posts','trendings'));
     }
 
     /**

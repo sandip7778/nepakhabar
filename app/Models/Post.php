@@ -10,7 +10,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','slug','category_id','user_id','like','share', 'meta_tag','meta_keyword','path','status','description'];
+    protected $fillable = ['title','slug','category_id','user_id','share', 'meta_tag','meta_keyword','path','status','description'];
 
     public static function boot()
     {
@@ -39,5 +39,9 @@ class Post extends Model
     public function comments(){
         return $this->hasMany(Comment::class);
 
+    }
+
+    public function likes(){
+        return $this->belongsToMany(User::class,'likes',)->withTimestamps();
     }
 }

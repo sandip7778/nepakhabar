@@ -92,4 +92,11 @@ class User extends Authenticatable implements MustVerifyEmailContract
         return $this->hasMany(React::class);
     }
 
+    public function likes(){
+        return $this->belongsToMany(Post::class,'likes')->withTimestamps();
+    }
+
+    public function likesPost(Post $post){
+        return $this->likes()->where('post_id',$post->id)->exists();
+    }
 }

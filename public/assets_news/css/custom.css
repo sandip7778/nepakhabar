@@ -7,9 +7,19 @@
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2; /* number of lines to show */
-            line-clamp: 2; 
+            line-clamp: 2;
     -webkit-box-orient: vertical;
  }
+
+ .action_btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: red;
+}
+.action_btn:hover {
+    transform: scale(1.2);
+}
 
 a:hover{
     color: var(--primary_color);
@@ -161,6 +171,7 @@ a:hover{
     color: white;
     background-color: rgba(3, 8, 15, 0.81);
 }  
+
 .btn-border{
     border-bottom: 4px solid rgba(0, 0, 0, 0.992);
     margin-bottom: 15px;
