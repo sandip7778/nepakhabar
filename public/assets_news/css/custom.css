@@ -15,7 +15,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: red;
+    color: black;
 }
 .action_btn:hover {
     transform: scale(1.2);
@@ -113,7 +113,7 @@ a:hover{
     overflow: hidden;
     border-radius: 5px;
     object-fit: cover;
- 
+
 }
 .news_box img{
     width: 100%;

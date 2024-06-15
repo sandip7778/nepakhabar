@@ -171,7 +171,9 @@
                             <div class="footer-tittle">
                                 <h4>Pages</h4>
                                 @foreach ($categories as $category)
-                                <li><a href="{{ route('contents', $category->id) }}"><span
+
+                                <li><a href="{{ route('categories.show', $category->id) }}"><span
+
                                 class="flaticon-arrow right-arrow"></span> &nbsp;{{ $category->name }}</a></li>
                                 @endforeach
                                 <!-- Form -->
@@ -190,9 +192,7 @@
                             </div>
                             <div class="instagram-gellay">
                                 <ul class="insta-feed">
-
                                     <li><a href="#"><img src="assets_news/img/post/instra1.jpg" alt=""></a></li>
-
 
                                 </ul>
                             </div>
@@ -294,6 +294,7 @@
             640: {
                 slidesPerView: 2,
                 spaceBetween: 20,
+
             },
             768: {
                 slidesPerView: 2,

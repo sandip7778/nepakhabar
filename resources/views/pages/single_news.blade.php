@@ -43,21 +43,22 @@
                     <div class="navigation-top">
                         <div class="d-sm-flex justify-content-between text-center">
                             <p class="like-info">
-                                {{-- <span class="align-middle">
-                                    @if (Auth::user()->likesPost($post))
+                                <span class="align-middle">
+                                    @if (Auth::check() && Auth::user()->likesPost($post))
+
                                     <form action="{{ route('posts.unlike',$post->id) }}" method="post">
                                         @csrf
                                         <button type="submit" class="action_btn"><i class="fas fa-heart"></i></button>
-                                    {{ $post->likes->count() }}
+                                    {{ $post->likes->count() }} likes
                                 </form>
                                     @else
                                     <form action="{{ route('posts.like',$post->id) }}" method="post">
                                         @csrf
                                         <button type="submit" class="action_btn"><i class="far fa-heart"></i></button>
-                                    {{ $post->likes->count() }}
+                                    {{ $post->likes->count() }} likes
                                 </form>
-                                    @endif --}}
-
+                                    @endif
+                                <span><i class="fas fa-eye"></i> &nbsp; {{ $post->views }} views</span>
                                 </span>Share This Post On Your Friends </p>
                             <span>{{ $post->share }} shares</span>
                             <ul class="social-icons">
@@ -67,7 +68,7 @@
                                 <li><a href="{{ route('posts.share', ['post' => $post, 'network' => 'linkedin']) }}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
                             </ul>
                         </div>
-  
+
 
                     </div>
                     <div class="comments-area">

@@ -66,7 +66,7 @@ class PostController extends Controller
             'slug' => Str::slug($request->get('title')),
         ]);
 
-        return redirect()->route('posts.show', $post->slug)->with('success', 'Post created successfully.')->with('image', $path);
+        return redirect()->route('posts.index')->with('success', 'Post created successfully.')->with('image', $path);
     }
 
     /**
@@ -74,11 +74,11 @@ class PostController extends Controller
      */
     public function show($slug)
     {
-        $post = Post::where('slug', $slug)->firstOrFail();
+        $post = Post::where('slug', $slug)->where('status',true)->firstOrFail();
         $post->description = Purifier::clean($post->description);
         // $posts = Post::orderBy('created_at','DESC')->get()->take(3);
         $recentPosts = Post::orderBy('created_at', 'DESC')->get()->take(3);
-
+        $post->increment('views');
 
         // $comments = React::where('slug')
 
@@ -109,7 +109,6 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required|boolean',
             'description' => 'required|string|min:10',
             'user_id' => 'required|exists:users,id',
         ]);
@@ -122,14 +121,14 @@ class PostController extends Controller
 
             $path = $request->image->storeAs('images', $imageName, 'public');
             $post->path = $path;
-            $post->update($request->only('title', 'category_id','user_id', 'meta_tag', 'meta_keyword','path', 'status', 'description'));
+            $post->update($request->only('title', 'category_id','user_id', 'meta_tag', 'meta_keyword','path', 'description'));
         }else{
-            $post->update($request->only('title', 'category_id','user_id', 'meta_tag', 'meta_keyword', 'status', 'description'));
+            $post->update($request->only('title', 'category_id','user_id', 'meta_tag', 'meta_keyword', 'description'));
         }
         $post->slug == Str::slug($post->title);
         $post->save();
 
-        return redirect()->route('posts.show', $post->slug)->with('success', 'Post updated successfully.');
+        return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
     }
 
     /**
@@ -140,5 +139,20 @@ class PostController extends Controller
         $post = Post::where('slug', $slug)->firstOrFail();
         $post->delete();
         return redirect()->route('posts.index')->with('success', 'Post deleted successfully...');
+    }
+
+    public function changeStatus(Request $request, $slug)
+    {
+        $post = Post::where('slug', $slug)->firstOrFail();
+        // dd($user -> status);
+        if ($post && $post->status == true) {
+            $post->update(['status' => false]);
+            // dd($post->status);
+            return redirect()->route('posts.index')->with('success', 'Post disabled successfully.');
+        } else if ($post && $post->status == false) {
+            $post->update(['status' => true]);
+            return redirect()->route('posts.index')->with('success', 'Post enabled successfully.');
+        }
+        return response("Post may not exist.");
     }
 }
