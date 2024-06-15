@@ -18,21 +18,20 @@
                                         @foreach ($posts as $post)
                                             <li class="news-item">{{ $post->title }}</li>
                                         @endforeach
-                                        {{-- <li class="news-item">Spondon IT sit amet, consectetur.......</li>
-                                    <li class="news-item">Rem ipsum dolor sit amet, consectetur adipisicing elit.</li> --}}
+                                     
                                     </ul>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="row mb-5">
+                    <div class="row mb-5">
                             <div class="col-xl-12">
                                 <div class="">
                                     <img src="assets_news/img/hero/header_card.jpg" style="width:100%" alt="">
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                     @foreach ($posts as $index => $post)
                         <div class="single-post border mb-3">
                             <article>
@@ -52,8 +51,8 @@
                                                 {{ $post->user->name }}</li>
                                         </ul>
                                         <div class="row justify-content-center mt-3">
-                                            <img src="{{ Storage::url($post->path) }}" alt="{{ $post->title . ' Image' }}"
-                                                class="tranding_image">
+                                            <img src="{{ Storage::url($post->path) }}" alt=""
+                                                class="">
                                         </div>
                                     </div>
                                 </a>
@@ -70,7 +69,7 @@
                                 <div class="trend-top-img">
                                     <img src="assets_news/img/trending/trending_top.jpg" alt="">
                                     <div class="trend-top-cap">
-                                        <span class="text_limit"> </span>hh</a></h2>
+                                       <h2 class="text_limit"><a href="">{{ $post->title }} </a> </h2>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +143,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="section-tittle mb-30">
-                                <h3>Weekly Top News</h3>
+                                <h3 class="text-white">Weekly Top News</h3>
                             </div>
                         </div>
                     </div>
@@ -152,18 +151,17 @@
                         <div class="col-12">
                             <div class="swiper mySwiper">
                                 <div class="swiper-wrapper">
-
                                     @foreach ($posts as $index => $post)
                                         <div class="swiper-slide">
-                                            <a href="{{ route('posts.show', $post->slug) }}">
+                                            <a href="{{ route('showNews', $post->slug) }}">
                                                 <div class="weekly2-single ">
                                                     <div class="weekly2-img">
                                                         <img src="assets_news/img/news/weekly2News1.jpg" alt="">
                                                     </div>
                                                     <div class="weekly2-caption">
                                                         <span class="color1">{{ $post->category->name }}</span>
-                                                        <p>{{ $post->created_at }}</p>
-                                                        <h4 class="text_limit"><a href="#">{{ $post->title }}</a>
+                                                      
+                                                        <h4 class="text_limit text-white"><a href="#">{{ $post->title }}</a>
                                                         </h4>
                                                     </div>
                                                 </div>
@@ -196,14 +194,15 @@
             </div>
         </div>
         <hr>
-        <div class="weekly2-news-area pt-50 pb-30 dark-bg mt-5">
+
+        <div class="weekly2-news-area pt-50 pb-30 yelgray-bg mt-5">
             <div class="container">
                 <div class="weekly2-wrapper">
                     <!-- section Tittle -->
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="section-tittle mb-30">
-                                <h3>Weekly Top News</h3>
+                                <h1 class="text-white">साहित्य</h1>
                             </div>
                         </div>
                     </div>
@@ -217,7 +216,7 @@
                                             <a href="{{ route('posts.show', $post->slug) }}">
                                                 <div class="news_box">
                                                     <div class="text_side">
-                                                        <H1>Testing</H1>
+                                                        <H1 class="text_limit">{{ $post->title }}</H1>
                                                     </div>
                                                     <img src="assets_news/img/trending/trending_top.jpg" alt="">
                                                 </div>
@@ -657,7 +656,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="section-tittle mb-30">
-                                <h3>Recent Articles</h3>
+                                <h3>Recent News</h3>
                             </div>
                         </div>
                     </div>
@@ -674,187 +673,13 @@
                                                         <img src="assets_news/img/news/recent1.jpg" alt="">
                                                     </div>
                                                     <div class="what-cap">
-                                                        <span class="color1">Night party</span>
-                                                        <h4 class="text_limit"><a href="#">Welcome To The Best Model
-                                                                Winner
-                                                                Contest</a></h4>
+                                                        <span class="color1">{{ $post->category->name }}</span>
+                                                        <h4 class="text_limit"><a href="#">{{ $post->title }}</a></h4>
                                                     </div>
                                                 </div>
                                             </div>
                                         @endforeach
 
-<<<<<<< HEAD
-                            </div>
-                            <!-- End Nav Card -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <!-- Section Tittle -->
-                    <div class="section-tittle mb-40">
-                        <h3>Follow Us</h3>
-                    </div>
-                    <!-- Flow Socail -->
-                    <div class="single-follow mb-45">
-                        <div class="single-box">
-                            <div class="follow-us d-flex align-items-center">
-                                <div class="follow-social">
-                                    <a href="#"><img src="assets_news/img/news/icon-fb.png" alt=""></a>
-                                </div>
-                                <div class="follow-count">
-                                    <span>8,045</span>
-                                    <p>Fans</p>
-                                </div>
-                            </div>
-                            <div class="follow-us d-flex align-items-center">
-                                <div class="follow-social">
-                                    <a href="#"><img src="assets_news/img/news/icon-tw.png" alt=""></a>
-                                </div>
-                                <div class="follow-count">
-                                    <span>8,045</span>
-                                    <p>Fans</p>
-                                </div>
-                            </div>
-                            <div class="follow-us d-flex align-items-center">
-                                <div class="follow-social">
-                                    <a href="#"><img src="assets_news/img/news/icon-ins.png" alt=""></a>
-                                </div>
-                                <div class="follow-count">
-                                    <span>8,045</span>
-                                    <p>Fans</p>
-                                </div>
-                            </div>
-                            <div class="follow-us d-flex align-items-center">
-                                <div class="follow-social">
-                                    <a href="#"><img src="assets_news/img/news/icon-yo.png" alt=""></a>
-                                </div>
-                                <div class="follow-count">
-                                    <span>8,045</span>
-                                    <p>Fans</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- New Poster -->
-                    <div class="news-poster d-none d-lg-block">
-                        <img src="assets_news/img/news/news_card.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Whats New End -->
-
-    <!--   Weekly2-News start -->
-    <div class="weekly2-news-area  weekly2-pading gray-bg">
-        <div class="container">
-            <div class="weekly2-wrapper">
-                <!-- section Tittle -->
-                <div class="row btn-border">
-                    <div class="col-lg-10 col-md-4 mb-20">
-                        <div class="">
-                            <h3>Weekly Top News</h3>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 d-none d-lg-block">
-                        <div class="more">
-                            <a href="http://">>></a>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-12">
-                        <div class="swiper weekly">
-                            <div class="swiper-wrapper">
-
-                                @foreach ($posts as $index => $post)
-                                <div class="swiper-slide">
-                                    <a href="{{ route('post',$post->slug)}}">
-                                        <div class="weekly2-single card p-1 ">
-                                            <div class="weekly2-img">
-                                                <img src="assets_news/img/news/weekly2News1.jpg"
-                                                    alt="{{ $post->title }}">
-                                            </div>
-                                            <div class="weekly2-caption">
-                                                <span class="color1">{{ $post->category->name }}</span>
-                                                <p>{{ $post->created_at }}</p>
-                                                <h4 class="text_limit"><a href="#">{{ $post->title }}</a></h4>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                @endforeach
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Weekly-News -->
-    <!-- Start Youtube -->
-    <div class="youtube-area video-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="video-items-active">
-                        <div class="video-items text-center">
-                            <iframe src="https://www.youtube.com/embed/CONfhrASy44" frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-
-                        </div>
-
-                        <div class="video-items text-center">
-                            <iframe src="https://www.youtube.com/embed/lq6fL2ROWf8" frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-
-                        </div>
-                        <div class="video-items text-center">
-                            <iframe src="https://www.youtube.com/embed/CicQIuG8hBo" frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                        <div class="video-items text-center">
-                            <iframe src="https://www.youtube.com/embed/rIz00N40bag" frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-
-                        <div class="video-items text-center">
-                            <iframe src="https://www.youtube.com/embed/0VxlQlacWV4" frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="video-info">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="video-caption">
-                            <div class="top-caption">
-                                <span class="color1">Politics</span>
-                            </div>
-                            <div class="bottom-caption">
-                                <h2>Welcome To The Best Model Winner Contest At Look of the year</h2>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod ipsum
-                                    dolor sit. Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
-                                    eiusmod ipsum dolor sit. Lorem ipsum dolor sit amet consectetur adipisicing elit
-                                    sed do eiusmod ipsum dolor sit lorem ipsum dolor sit.</p>
-                            </div>
-                            <div class="row mb-5">
-                                <div class="col-xl-12">
-                                    <div class="">
-                                        <img src="assets_news/img/hero/header_card.jpg" style="width:100%" alt="">
-=======
->>>>>>> refs/remotes/origin/main
                                     </div>
                                 </div>
                             </div>

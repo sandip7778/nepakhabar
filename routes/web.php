@@ -48,6 +48,13 @@ Route::controller(NewsPageController::class)->group(function(){
 
 });
 
+Route::controller(NewShow::class)->group(function(){
+    Route::get('/contents/{id}','Categories')->name('contents');
+    Route::get('/teams','TeamMemeber')->name('team');
+    Route::get('/contact-us','Contactus')->name('contactus');
+
+});
+
 Route::resource('posts.comments',CommentController::class)->shallow()->middleware('auth');
 
 

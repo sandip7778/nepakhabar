@@ -23,16 +23,8 @@ class NewShow extends Controller
     }
 
     public function Categories(String $id){
-
-        return view('pages.category');
-    }
-
-    public function SingleNews(String $id){
-        $post = Post::where('slug', $id)->firstOrFail();
-        $categories = Category::orderBy('created_at', 'desc')->paginate(10);
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
-
-        return view('pages.single_news',compact('post','categories','posts'));
+        $CPosts = Post::where('category_id', $id)->get();
+        return view('pages.category',compact('CPosts'));
     }
 
     public function TeamMemeber(){
@@ -40,7 +32,7 @@ class NewShow extends Controller
         return view('pages.team_m');
     }
     public function Contactus(){
-
-        return view('pages.contact');
+        $posts = Post::orderBy('updated_at', 'desc')->paginate(10);
+        return view('pages.contact', compact('posts'));
     }
 }

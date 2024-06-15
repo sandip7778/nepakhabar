@@ -15,7 +15,7 @@ class NewsPageController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'DESC')->get()->take(3);
+        $posts = Post::orderBy('created_at', 'DESC')->get()->take(8);
         return view('welcome', compact('posts'));
     }
 
@@ -27,12 +27,12 @@ class NewsPageController extends Controller
         $categories = Category::where('id', '!=', 1)->orderBy('updated_at', 'ASC')->get();
         $other = Category::find(1);
 
-        $recentPosts = Post::orderBy('created_at', 'DESC')->get()->take(3);
+        $recentPosts = Post::orderBy('created_at', 'DESC')->get()->take(5);
 
 
         // $comments = React::where('slug')
 
-        return view('pages.single_news', compact('post', 'categories', 'other', 'recentPosts', 'headerAdvertisements'));
+        return view('pages.single_news', compact('post', 'categories', 'other', 'recentPosts',));
     }
 
 }
