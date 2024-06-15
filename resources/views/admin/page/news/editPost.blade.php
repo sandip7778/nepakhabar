@@ -86,16 +86,6 @@
                                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-lg-4 col-md-12">
-                                            <label class="f_text" for="exampleInputUsername1">Select Status</label>
-                                            <select class="form-control" name="status" required>
-                                                <option value="1">Active</option>
-                                                <option value="0">Disable</option>
-                                            </select>
-                                            @error('status')
-                                                <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
                                         @if (Auth::user()->userType == 'admin')
 
                                         <div class="col-lg-4 col-md-12">

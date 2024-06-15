@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(function () {
     Route::resource('categories', CategoryController::class)->except('show');
+    Route::get('posts/{slug}/changeStatus', [PostController::class, 'changeStatus'])->name('posts.changeStatus');
     Route::resource('posts', PostController::class)->parameters(['posts' => 'slug'])->except('show');
     Route::get('advertisements/{advertisement}/changeStatus', [AdvertisementController::class, 'changeStatus'])->name('advertisements.changeStatus');
     Route::resource('advertisements', AdvertisementController::class);
@@ -53,10 +54,10 @@ Route::middleware('auth')->group(function(){
     Route::resource('posts.comments',CommentController::class)->shallow();
     Route::post('posts/{post}/like',[LikeController::class,'like'])->name('posts.like');
     Route::post('posts/{post}/unlike',[LikeController::class,'unlike'])->name('posts.unlike');
-    Route::get('posts/{post}/share/{network}',[NewsPageController::class,'share'])->name('posts.share');
 
 });
 
+Route::get('posts/{post}/share/{network}',[NewsPageController::class,'share'])->name('posts.share');
 
 
 require __DIR__ . '/auth.php';

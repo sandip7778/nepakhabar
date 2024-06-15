@@ -46,13 +46,27 @@
                                         </td>
                                         <td>{{ $post->created_at }}</td>
                                         <td class="d-flex justify-content-center align-items-center">
+                                            <a href="{{ route('posts.changeStatus', $post->slug) }}"
+                                                class="action_btn">
+                                                @if ($post->status == true)
+                                                    <button type="button" class="action_btn" data-toggle="tooltip"
+                                                        data-placement="bottom" title="Disable">
+                                                        <i class="fas fa-eye-slash icon_box"></i>
+                                                    </button>
+                                                @else
+                                                    <button type="button" class="action_btn" data-toggle="tooltip"
+                                                        data-placement="bottom" title="Enable">
+                                                        <i class="fas fa-eye icon_box"></i>
+                                                    </button>
+                                                @endif
+                                            </a>
+                                            <a href="{{ route('posts.edit', $post->slug) }}" class="action_btn"><i class="fas fa-pen icon_box "></i></a>
                                             <form class="pointer d-inline" action="{{ route('posts.destroy', $post->slug) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="action_btn"><i class="fas fa-trash icon_box"></i></button>
                                             </form>
-                                            <a href="{{ route('posts.edit', $post->slug) }}" class="action_btn"><i class="fas fa-pen icon_box "></i></a>
-                                            <a href="{{ route('posts.show', $post->slug) }}" class="action_btn"><i class="fas fa-eye icon_box "></i></a>
+                                            <a href="{{ route('posts.show', $post->slug) }}" class="action_btn"><i class="fas fa-arrow-up icon_box "></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

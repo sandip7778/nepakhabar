@@ -190,10 +190,7 @@
                             </div>
                             <div class="instagram-gellay">
                                 <ul class="insta-feed">
-
                                     <li><a href="#"><img src="assets_news/img/post/instra1.jpg" alt=""></a></li>
-
-
                                 </ul>
                             </div>
                         </div>
@@ -221,8 +218,8 @@
                             <div class="footer-menu f-right">
                                 <ul>
                                     <li><a href="#">Terms of use</a></li>
-                                    <li><a href="{{route('team')}}">Team Members</a></li>
-                                    <li><a href="{{route('contactus')}}">Contact</a></li>
+                                    <li><a href="">Team Members</a></li>
+                                    <li><a href="">Contact</a></li>
                                 </ul>
                             </div>
                         </div>
