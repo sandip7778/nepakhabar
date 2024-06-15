@@ -629,6 +629,178 @@
                                             </div>
                                         @endforeach
 
+<<<<<<< HEAD
+                            </div>
+                            <!-- End Nav Card -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <!-- Section Tittle -->
+                    <div class="section-tittle mb-40">
+                        <h3>Follow Us</h3>
+                    </div>
+                    <!-- Flow Socail -->
+                    <div class="single-follow mb-45">
+                        <div class="single-box">
+                            <div class="follow-us d-flex align-items-center">
+                                <div class="follow-social">
+                                    <a href="#"><img src="assets_news/img/news/icon-fb.png" alt=""></a>
+                                </div>
+                                <div class="follow-count">
+                                    <span>8,045</span>
+                                    <p>Fans</p>
+                                </div>
+                            </div>
+                            <div class="follow-us d-flex align-items-center">
+                                <div class="follow-social">
+                                    <a href="#"><img src="assets_news/img/news/icon-tw.png" alt=""></a>
+                                </div>
+                                <div class="follow-count">
+                                    <span>8,045</span>
+                                    <p>Fans</p>
+                                </div>
+                            </div>
+                            <div class="follow-us d-flex align-items-center">
+                                <div class="follow-social">
+                                    <a href="#"><img src="assets_news/img/news/icon-ins.png" alt=""></a>
+                                </div>
+                                <div class="follow-count">
+                                    <span>8,045</span>
+                                    <p>Fans</p>
+                                </div>
+                            </div>
+                            <div class="follow-us d-flex align-items-center">
+                                <div class="follow-social">
+                                    <a href="#"><img src="assets_news/img/news/icon-yo.png" alt=""></a>
+                                </div>
+                                <div class="follow-count">
+                                    <span>8,045</span>
+                                    <p>Fans</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- New Poster -->
+                    <div class="news-poster d-none d-lg-block">
+                        <img src="assets_news/img/news/news_card.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Whats New End -->
+
+    <!--   Weekly2-News start -->
+    <div class="weekly2-news-area  weekly2-pading gray-bg">
+        <div class="container">
+            <div class="weekly2-wrapper">
+                <!-- section Tittle -->
+                <div class="row btn-border">
+                    <div class="col-lg-10 col-md-4 mb-20">
+                        <div class="">
+                            <h3>Weekly Top News</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 d-none d-lg-block">
+                        <div class="more">
+                            <a href="http://">>></a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="swiper weekly">
+                            <div class="swiper-wrapper">
+
+                                @foreach ($posts as $index => $post)
+                                <div class="swiper-slide">
+                                    <a href="{{ route('post',$post->slug)}}">
+                                        <div class="weekly2-single card p-1 ">
+                                            <div class="weekly2-img">
+                                                <img src="assets_news/img/news/weekly2News1.jpg"
+                                                    alt="{{ $post->title }}">
+                                            </div>
+                                            <div class="weekly2-caption">
+                                                <span class="color1">{{ $post->category->name }}</span>
+                                                <p>{{ $post->created_at }}</p>
+                                                <h4 class="text_limit"><a href="#">{{ $post->title }}</a></h4>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                @endforeach
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Weekly-News -->
+    <!-- Start Youtube -->
+    <div class="youtube-area video-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="video-items-active">
+                        <div class="video-items text-center">
+                            <iframe src="https://www.youtube.com/embed/CONfhrASy44" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+
+                        </div>
+
+                        <div class="video-items text-center">
+                            <iframe src="https://www.youtube.com/embed/lq6fL2ROWf8" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+
+                        </div>
+                        <div class="video-items text-center">
+                            <iframe src="https://www.youtube.com/embed/CicQIuG8hBo" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                        <div class="video-items text-center">
+                            <iframe src="https://www.youtube.com/embed/rIz00N40bag" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+
+                        <div class="video-items text-center">
+                            <iframe src="https://www.youtube.com/embed/0VxlQlacWV4" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-info">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="video-caption">
+                            <div class="top-caption">
+                                <span class="color1">Politics</span>
+                            </div>
+                            <div class="bottom-caption">
+                                <h2>Welcome To The Best Model Winner Contest At Look of the year</h2>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod ipsum
+                                    dolor sit. Lorem ipsum dolor sit amet consectetur adipisicing elit sed do
+                                    eiusmod ipsum dolor sit. Lorem ipsum dolor sit amet consectetur adipisicing elit
+                                    sed do eiusmod ipsum dolor sit lorem ipsum dolor sit.</p>
+                            </div>
+                            <div class="row mb-5">
+                                <div class="col-xl-12">
+                                    <div class="">
+                                        <img src="assets_news/img/hero/header_card.jpg" style="width:100%" alt="">
+=======
+>>>>>>> refs/remotes/origin/main
                                     </div>
                                 </div>
                             </div>

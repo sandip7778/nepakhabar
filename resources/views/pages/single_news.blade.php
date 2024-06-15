@@ -1,5 +1,6 @@
 @extends('layouts.newsLayout')
 @section('content')
+
     <!--================Blog Area =================-->
     <section class="blog_area single-post-area pt-20">
         <div class="container">
@@ -14,7 +15,6 @@
                                         alt="{{ $advertisement->name }} Image">
                                 @endif
                             @endforeach
-
                         </div>
                     </div>
                     <div class="single-post">
@@ -39,6 +39,7 @@
                             </div>
 
                         </div>
+
                     </div>
                     <div class="navigation-top">
                         <div class="d-sm-flex justify-content-between text-center">
@@ -67,6 +68,7 @@
                                 <li><a href="{{ route('posts.share', ['post' => $post, 'network' => 'linkedin']) }}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
                             </ul>
                         </div>
+  
 
                     </div>
                     <div class="comments-area">
@@ -115,12 +117,14 @@
                                         @endif
                                     </div>
                                 </div>
+
                             @endforeach
                         </div>
 
                     </div>
                     <div class="comment-form">
                         <h4>Comment</h4>
+
 
                         <form class="form-contact comment_form" action="{{ route('posts.comments.store', $post->slug) }}"
                             id="commentForm" method="post">
@@ -156,6 +160,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
                         <!-- size of sidebar ads boxads  height :300px width 350px  -->
@@ -257,6 +262,7 @@
                             @endif
                         @endforeach
                     </div>
+
                 </div>
             </div>
         </div>
