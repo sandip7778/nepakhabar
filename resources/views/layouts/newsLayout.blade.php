@@ -41,18 +41,18 @@
                             <!-- Logo -->
                             <div class="col-xl-3 col-lg-3 col-md-3">
                                 <div class="logo">
-                                    <a href="index.html"><img src="{{ asset('assets_news/img/logo/Logo-5.png') }}"
-                                            class="logo_" alt=""></a>
+                                    <a href="/"><img src="{{ asset('assets_news/img/logo/Logo-5.png') }}" class="logo_"
+                                            alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-9 col-lg-9 col-md-9">
                                 @foreach ($advertisements as $advertisement)
-                                    <div class="header-banner f-right ">
-                                        @if ($advertisement->position == 'header')
-                                            <img src="{{ Storage::url($advertisement->ad_path) }}"
-                                                alt="{{ $advertisement->name }} Image" height="100px">
-                                        @endif
-                                    </div>
+                                <div class="header-banner f-right ">
+                                    @if ($advertisement->position == 'header')
+                                    <img src="{{ Storage::url($advertisement->ad_path) }}"
+                                        alt="{{ $advertisement->name }} Image" height="100px">
+                                    @endif
+                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -100,24 +100,23 @@
                             <div class="col-xl-2 col-lg-2 col-md-4 d-none d-lg-block">
                                 <div class="d-flex">
                                     @auth
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
-                                            <button type="submit" class=""><i
-                                                    class="fas fa-sign-out-alt fa-lg fa-border"></i>
-                                                &nbsp;</button>
-                                        </form>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class=""><i class="fas fa-sign-out-alt"></i>
+                                            &nbsp;</button>
+                                    </form>
+
                                     @else
-                                        <a href="{{ route('login') }}"><i class="fas fa-user user_border"></i>
-                                            &nbsp;</a>
+                                    <a href="{{ route('login') }}"><i class="fas fa-user user_border"></i>
+                                        &nbsp;</a>
                                     @endauth
-                                    <i class="fas fa-search special-tag"></i>
+
                                 </div>
                             </div>
 
                             <!-- Mobile Menu -->
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-md-none"></div>
-                                <!-- <i class="fas fa-user user_border"></i> -->
                             </div>
                         </div>
                     </div>
@@ -131,7 +130,7 @@
 
     <footer>
         <!-- Footer Start-->
-        <div class="footer-area footer-padding fix">
+        <div class="footer-area pt-20 fix">
             <div class="container">
                 <div class="row d-flex justify-content-between">
                     <div class="col-xl-5 col-lg-5 col-md-7 col-sm-12">
@@ -139,7 +138,7 @@
                             <div class="single-footer-caption">
                                 <!-- logo -->
                                 <div class="footer-logo">
-                                    <a href="index.html"><img src="{{ asset('assets_news/img/logo/Logo-4.png') }}"
+                                    <a href="/"><img src="{{ asset('assets_news/img/logo/Logo-4.png') }}"
                                             class="logo_" alt=""></a>
                                 </div>
                                 <div class="footer-tittle">
@@ -168,52 +167,33 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-4  col-sm-6">
-                        <div class="single-footer-caption mt-60">
+                        <div class="single-footer-caption mt-20">
                             <div class="footer-tittle">
-                                <h4>Newsletter</h4>
-                                <p>Heaven fruitful doesn't over les idays appear creeping</p>
+                                <h4>Pages</h4>
+                                @foreach ($categories as $category)
+                                <li><a href="{{ route('categories.show', $category->id) }}"><span
+                                class="flaticon-arrow right-arrow"></span> &nbsp;{{ $category->name }}</a></li>
+                                @endforeach
                                 <!-- Form -->
                                 <div class="footer-form">
                                     <div id="mc_embed_signup">
-                                        <form target="_blank"
-                                            action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                            method="get" class="subscribe_form relative mail_part">
-                                            <input type="email" name="email" id="newsletter-form-email"
-                                                placeholder="Email Address" class="placeholder hide-on-focus"
-                                                onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = ' Email Address '">
-                                            <div class="form-icon">
-                                                <button type="submit" name="submit" id="newsletter-submit"
-                                                    class="email_icon newsletter-submit button-contactForm"><img
-                                                        src="assets_news/img/logo/form-iocn.png"
-                                                        alt=""></button>
-                                            </div>
-                                            <div class="mt-10 info"></div>
-                                        </form>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
-                        <div class="single-footer-caption mb-50 mt-60">
+                        <div class="single-footer-caption mt-20">
                             <div class="footer-tittle">
                                 <h4>News Feed</h4>
                             </div>
                             <div class="instagram-gellay">
                                 <ul class="insta-feed">
-                                    <li><a href="#"><img src="assets_news/img/post/instra1.jpg"
-                                                alt=""></a></li>
-                                    <li><a href="#"><img src="assets_news/img/post/instra2.jpg"
-                                                alt=""></a></li>
-                                    <li><a href="#"><img src="assets_news/img/post/instra3.jpg"
-                                                alt=""></a></li>
-                                    <li><a href="#"><img src="assets_news/img/post/instra4.jpg"
-                                                alt=""></a></li>
-                                    <li><a href="#"><img src="assets_news/img/post/instra5.jpg"
-                                                alt=""></a></li>
-                                    <li><a href="#"><img src="assets_news/img/post/instra6.jpg"
-                                                alt=""></a></li>
+
+                                    <li><a href="#"><img src="assets_news/img/post/instra1.jpg" alt=""></a></li>
+
+
                                 </ul>
                             </div>
                         </div>
@@ -231,9 +211,9 @@
                                 <p>
                                     &copy;
                                     <script>
-                                        document.write(new Date().getFullYear());
-                                    </script> All rights reserved | Developed by <a
-                                        href="https://linkupnepal.com" target="_blank">Linkup Nepal Pvt ltd</a>
+                                    document.write(new Date().getFullYear());
+                                    </script> All rights reserved | Developed by <a href="https://linkupnepal.com"
+                                        target="_blank">Linkup Nepal Pvt ltd</a>
                                 </p>
                             </div>
                         </div>
@@ -241,8 +221,8 @@
                             <div class="footer-menu f-right">
                                 <ul>
                                     <li><a href="#">Terms of use</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="{{route('team')}}">Team Members</a></li>
+                                    <li><a href="{{route('contactus')}}">Contact</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -302,54 +282,54 @@
 
     <!-- Initialize Swiper -->
     <script>
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            freeMode: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        freeMode: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
             },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                },
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 40,
-                },
-                1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 50,
-                },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 40,
             },
-        });
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 50,
+            },
+        },
+    });
 
 
-        var swiper = new Swiper(".recentMy", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            freeMode: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
+    var swiper = new Swiper(".recentMy", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        freeMode: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
             },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                },
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 40,
-                },
-                1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 50,
-                },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 40,
             },
-        });
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 50,
+            },
+        },
+    });
     </script>
 
 </body>
