@@ -96,6 +96,21 @@
                                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
+                                        @if (Auth::user()->userType == 'admin')
+
+                                        <div class="col-lg-4 col-md-12">
+                                            <label class="f_text" for="exampleInputUsername1">Change Author</label>
+                                            <select class="form-control" name="user_id" required>
+                                                @foreach ($users as $user)
+                                                <option value="{{ $user->id }}" {{ $user->id == $post->user->id?'selected':'' }}>{{ $user->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('user_id')
+                                                <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        @endif
+
                                         @if($post->path)
                                             <div class="col-lg-4 col-md-12">
                                                 <label class="f_text" for="current_image">Current Image</label>

@@ -31,41 +31,6 @@
 </head>
 
 <body>
-
-    <div class="modal fade" id="addads" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header" style="padding:35px 50px;">
-                    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                    <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
-                </div>
-                <form method="post" id="add_category" action="">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="row ">
-                            <div class="col-md-12 mb-3">
-                                <label class="f_text" for="category_name">Email</label>
-                                <input type="email" class="form-control" name="name" id=""
-                                    placeholder="Enter Your Email" required>
-                            </div>
-                            <div class="col-md-12 mb-3">
-                                <label class="f_text" for="category_name">Password</label>
-                                <input type="password" class="form-control" name="name" id="category-name"
-                                    placeholder="********" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger" id="">Login</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
     <header>
         <!-- Header Start -->
         <div class="header-area">
@@ -109,17 +74,24 @@
                                         <ul id="navigation">
                                             <li><a href="{{ route('index') }}">होमपेज</a></li>
                                             @foreach ($categories as $category)
-                                            <li><a
-                                                    href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
-                                            </li>
+                                                @if ($category->id !== 1)
+                                                    <li><a
+                                                            href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
+                                                    </li>
+                                                @endif
                                             @endforeach
-                                            <li><a href="#">{{ $other->name }}</a>
-                                                {{-- <ul class="submenu">
+                                            @foreach ($categories as $category)
+                                                @if ($category->id == 1)
+                                                    <li><a
+                                                            href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
+                                                        {{-- <ul class="submenu">
                                                     <li><a href="elements.html"> <i class="fas fa-user user_border"></i>
                                                             &nbsp; Login</a></li>
+                                                            </ul> --}}
+                                                    </li>
+                                                @endif
+                                            @endforeach
 
-                                                </ul> --}}
-                                            </li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -177,14 +149,19 @@
                                 </div>
 
                                 <!-- contact -->
-                               
+                                <div class="footer-contact">
+                                    <a href="mailto:{{ $site->email }}"><i class="fas fa-envelope icon"></i>
+                                        &nbsp;{{ $site->email }} </a> <br>
+                                    <a href="tel:{{ $site->phone }}"><i class="fas fa-phone icon"></i>
+                                        &nbsp;{{ $site->phone }} </a>
+                                </div>
                                 <!-- social -->
                                 <div class="footer-social">
-                                    <a href="{{ $site->twitter }}"><i class="fab fa-twitter icon"></i></a>
-                                    <a href="{{ $site->instagram }}"><i class="fab fa-instagram icon"></i></a>
-                                    <a href="{{ $site->facebook }}"><i class="fab fa-facebook icon"></i></a>
-                                    <a href="{{ $site->youtube }}"><i class="fab fa-youtube icon"></i></a>
-                                    <a href="{{ $site->thread }}"><i class="fa-brands fa-threads"></i></a>
+                                    <a href="{{ $site->twitter }}" class="action_btn"><i class="fab fa-twitter icon"></i></a>
+                                    <a href="{{ $site->instagram }}" class="action_btn"><i class="fab fa-instagram icon"></i></a>
+                                    <a href="{{ $site->facebook }}" class="action_btn"><i class="fab fa-facebook icon"></i></a>
+                                    <a href="{{ $site->youtube }}" class="action_btn"><i class="fab fa-youtube icon"></i></a>
+                                    <a href="{{ $site->thread }}" class="action_btn"><i class="fa-brands fa-threads"></i></a>
 
                                 </div>
                             </div>

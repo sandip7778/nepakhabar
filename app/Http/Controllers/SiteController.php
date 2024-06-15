@@ -73,7 +73,7 @@ class SiteController extends Controller
             'metaTitle' => 'nullable|string|max:255',
             'metaTag' => 'nullable|string|max:255',
             'metaKeyword' => 'nullable|string|max:255',
-            'metaDescription' => 'nullable|string',
+            'metaDescription' => 'nullable|string|max:300',
         ]);
             $site->update($request->only('siteName', 'address', 'email','phone','facebook','instagram','twitter','youtube','thread','metaTitle','metaTag', 'metaKeyword', 'metaDescription'));
 

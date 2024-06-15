@@ -8,28 +8,29 @@
             <div class="row">
                 <div class="col-lg-8">
                     <!-- Trending Top -->
+                    @foreach ($posts as $post)
                     <div class="trending-top mb-30">
                         <div class="trend-top-img">
-                            <img src="{{asset('assets_news/img/trending/trending_top.jpg')}}" alt="">
+                            <img src="{{ Storage::url($post->path)}} " alt="{{ $post->title }} Image">
                             <div class="trend-top-cap">
-                                <span>times </span>
-                                <h2 class="text_limit"><a href="details.html"></a></h2>
+                                <span>{{ $post->category->name }} </span>
+                                <h2 class="text_limit"><a href="{{ route('posts.show',$post->slug) }}">{{ $post->title }}</a></h2>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                     <!-- Trending Bottom -->
                     <div class="trending-bottom">
                         <div class="row">
-
-                            @foreach ($CPosts as $index => $post)
+                            @foreach ($trendings as $trending)
                             <div class="col-lg-4">
                                 <div class="single-bottom mb-35">
                                     <div class="trend-bottom-img mb-30">
-                                        <img src="{{asset('assets_news/img/trending/trending_top.jpg')}}" alt="">
+                                        <img src="{{ Storage::url($trending->path) }}" alt="{{ $trending->title }} Image" >
                                     </div>
                                     <div class="trend-bottom-cap">
-                                        <span class="color1">{{ $post->category->name }}</span>
-                                        <h4><a href="details.html">{{$post->title }}</a></h4>
+                                        <span class="color1 text_limit">{{ $trending->category->name }}</span>
+                                        <h4 class="text_limit"><a href="{{ route('posts.show',$trending->slug) }}">{{ $trending->title }}</a></h4>
                                     </div>
                                 </div>
                             </div>

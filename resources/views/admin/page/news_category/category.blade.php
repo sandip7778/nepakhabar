@@ -74,6 +74,7 @@
                                             <tr>
                                                 <th>SN</th>
                                                 <th>Name</th>
+                                                <th>Total Posts</th>
                                                 <th>Updated Date</th>
                                                 <th>Action</th>
                                             </tr>
@@ -83,6 +84,7 @@
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>{{ $category->name }}</td>
+                                                    <td>{{ $category->posts->count() }}</td>
                                                     <td>{{ $category->updated_at }}</td>
                                                     <td>
                                                         <form class="pointer d-inline" action="{{ route('categories.destroy', $category->id) }}" method="POST">

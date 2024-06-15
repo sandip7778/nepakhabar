@@ -9,12 +9,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NewsPageController;
-use App\Models\Post;
-
-
-use App\Http\Controllers\NewShow;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\VideoController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -23,8 +21,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(function () {
-    Route::resource('categories', CategoryController::class);
-    Route::resource('posts', PostController::class)->parameters(['posts' => 'slug']);
+    Route::resource('categories', CategoryController::class)->except('show');
+    Route::resource('posts', PostController::class)->parameters(['posts' => 'slug'])->except('show');
     Route::get('advertisements/{advertisement}/changeStatus', [AdvertisementController::class, 'changeStatus'])->name('advertisements.changeStatus');
     Route::resource('advertisements', AdvertisementController::class);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -38,13 +36,24 @@ Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(func
         Route::resource('/guests', GuestController::class);
         // Route::get('/site_info', [DashboardController::class, 'site_info'])->name('site_info');
         Route::resource('/site',SiteController::class)->only('show','update');
+        Route::resource('/videos',VideoController::class);
     });
 });
 
 
 Route::controller(NewsPageController::class)->group(function(){
     Route::get('/','index')->name('index');
-    Route::get('/showNews/{slug}','showNews')->name('showNews');
+    // Route::get('/showNews/{slug}','showNews')->name('showNews');
+});
+
+Route::resource('categories', CategoryController::class)->only('show');
+Route::resource('posts', PostController::class)->parameters(['posts' => 'slug'])->only('show');
+
+Route::middleware('auth')->group(function(){
+    Route::resource('posts.comments',CommentController::class)->shallow();
+    Route::post('posts/{post}/like',[LikeController::class,'like'])->name('posts.like');
+    Route::post('posts/{post}/unlike',[LikeController::class,'unlike'])->name('posts.unlike');
+    Route::get('posts/{post}/share/{network}',[NewsPageController::class,'share'])->name('posts.share');
 
 });
 
