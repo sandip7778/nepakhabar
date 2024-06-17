@@ -32,6 +32,7 @@
                                         <th>Categories</th>
                                         <th>Likes</th>
                                         <th>Comment</th>
+                                        <th>Views</th>
                                         <th>Status</th>
                                         <th>Create Date</th>
                                         <th>Action</th>
@@ -43,8 +44,9 @@
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $post->title }}</td>
                                         <td>{{ $post->category->name }}</td>
-                                        <td>{{ $post->like }}</td>
-                                        <td>60</td>
+                                        <td>{{ $post->likes->count()}}</td>
+                                        <td>{{ $post->comments->count() }}</td>
+                                        <td>{{ $post->views }}</td>
                                         <td>
                                             @if ( $post->status== 1)
                                             <div class='badge badge-success'>Active</div>

@@ -213,50 +213,20 @@
         <hr>
 
         @foreach ($categories as $category)
-            @if ($category->id !== 1)
-                <div class="weekly2-news-area pt-50 pb-30 yelgray-bg mt-5">
-                    <div class="container">
-                        <div class="weekly2-wrapper">
-                            <!-- section Tittle -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="section-tittle mb-30">
-                                        <h1 class="text-white"><a
-                                                href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
-                                        </h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="swiper mySwiper">
-                                        <div class="swiper-wrapper">
-
-                                            @foreach ($category->posts as $post)
-                                                <div class="swiper-slide">
-                                                    <a href="{{ route('posts.show', $post->slug) }}">
-                                                        <div class="news_box">
-                                                            <div class="text_side">
-                                                                <H1 class="text_limit">{{ $post->title }}</H1>
-                                                            </div>
-                                                            <img src="{{ Storage::url($post->path) }}"
-                                                                alt="{{ $post->title }}">
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            @endforeach
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            @if ($category->block == 1)
+                @include('pages.shared.welcome_category')
             @endif
         @endforeach
+        @foreach ($categories as $category)
+        @if ($category->block == 2)
+            @include('pages.shared.welcome_category')
+        @endif
+    @endforeach
+    @foreach ($categories as $category)
+    @if ($category->block == 3)
+        @include('pages.shared.welcome_category')
+    @endif
+@endforeach
 
 
         <!-- End Weekly-News -->
@@ -287,7 +257,7 @@
                         @foreach ($videos->take(1) as $video)
                             <div class="video-items-active">
                                 <div class="video-items text-center">
-                                    <iframe src="{{ $video->url }}" frameborder="0"
+                                    <iframe src="{{ $video->link }}" frameborder="0"
                                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
                                 </div>
@@ -326,7 +296,7 @@
                             <div class="testmonial-nav text-center">
                                 @foreach ($videos->skip(1) as $video)
                                     <div class="single-video">
-                                        <iframe src="{{ $video->url }}" frameborder="0"
+                                        <iframe src="{{ $video->link }}" frameborder="0"
                                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                             allowfullscreen></iframe>
                                         <div class="video-intro">
@@ -358,7 +328,6 @@
                             <div class="recent dot-style d-flex dot-style">
                                 <div class="swiper recentMy">
                                     <div class="swiper-wrapper">
-
                                         @foreach ($recentArticles as $recentArticle)
                                             <div class="swiper-slide">
                                                 <div class="single-recent mb-100">

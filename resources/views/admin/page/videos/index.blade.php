@@ -45,7 +45,7 @@
                                                     <td>{{ $video->title }}</td>
                                                     <td>
                                                         <div class="single-video">
-                                                            <iframe src="{{ $video->url }}" frameborder="0"
+                                                            <iframe src="{{ $video->link }}" frameborder="0"
                                                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                                                 allowfullscreen></iframe>
                                                         </div>

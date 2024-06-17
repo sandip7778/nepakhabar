@@ -74,9 +74,11 @@
                                         <ul id="navigation">
                                             <li><a href="{{ route('index') }}">होमपेज</a></li>
                                             @foreach ($categories as $category)
-                                                <li><a
-                                                        href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
-                                                </li>
+                                                @if ($category->header_status == 1)
+                                                    <li><a
+                                                            href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
+                                                    </li>
+                                                @endif
                                             @endforeach
                                             <li> <a href="#">अन्य</a>
                                                 <ul class="submenu">
@@ -101,24 +103,28 @@
                                 <div class="d-flex">
                                     <div>
                                         @auth
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
-                                            <button type="submit" class=""><i class="fas fa-sign-out-alt"></i>
-                                                &nbsp;</button>
-                                        </form>
-                                    @else
-                                        <a href="{{ route('login') }}"><i class="fas fa-user user_border"></i>
-                                            &nbsp;</a>
-                                    @endauth
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <button type="submit" class=""><i class="fas fa-sign-out-alt"></i>
+                                                    &nbsp;</button>
+                                            </form>
+                                        @else
+                                            <a href="{{ route('login') }}"><i class="fas fa-user user_border"></i>
+                                                &nbsp;</a>
+                                        @endauth
                                     </div>
                                     <nav class="navbar bg-body-tertiary">
                                         <div class="container-fluid">
-                                          <form class="d-flex" role="search" method="GET" action="{{ route('index') }}">
-                                            <input class="form-control me-2" type="search" name="search" placeholder="Search" value="{{ request()->input('search') }}" aria-label="Search">
-                                            <button class="action_btn" type="submit"><i class="fas fa-search"></i></button>
-                                          </form>
+                                            <form class="d-flex" role="search" method="GET"
+                                                action="{{ route('index') }}">
+                                                <input class="form-control me-2" type="search" name="search"
+                                                    placeholder="Search" value="{{ request()->input('search') }}"
+                                                    aria-label="Search">
+                                                <button class="action_btn" type="submit"><i
+                                                        class="fas fa-search"></i></button>
+                                            </form>
                                         </div>
-                                      </nav>
+                                    </nav>
                                 </div>
 
                             </div>
@@ -185,9 +191,12 @@
                             <div class="footer-tittle">
                                 <h4>Pages</h4>
                                 @foreach ($categories as $category)
+                                @if ($category->footer_status == 1)
+
                                     <li><a href="{{ route('categories.show', $category->id) }}">
                                             <span class="flaticon-arrow right-arrow"></span>
                                             &nbsp;{{ $category->name }}</a></li>
+                                            @endif
                                 @endforeach
                                 <!-- Form -->
                                 <div class="footer-form">
