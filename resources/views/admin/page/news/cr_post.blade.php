@@ -23,30 +23,11 @@
                         <div class="">
                             <div class="card-header">
                                 <h4>News Post</h4>
-                                @if ($errors->any())
-                                <div>
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
                             </div>
                             <div class="card-body">
                                 <form id="news_add" method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-12">
-                                            <div class="form-group">
-                                                <label>Post Language</label>
-                                                <select class="form-control" name="language">
-                                                    <option value="df">Select</option>
-                                                    <option value="en">English</option>
-                                                    <option value="np">Nepali</option>
-                                                </select>
-                                            </div>
-                                        </div>
                                         <div class="col-lg-4 col-md-12">
                                             <div class="form-group">
                                                 <label>Post Title</label>
@@ -63,7 +44,7 @@
                                                 <select class="form-control" name="category" required>
                                                     <option value="" selected>Select</option>
                                                     @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}" >{{ $category->name }}</option>
+                                                        <option value="{{ $category->id }}" {{ old('category') ? 'selected' : '' }}>{{ $category->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('category')
@@ -93,10 +74,19 @@
 
                                         <div class="col-lg-4 col-md-12">
                                             <label class="f_text" for="image">Images</label>
-                                            <input type="file" name="image" class="form-control" value="{{ old('image') }}" accept=".png, .jpeg, .jpg, .gif, .svg" required>
+                                            <input type="file" name="image" class="form-control" value="{{ old('image') }}" accept=".png, .jpeg, .jpg, .gif, .svg" >
                                             @error('image')
                                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                             @enderror
+                                        </div>
+                                        <div class="col-lg-4 col-md-12">
+                                            <div class="form-group">
+                                                <label>Youtube Link</label>
+                                                <input type="url" name="youtube" class="form-control" value="{{ old('youtube') }}">
+                                                @error('youtube')
+                                                    <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                         <div class="col-lg-4 col-md-12">
                                             <label class="f_text" for="exampleInputUsername1">Select Status</label>

@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(function () {
     Route::resource('categories', CategoryController::class)->except('show');
+    Route::get('posts/{slug}/changeTrendingStatus', [PostController::class, 'changeTrendingStatus'])->name('posts.changeTrendingStatus');
     Route::get('posts/{slug}/changeStatus', [PostController::class, 'changeStatus'])->name('posts.changeStatus');
     Route::resource('posts', PostController::class)->parameters(['posts' => 'slug'])->except('show');
     Route::get('advertisements/{advertisement}/changeStatus', [AdvertisementController::class, 'changeStatus'])->name('advertisements.changeStatus');

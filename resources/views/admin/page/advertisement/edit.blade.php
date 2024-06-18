@@ -41,7 +41,7 @@
                                         <div class="col-lg-4 col-md-12">
                                             <div class="form-group">
                                                 <label>Company Name</label>
-                                                <input type="text" name="c_name" class="form-control" value="{{ $advertisement->name }}" required>
+                                                <input type="text" name="c_name" class="form-control" value="{{ old('c_name',$advertisement->name) }}" required>
                                                 @error('c_name')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
@@ -52,10 +52,15 @@
                                                 <label>Position</label>
                                                 <select class="form-control" name="position" required>
                                                     <option value="" selected>Select Position</option>
-                                                        <option value="header" {{ $advertisement->position == 'header' ? 'selected' : '' }}>Header</option>
-                                                        <option value="center" {{ $advertisement->position == 'center' ? 'selected' : '' }}>Center</option>
-                                                        <option value="sidebar" {{ $advertisement->position == 'sidebar' ? 'selected' : '' }}>Sidebar</option>
-                                                        <option value="footer" {{ $advertisement->position == 'footer' ? 'selected' : '' }}>Footer</option>
+                                                        <option value="header" {{ old('position',$advertisement->position) == 'header' ? 'selected' : '' }}>Header</option>
+                                                        <option value="center1" {{ old('position',$advertisement->position) == 'center1' ? 'selected' : '' }}>Center 1</option>
+                                                        <option value="center2" {{ old('position',$advertisement->position) == 'center2' ? 'selected' : '' }}>Center 2</option>
+                                                        <option value="center3" {{ old('position',$advertisement->position) == 'center3' ? 'selected' : '' }}>Center 3</option>
+                                                        <option value="sidebar1" {{ old('position',$advertisement->position) == 'sidebar1' ? 'selected' : '' }}>Sidebar 1</option>
+                                                        <option value="sidebar2" {{ old('position',$advertisement->position) == 'sidebar2' ? 'selected' : '' }}>Sidebar 2</option>
+                                                        <option value="sidebar3" {{ old('position',$advertisement->position) == 'sidebar3' ? 'selected' : '' }}>Sidebar 3</option>
+                                                        <option value="sidebar4" {{ old('position',$advertisement->position) == 'sidebar4' ? 'selected' : '' }}>Sidebar 4</option>
+                                                        <option value="footer" {{ old('position',$advertisement->position) == 'footer' ? 'selected' : '' }}>Footer</option>
                                                 </select>
                                                 @error('position')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
@@ -69,21 +74,31 @@
                                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
+
+                                        <div class="col-lg-4 col-md-12 mt-3">
+                                            <div class="form-group">
+                                                <label>Goto Link</label>
+                                                <input type="url"  name="url" class="form-control" value="{{ old('url',$advertisement->description) }}" required></input>
+                                                @error('url')
+                                                    <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12 mt-3">
+                                            <div class="form-group">
+                                                <label>Expiry Date</label>
+                                                <input type="date"  name="expiry_date" value="{{ old('expiry_date',$advertisement->expiry_date) }}" class="form-control" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" required></input>
+                                                @error('expiry_date')
+                                                    <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
                                         @if($advertisement->ad_path)
                                             <div class="col-lg-4 col-md-12">
                                                 <label class="f_text" for="current_image">Current Image</label>
                                                 <img src="{{ Storage::url($advertisement->ad_path) }}" alt="{{ $advertisement->name.' Image' }}" height="300" width="300">
                                             </div>
                                         @endif
-                                        <div class="col-lg-12 col-md-12 mt-3">
-                                            <div class="form-group">
-                                                <label>Advertisement Description</label>
-                                                <textarea class="summernote"  name="ad_description"required>{{ $advertisement->description }}</textarea>
-                                                @error('ad_description')
-                                                    <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
 
                                         <div class="col-lg-8 col-md-12">
                                             <div class="form-group">

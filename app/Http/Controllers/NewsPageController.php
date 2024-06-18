@@ -19,13 +19,14 @@ class NewsPageController extends Controller
         $threeDay = Carbon::now()->subDays(3);
         $sevenDay = Carbon::now()->subDays(7);
 
-        if (request()->has('search')) {
+
+        if (request()->has('search') && request()->get('search') != '') {
             $posts = Post::orderBy('created_at', 'DESC');
             $posts = $posts->orwhere('title', 'like', '%' . request()->get('search') . '%')
                             ->orWhere('description', 'like', '%' . request()->get('search') . '%')
                             ->paginate(8);
         }else{
-            $posts = Post::where('created_at','>=',$threeDay)->where('status',true)->inRandomOrder()->limit(8)->get();
+            $posts = Post::where('status',true)->where('trending_status',true)->inRandomOrder()->get();
         }
 
 

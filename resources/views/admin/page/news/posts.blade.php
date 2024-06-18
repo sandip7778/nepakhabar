@@ -29,10 +29,12 @@
                                     <tr>
                                         <th>SN</th>
                                         <th>Title</th>
-                                        <th>Categories</th>
+                                        <th>Category</th>
+                                        <th>Author</th>
                                         <th>Likes</th>
                                         <th>Comment</th>
                                         <th>Views</th>
+                                        <th>Trending Status</th>
                                         <th>Status</th>
                                         <th>Create Date</th>
                                         <th>Action</th>
@@ -44,9 +46,26 @@
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $post->title }}</td>
                                         <td>{{ $post->category->name }}</td>
+                                        <td>{{ $post->user->name }}</td>
                                         <td>{{ $post->likes->count()}}</td>
                                         <td>{{ $post->comments->count() }}</td>
                                         <td>{{ $post->views }}</td>
+                                        <td>
+                                            <a href="{{ route('posts.changeTrendingStatus', $post->slug) }}"
+                                                class="action_btn">
+                                                @if ($post->trending_status == true)
+                                                    <button type="button" class="action_btn" data-toggle="tooltip"
+                                                        data-placement="bottom" title="Disable">
+                                                        <i class="far fa-square-check"></i>checked icon
+                                                    </button>
+                                                @else
+                                                    <button type="button" class="action_btn" data-toggle="tooltip"
+                                                        data-placement="bottom" title="Enable">
+                                                        <i class="far fa-square "></i>
+                                                    </button>
+                                                @endif
+                                            </a>
+
                                         <td>
                                             @if ( $post->status== 1)
                                             <div class='badge badge-success'>Active</div>

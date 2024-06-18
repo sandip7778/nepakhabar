@@ -49,8 +49,8 @@
                                 @foreach ($advertisements as $advertisement)
                                     <div class="header-banner f-right ">
                                         @if ($advertisement->position == 'header')
-                                            <img src="{{ Storage::url($advertisement->ad_path) }}"
-                                                alt="{{ $advertisement->name }} Image" height="100px">
+                                            <a href="{{ $advertisement->url }}"  target="_blank"><img src="{{ Storage::url($advertisement->ad_path) }}"
+                                                alt="{{ $advertisement->name }} Image" height="100px"></a>
                                         @endif
                                     </div>
                                 @endforeach

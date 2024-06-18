@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('updated_at', 'desc')->paginate(10);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         // foreach($posts as $post){
         //     $post->description = Purifier::clean($post->description);
         // }
@@ -41,33 +41,41 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->file('image'));
         $request->validate([
-            'title' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'title' => 'required|unique:posts,title|string|max:255',
+            'category' => 'required|exists:categories,id',
+            'meta_tag' => 'nullable|max:255',
+            'meta_keyword' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'youtube' => 'nullable|url',
             'status' => 'required|boolean',
             'description' => 'required|string|min:10',
         ]);
-
-        $image = $request->file('image')->getClientOriginalName();
-        $imageName = time() . '_' . $image;
-
-        // dd($imageName);
-        $path = $request->image->storeAs('images', $imageName, 'public');
-        // dd(Auth::user()->id);
-        $post = Post::create([
+        if (!$request->hasFile('image') && !$request->filled('youtube')) {
+            return redirect()->back()->withErrors(['image' => 'Either an image or YouTube link is required.'])->withInput();
+        }elseif($request->hasFile('image') && $request->filled('youtube')){
+            return redirect()->back()->withErrors(['image' => 'Only image or Youtube link can be posted'])->withInput();
+        }
+        $path = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->getClientOriginalName();
+            $imageName = time() . '_' . str_replace(' ', '_', $image);
+            $path = $request->image->storeAs('images', $imageName, 'public');
+        }
+         Post::create([
             'title' => request()->get('title'),
-            'path' => $path,
+            'category_id' => request()->get('category'),
             'meta_tag' => request()->get('meta_tag'),
             'meta_keyword' => request()->get('meta_keyword'),
+            'path' => $path,
+            'youtube' => request()->get('youtube'),
             'status' => request()->get('status'),
             'description' => request()->get('description'),
-            'category_id' => request()->get('category'),
             'user_id' => Auth::user()->id,
             'slug' => Str::slug($request->get('title')),
         ]);
-
         return redirect()->route('posts.index')->with('success', 'Post created successfully.')->with('image', $path);
+
     }
 
     /**
@@ -75,7 +83,7 @@ class PostController extends Controller
      */
     public function show($slug)
     {
-        $post = Post::where('slug', $slug)->where('status',true)->firstOrFail();
+        $post = Post::where('slug', $slug)->where('status', true)->firstOrFail();
         $post->description = Purifier::clean($post->description);
         // $posts = Post::orderBy('created_at','DESC')->get()->take(3);
         $recentPosts = Post::orderBy('created_at', 'DESC')->get()->take(3);
@@ -91,8 +99,8 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $slug)->firstOrFail();
         $categories = Category::all();
-        $users = User::where('userType','!=','guest')->get();
-        return view('admin.page.news.editPost', compact('post', 'categories','users'));
+        $users = User::where('userType', '!=', 'guest')->get();
+        return view('admin.page.news.editPost', compact('post', 'categories', 'users'));
     }
 
     /**
@@ -117,9 +125,9 @@ class PostController extends Controller
 
             $path = $request->image->storeAs('images', $imageName, 'public');
             $post->path = $path;
-            $post->update($request->only('title', 'category_id','user_id', 'meta_tag', 'meta_keyword','path', 'description'));
-        }else{
-            $post->update($request->only('title', 'category_id','user_id', 'meta_tag', 'meta_keyword', 'description'));
+            $post->update($request->only('title', 'category_id', 'user_id', 'meta_tag', 'meta_keyword', 'path', 'description'));
+        } else {
+            $post->update($request->only('title', 'category_id', 'user_id', 'meta_tag', 'meta_keyword', 'description'));
         }
         $post->slug == Str::slug($post->title);
         $post->save();
@@ -148,6 +156,21 @@ class PostController extends Controller
         } else if ($post && $post->status == false) {
             $post->update(['status' => true]);
             return redirect()->route('posts.index')->with('success', 'Post enabled successfully.');
+        }
+        return response("Post may not exist.");
+    }
+
+    public function changeTrendingStatus(Request $request, $slug)
+    {
+        $post = Post::where('slug', $slug)->firstOrFail();
+        // dd($user -> status);
+        if ($post && $post->trending_status == true) {
+            $post->update(['trending_status' => false]);
+            // dd($post->status);
+            return redirect()->route('posts.index')->with('success', 'Post removed from trending.');
+        } else if ($post && $post->trending_status == false) {
+            $post->update(['trending_status' => true]);
+            return redirect()->route('posts.index')->with('success', 'Post shown to trending.');
         }
         return response("Post may not exist.");
     }
