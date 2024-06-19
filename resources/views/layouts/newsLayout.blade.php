@@ -68,29 +68,19 @@
                                     <a href="/"><img src="{{ asset('assets_news/img/logo/Logo-2.png') }}"
                                             class="logo_ bg_l" alt=""></a>
                                 </div>
-                                <!-- Main-menu -->
-                                <div class="main-menu d-none d-md-block header-flex">
+                                
+                                <div class="main-menu d-none  d-md-block header-flex justify-content-start">
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="{{ route('index') }}">होमपेज</a></li>
                                             @foreach ($categories as $category)
-                                                @if ($category->id !== 1)
-                                                    <li><a
-                                                            href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
-                                                    </li>
-                                                @endif
+                                            @if ($category->id !== 1)
+                                            <li><a
+                                                    href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
+                                            </li>
+                                            @endif
                                             @endforeach
-                                            @foreach ($categories as $category)
-                                                @if ($category->id == 1)
-                                                    <li><a
-                                                            href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
-                                                        {{-- <ul class="submenu">
-                                                    <li><a href="elements.html"> <i class="fas fa-user user_border"></i>
-                                                            &nbsp; Login</a></li>
-                                                            </ul> --}}
-                                                    </li>
-                                                @endif
-                                            @endforeach
+
 
                                         </ul>
                                     </nav>
@@ -102,7 +92,7 @@
                                     @auth
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <button type="submit" class=""><i class="fas fa-sign-out-alt"></i>
+                                        <button type="submit" class="log-out-btn"><i class="fas fa-sign-out-alt"></i>
                                             &nbsp;</button>
                                     </form>
 
@@ -133,46 +123,52 @@
         <div class="footer-area pt-20 fix">
             <div class="container">
                 <div class="row d-flex justify-content-between">
-                    <div class="col-xl-5 col-lg-5 col-md-7 col-sm-12">
+                    <div class="col-xl-3 col-lg-3 col-md-7 col-sm-12">
                         <div class="single-footer-caption">
                             <div class="single-footer-caption">
                                 <!-- logo -->
                                 <div class="footer-logo">
-                                    <a href="/"><img src="{{ asset('assets_news/img/logo/Logo-4.png') }}"
-                                            class="logo_" alt=""></a>
-                                </div>
-                                <div class="footer-tittle">
-                                    <div class="footer-pera">
-                                        <p>{{ $site->metaDescription }}</p>
-                                    </div>
+                                    <a href="/"><img src="{{ asset('assets_news/img/logo/Logo-4.png') }}" class="logo_"
+                                            alt=""></a>
                                 </div>
 
+                                @foreach ($advertisements as $advertisement)
+
+                                @if ($advertisement->position == 'sidebar2')
+                                <img src="{{ Storage::url($advertisement->ad_path) }}"
+                                    alt="{{ $advertisement->name }} Image" height="100px">
+                                @endif
+
+                                @endforeach
+
+
+
                                 <!-- contact -->
-                                <div class="footer-contact">
-                                    <a href="mailto:{{ $site->email }}"><i class="fas fa-envelope icon"></i>
-                                        &nbsp;{{ $site->email }} </a> <br>
-                                    <a href="tel:{{ $site->phone }}"><i class="fas fa-phone icon"></i>
-                                        &nbsp;{{ $site->phone }} </a>
-                                </div>
+
                                 <!-- social -->
-                                <div class="footer-social">
-                                    <a href="{{ $site->twitter }}" class="action_btn"><i class="fab fa-twitter icon"></i></a>
-                                    <a href="{{ $site->instagram }}" class="action_btn"><i class="fab fa-instagram icon"></i></a>
-                                    <a href="{{ $site->facebook }}" class="action_btn"><i class="fab fa-facebook icon"></i></a>
-                                    <a href="{{ $site->youtube }}" class="action_btn"><i class="fab fa-youtube icon"></i></a>
-                                    <a href="{{ $site->thread }}" class="action_btn"><i class="fa-brands fa-threads"></i></a>
+                                <div class="footer-social mt-3">
+                                    <a href="{{ $site->twitter }}" class="action_btn"><i
+                                            class="fab fa-twitter icon"></i></a>
+                                    <a href="{{ $site->instagram }}" class="action_btn"><i
+                                            class="fab fa-instagram icon"></i></a>
+                                    <a href="{{ $site->facebook }}" class="action_btn"><i
+                                            class="fab fa-facebook icon"></i></a>
+                                    <a href="{{ $site->youtube }}" class="action_btn"><i
+                                            class="fab fa-youtube icon"></i></a>
+                                    <a href="{{ $site->thread }}" class="action_btn"><i
+                                            class="fa-brands fa-thread"></i></a>
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4  col-sm-6">
+                    <div class="col-xl-2 col-lg-3 col-md-4  col-sm-6">
                         <div class="single-footer-caption mt-20">
                             <div class="footer-tittle">
-                                <h4>Pages</h4>
+                                <h4>समाचार</h4>
                                 @foreach ($categories as $category)
-                                <li><a href="{{ route('contents', $category->id) }}"><span
-                                class="flaticon-arrow right-arrow"></span> &nbsp;{{ $category->name }}</a></li>
+                                <li class="mb-2"><a href="{{ route('categories.show', $category->id) }}"> >
+                                        &nbsp;{{ $category->name }}</a></li>
                                 @endforeach
                                 <!-- Form -->
                                 <div class="footer-form">
@@ -183,21 +179,36 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4  col-sm-6">
+                        <div class="single-footer-caption mt-20">
+                            <div class="footer-tittle">
+                                <h4>समाचार</h4>
+                                @foreach ($categories as $category)
+                                <li class="mb-2"><a href="{{ route('categories.show', $category->id) }}"> >
+                                        &nbsp;{{ $category->name }}</a></li>
+                                @endforeach
+                               
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
                         <div class="single-footer-caption mt-20">
                             <div class="footer-tittle">
-                                <h4>News Feed</h4>
+                                <h4>Top News</h4>
                             </div>
                             <div class="instagram-gellay">
                                 <ul class="insta-feed">
+                                    @foreach ($latestpost as $index => $post)
+                                    <li><a href="{{ route('posts.show', $post->slug) }}"><img
+                                                src="{{ Storage::url($post->path) }}" alt="" class="w-72"></a></li>
 
-                                    <li><a href="#"><img src="assets_news/img/post/instra1.jpg" alt=""></a></li>
-
+                                    @endforeach
 
                                 </ul>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -325,7 +336,7 @@
                 spaceBetween: 40,
             },
             1024: {
-                slidesPerView: 3,
+                slidesPerView: 4,
                 spaceBetween: 50,
             },
         },

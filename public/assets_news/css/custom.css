@@ -2,7 +2,9 @@
     --primary_color : rgb(255, 34, 0);
     --secondary_color : rgb(0, 48, 144);
 }
-
+body{
+    font-weight: 800;
+}
 .text_limit {
     overflow: hidden;
     display: -webkit-box;
@@ -35,7 +37,8 @@ a:hover{
     /* top: -35px; */
     right: 17px;
 }
-.main-header .main-menu ul li a {color: white;}
+
+.main-header .main-menu ul li a {color: rgb(255, 255, 255); font-size: 17px; font-weight: 800;}
 
 .top-h_n{
     border-top: 1px solid rgb(209, 209, 209);
@@ -50,6 +53,7 @@ a:hover{
     margin: 10px;
 
 }
+.h1f{font-weight: 900;}
 .aligment{
     display: flex;
     justify-content: center;
@@ -97,6 +101,7 @@ a:hover{
     width: auto;
     height: auto;
     min-width: 15rem;
+    
 }
 .tranding_image{
     width: 100%;
@@ -104,7 +109,10 @@ a:hover{
     object-fit: cover;
     border-radius: 5px;
 }
-
+.side_post_img{
+    width: 70px;
+    height: 100%;
+}
 .news_box{
     background-color: white;
     /* width: 100%; */
@@ -189,7 +197,13 @@ a:hover{
     padding-left: 15px;
     padding-right: 15px;
 }
+.single-post{
+    overflow: hidden;
+}
+.h_auto{
+    width: auto;
 
+}
 .what-cap__{
     padding: 10px 20px 10px 15px;
     background: #fffdfd;
@@ -211,7 +225,48 @@ a:hover{
     font-weight: bold;
 }
 
-
+.p-title_size{
+    font-size: 12px;
+}
 .h15{
     height: 20rem;
 }
+.post_img_box{
+    width: 100%;
+    max-height: 30rem;
+    overflow: hidden;
+}
+.post_images{
+    width: 100%;
+    border-radius: 5px;
+    object-fit: contain;
+}
+.overflow{
+    overflow: hidden;
+}
+
+.post_img_h{
+    width: 100%;
+    min-height: 200px;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.log-out-btn{
+    background-color: #fffdfd00;
+    outline: none;
+    border: none;
+    /* border-radius: 2px; */
+}
+
+.w-72{
+    height: 72px;
+    max-width: 72px;
+    max-height: 72px;
+}
+
+.description-post{
+    text-align: justify;
+    text-justify: inter-word;
+}
+.hide{display: none;}

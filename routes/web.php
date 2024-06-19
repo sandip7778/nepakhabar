@@ -13,6 +13,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NewsPageController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\NewShow;
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -57,6 +58,7 @@ Route::middleware('auth')->group(function(){
 
 });
 Route::get('posts/{post}/share/{network}',[NewsPageController::class,'share'])->name('posts.share');
+
 Route::controller(NewShow::class)->group(function(){
     Route::get('/contents/{id}','Categories')->name('contents');
     Route::get('/teams','TeamMemeber')->name('team');

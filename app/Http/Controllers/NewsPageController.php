@@ -18,9 +18,10 @@ class NewsPageController extends Controller
     {
         $threeDay = Carbon::now()->subDays(3);
 
-        $posts = Post::where('created_at','>=',$threeDay)->inRandomOrder()->limit(4)->get();
+        $posts = Post::where('created_at','>=',$threeDay)->inRandomOrder()->limit(6)->get();
         $videos = Video::inRandomOrder()->limit(5)->get();
-        $recentArticles = Post::orderBy('updated_at', 'DESC')->get()->take(3);
+        $recentArticles = Post::orderBy('updated_at', 'DESC')->get()->take(6);
+        $HomeTranding = Post::orderBy('updated_at', 'DESC')->get()->take(3);
 
         foreach ($videos as $video)
         {
@@ -36,7 +37,7 @@ class NewsPageController extends Controller
         //     }
         // }
 
-        return view('welcome', compact('posts','videos','recentArticles'));
+        return view('welcome', compact('posts','videos','recentArticles','HomeTranding'));
     }
 
     public function share(Request $request, Post $post, $network)

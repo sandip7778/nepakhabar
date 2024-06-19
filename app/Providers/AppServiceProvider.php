@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Models\Advertisement;
 use App\Models\Category;
 use App\Models\Site;
+use Carbon\Carbon;
+use App\Models\Post;
 use Illuminate\Support\Facades\View;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
@@ -24,8 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $threeDay = Carbon::now()->subDays(3);
         Paginator::useBootstrapFive();
         $categories = Category::orderBy('updated_at', 'ASC')->get();
+        $latestpost = Post::where('created_at','>=',$threeDay)->inRandomOrder()->limit(6)->get();
         // $other = Category::find(1);
         $site = Site::find(1);
 
@@ -46,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
         // View::share('other', $other);
         View::share('site', $site);
         View::share('advertisements',$advertisements);
+        View::share('latestpost',$latestpost);
 
     }
 }
