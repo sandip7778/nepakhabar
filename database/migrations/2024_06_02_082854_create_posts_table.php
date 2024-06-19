@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->string('meta_tag')->nullable();
             $table->string('meta_keyword')->nullable();
-            $table->string('path');
+            $table->string('path')->nullable();
             $table->unsignedBigInteger('views')->default(0);
             $table->boolean('status')->default(true);
             $table->longText('description');

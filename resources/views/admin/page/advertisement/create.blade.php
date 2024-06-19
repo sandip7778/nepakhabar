@@ -1,4 +1,7 @@
 @extends('admin/include/masterlayout')
+@section('title')
+    Create Advertisement
+@endsection
 
 @section('content')
     <div class="main-content">
@@ -6,8 +9,8 @@
             <div class="section-header">
                 <h1>Advertisement Create</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Post</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item"><a href="{{ route('posts.index') }}">Post</a></div>
                     <div class="breadcrumb-item">Advertisement Create</div>
                 </div>
             </div>
@@ -71,11 +74,20 @@
                                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-lg-12 col-md-12 mt-3">
+                                        <div class="col-lg-4 col-md-12 mt-3">
                                             <div class="form-group">
-                                                <label>Advertisement Description</label>
-                                                <textarea class="summernote"  name="ad_description"required>{{ old('ad_description') }}</textarea>
-                                                @error('ad_description')
+                                                <label>Goto Link</label>
+                                                <input type="url"  name="url" class="form-control" value="{{ old('url') }}" required></input>
+                                                @error('url')
+                                                    <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12 mt-3">
+                                            <div class="form-group">
+                                                <label>Expiry Date</label>
+                                                <input type="date"  name="expiry_date" value="{{ old('expiry_date') }}" class="form-control" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" required></input>
+                                                @error('expiry_date')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>

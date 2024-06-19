@@ -1,4 +1,9 @@
 @extends('layouts.newsLayout')
+@foreach ($posts as $post)
+    @section('title')
+        NepaKhabar-{{ $post->category->name }}
+    @endsection
+@endforeach
 
 @section('content')
 
@@ -21,7 +26,27 @@
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
+                        @endforeach
+                        <!-- Trending Bottom -->
+                        <div class="trending-bottom">
+                            <div class="row">
+                                @foreach ($trendings as $trending)
+                                    <div class="col-lg-4">
+                                        <div class="single-bottom mb-35">
+                                            <div class="trend-bottom-img mb-30">
+                                                <img src="{{ Storage::url($trending->path) }}"
+                                                    alt="{{ $trending->title }} Image">
+                                            </div>
+                                            <div class="trend-bottom-cap">
+                                                <span class="color1 text_limit">{{ $trending->category->name }}</span>
+                                                <h4 class="text_limit"><a
+                                                        href="{{ route('posts.show', $trending->slug) }}">{{ $trending->title }}</a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -29,6 +54,4 @@
             </div>
         </div>
     </div>
-</div>
-
 @endsection

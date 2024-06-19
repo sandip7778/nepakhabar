@@ -1,5 +1,7 @@
 @extends('admin/include/masterlayout')
-
+@section('title')
+    Manage Members
+@endsection
 @section('content')
     <div class="main-content">
         <section class="section">
@@ -10,10 +12,6 @@
                         <i class="fas fa-plus"></i>
                         Add Members
                     </a>
-
-                    <!-- <div class="breadcrumb-item active"><a href="#" class="p_color">Dashboard</a></div>
-                            <div class="breadcrumb-item"><a href="#" class="p_color">slider</a></div>
-                            <div class="breadcrumb-item">sliders</div> -->
                 </div>
             </div>
 
@@ -40,7 +38,7 @@
                                                 <th>Email</th>
                                                 <th>Address</th>
                                                 <th>Status</th>
-                                                <th>Updated Date</th>
+                                                <th>Joined Date</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -58,7 +56,7 @@
                                                         @elseif ($user->status === 0)
                                                         <span class="text-danger">Inactive</span>
                                                     @endif</td>
-                                                    <td>{{ $user->created_at }}</td>
+                                                    <td>{{ $user->created_at->format('d-M-Y') }}</td>
 
                                                         <td class="d-flex justify-content-center align-items-center">
                                                             <a href="{{ route('users.changeStatus', $user->id) }}"

@@ -1,13 +1,15 @@
 @extends('admin/include/masterlayout')
-
+@section('title')
+    Edit News
+@endsection
 @section('content')
     <div class="main-content">
         <section class="section">
             <div class="section-header">
                 <h1>News Edit</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Post</a></div>
+                    <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item"><a href="{{ route('posts.index') }}">Post</a></div>
                     <div class="breadcrumb-item">News Edit</div>
                 </div>
             </div>
@@ -27,18 +29,8 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-md-12">
                                             <div class="form-group">
-                                                <label>Post Language</label>
-                                                <select class="form-control" name="language">
-                                                    <option value="df">Select</option>
-                                                    <option value="en">English</option>
-                                                    <option value="np">Nepali</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-12">
-                                            <div class="form-group">
                                                 <label>Post Title</label>
-                                                <input type="text" name="title" class="form-control" value="{{ $post->title }}" required>
+                                                <input type="text" name="title" class="form-control" value="{{ old('title',$post->title) }}" required>
                                                 @error('title')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
@@ -49,9 +41,8 @@
                                                 <label>Post Categories</label>
 
                                                 <select class="form-control" name="category" required>
-                                                    <option value="{{ $post->category->id }}" selected>{{ $post->category->name }}</option>
                                                     @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}" {{ $category->name == $post->category->name ? 'selected':'' }}>{{ $category->name }}</option>
+                                                        <option value="{{ $category->id }}" {{ old('category',$category->name) == $post->category->name ? 'selected':'' }}>{{ $category->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('category')
@@ -63,7 +54,7 @@
                                         <div class="col-lg-4 col-md-12">
                                             <div class="form-group">
                                                 <label>Meta Tag</label>
-                                                <input type="text" name="meta_tag" class="form-control" value="{{ $post->meta_tag }}">
+                                                <input type="text" name="meta_tag" class="form-control" value="{{ old('meta_tag',$post->meta_tag) }}">
                                                 @error('meta_tag')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
@@ -72,7 +63,7 @@
                                         <div class="col-lg-4 col-md-12">
                                             <div class="form-group">
                                                 <label>Meta Keyword</label>
-                                                <input type="text" name="meta_keyword" class="form-control" value="{{ $post->meta_keyword }}">
+                                                <input type="text" name="meta_keyword" class="form-control" value="{{ old('meta_keyword',$post->meta_keyword) }}">
                                                 @error('meta_keyword')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
@@ -86,23 +77,13 @@
                                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-lg-4 col-md-12">
-                                            <label class="f_text" for="exampleInputUsername1">Select Status</label>
-                                            <select class="form-control" name="status" required>
-                                                <option value="1">Active</option>
-                                                <option value="0">Disable</option>
-                                            </select>
-                                            @error('status')
-                                                <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
                                         @if (Auth::user()->userType == 'admin')
-
                                         <div class="col-lg-4 col-md-12">
                                             <label class="f_text" for="exampleInputUsername1">Change Author</label>
                                             <select class="form-control" name="user_id" required>
+                                            <option value="">Select</option>
                                                 @foreach ($users as $user)
-                                                <option value="{{ $user->id }}" {{ $user->id == $post->user->id?'selected':'' }}>{{ $user->name }}</option>
+                                                <option value="{{ $user->id }}" {{ old('user_id',$user->id == $post->user->id) ? 'selected' : '' }}>{{ $user->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('user_id')
@@ -120,7 +101,7 @@
                                         <div class="col-lg-12 col-md-12 mt-3">
                                             <div class="form-group">
                                                 <label>Post Description</label>
-                                                <textarea class="summernote"  name="description" required>{{ $post->description }}</textarea>
+                                                <textarea class="summernote"  name="description" required>{{ old('description',$post->description) }}</textarea>
                                                 @error('description')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror

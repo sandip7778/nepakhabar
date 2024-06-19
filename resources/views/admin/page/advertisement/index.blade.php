@@ -1,5 +1,7 @@
 @extends('admin/include/masterlayout')
-
+@section('title')
+    Advertisements
+@endsection
 @section('content')
     <div class="main-content">
         <section class="section">
@@ -25,12 +27,14 @@
                                         <tr>
                                             <th>SN</th>
                                             <th>Name</th>
-                                            <th>Description</th>
+                                            <th>Link</th>
                                             <th>Position</th>
-                                            <th>Image</th>
                                             <th>Status</th>
                                             <th>Create Date</th>
+                                            <th>Expiry Date</th>
                                             <th>Action</th>
+                                            <th>Image</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -38,18 +42,19 @@
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ $advertisement->name }}</td>
-                                                <td>{!! $advertisement->description !!}</td>
+                                                <td>{{ $advertisement->url }}</td>
                                                 <td>{{ $advertisement->position }}</td>
-                                                <td><img src="{{ Storage::url($advertisement->ad_path) }}"
-                                                        alt="{{ $advertisement->name . ' Image' }}" height="50px"></td>
+
                                                 <td>
                                                     @if ($advertisement->status == true)
                                                         <div class='badge badge-success'>Active</div>
                                                     @else
-                                                        <div class='badge badge-danger'>Deactive</div>
+                                                        <div class='badge badge-danger'>Expired</div>
                                                     @endif
                                                 </td>
-                                                <td>{{ $advertisement->created_at }}</td>
+                                                <td>{{ $advertisement->created_at->format('d-m-Y') }}</td>
+                                                <td>{{ $advertisement->expiry_date }}</td>
+
                                                 <td class="d-flex justify-content-center align-items-center">
 
                                                     <a href="{{ route('advertisements.changeStatus', $advertisement->id) }}"
@@ -82,6 +87,9 @@
                                                         </button>
                                                     </form>
 
+                                                </td>
+                                                <td><img src="{{ Storage::url($advertisement->ad_path) }}"
+                                                    alt="{{ $advertisement->name . ' Image' }}" height="50px">
                                                 </td>
                                             </tr>
                                         @endforeach

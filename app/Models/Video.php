@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Video extends Model
 {
     use HasFactory;
-    protected $fillable = ['title','url','category_id','description'];
+    protected $fillable = ['title', 'url', 'category_id', 'description'];
 
     public function category()
     {
@@ -17,10 +17,26 @@ class Video extends Model
     }
 
     public function getVideoAttribute($value)
-{
-    $embed = OEmbed::get($value);
-    if($embed) {
-        return $embed->html(['width'=>200]);
+    {
+        $embed = OEmbed::get($value);
+        if ($embed) {
+            return $embed->html(['width' => 200]);
+        }
     }
-}
+
+    // public function getDescriptionAttribute($val){
+    //     return Purifier::clean($val);
+    // }
+
+    public function getLinkAttribute()
+    {
+        $url = $this->url;
+        if (!$url)
+            return "";
+        if (str_contains($url, 'youtube.com')) {
+            $parts = explode('watch?v=', $url);
+            $code = $parts[1];
+            return 'https://www.youtube.com/embed/' . $code;
+        }
+    }
 }
