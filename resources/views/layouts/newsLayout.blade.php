@@ -41,18 +41,19 @@
                             <!-- Logo -->
                             <div class="col-xl-3 col-lg-3 col-md-3">
                                 <div class="logo">
-                                    <a href="/"><img src="{{ asset('assets_news/img/logo/Logo-5.png') }}"
-                                            class="logo_" alt=""></a>
+                                    <a href="/"><img src="{{ asset('assets_news/img/logo/Logo-5.png') }}" class="logo_"
+                                            alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-9 col-lg-9 col-md-9">
                                 @foreach ($advertisements as $advertisement)
-                                    <div class="header-banner f-right ">
-                                        @if ($advertisement->position == 'header')
-                                            <a href="{{ $advertisement->url }}"  target="_blank"><img src="{{ Storage::url($advertisement->ad_path) }}"
-                                                alt="{{ $advertisement->name }} Image" height="100px"></a>
-                                        @endif
-                                    </div>
+                                <div class="header-banner f-right ">
+                                    @if ($advertisement->position == 'header')
+                                    <a href="{{ $advertisement->url }}" target="_blank"><img
+                                            src="{{ Storage::url($advertisement->ad_path) }}"
+                                            alt="{{ $advertisement->name }} Image" height="100px"></a>
+                                    @endif
+                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -68,17 +69,17 @@
                                     <a href="/"><img src="{{ asset('assets_news/img/logo/Logo-2.png') }}"
                                             class="logo_ bg_l" alt=""></a>
                                 </div>
-                                
+
                                 <div class="main-menu d-none  d-md-block header-flex justify-content-start">
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="{{ route('index') }}">होमपेज</a></li>
                                             @foreach ($categories as $category)
-                                                @if ($category->header_status == 1)
-                                                    <li><a
-                                                            href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
-                                                    </li>
-                                                @endif
+                                            @if ($category->header_status == 1)
+                                            <li><a
+                                                    href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
+                                            </li>
+                                            @endif
                                             @endforeach
                                             <li> <a href="#">अन्य</a>
                                                 <ul class="submenu">
@@ -103,17 +104,18 @@
                                 <div class="d-flex">
 
                                     <div>
-                                    @auth
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <button type="submit" class="log-out-btn"><i class="fas fa-sign-out-alt"></i>
-                                            &nbsp;</button>
-                                    </form>
+                                        @auth
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit" class="log-out-btn"><i
+                                                    class="fas fa-sign-out-alt"></i>
+                                                &nbsp;</button>
+                                        </form>
 
-                                    @else
-                                    <a href="{{ route('login') }}"><i class="fas fa-user user_border"></i>
-                                        &nbsp;</a>
-                                    @endauth
+                                        @else
+                                        <a href="{{ route('login') }}"><i class="fas fa-user user_border"></i>
+                                            &nbsp;</a>
+                                        @endauth
                                     </div>
                                     <nav class="navbar bg-body-tertiary">
                                         <div class="container-fluid">
@@ -168,8 +170,6 @@
 
                                 @endforeach
 
-
-
                                 <!-- contact -->
 
                                 <!-- social -->
@@ -197,8 +197,8 @@
                                 @if ($category->footer_status == 1)
 
                                 <li class="mb-2"><a href="{{ route('categories.show', $category->id) }}"> >
-                                &nbsp;{{ $category->name }}</a></li>
-                                            @endif
+                                        &nbsp;{{ $category->name }}</a></li>
+                                @endif
                                 @endforeach
                                 <!-- Form -->
                                 <div class="footer-form">
@@ -206,18 +206,6 @@
 
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-3 col-md-4  col-sm-6">
-                        <div class="single-footer-caption mt-20">
-                            <div class="footer-tittle">
-                                <h4>समाचार</h4>
-                                @foreach ($categories as $category)
-                                <li class="mb-2"><a href="{{ route('categories.show', $category->id) }}"> >
-                                        &nbsp;{{ $category->name }}</a></li>
-                                @endforeach
-                               
                             </div>
                         </div>
                     </div>
@@ -231,9 +219,7 @@
                                     @foreach ($latestpost as $index => $post)
                                     <li><a href="{{ route('posts.show', $post->slug) }}"><img
                                                 src="{{ Storage::url($post->path) }}" alt="" class="w-72"></a></li>
-
                                     @endforeach
-
                                 </ul>
                             </div>
                         </div>
@@ -252,9 +238,9 @@
                                 <p>
                                     &copy;
                                     <script>
-                                        document.write(new Date().getFullYear());
-                                    </script> All rights reserved | Developed by <a
-                                        href="https://linkupnepal.com" target="_blank">Linkup Nepal Pvt ltd</a>
+                                    document.write(new Date().getFullYear());
+                                    </script> All rights reserved | Developed by <a href="https://linkupnepal.com"
+                                        target="_blank">Linkup Nepal Pvt ltd</a>
                                 </p>
                             </div>
                         </div>
@@ -323,59 +309,58 @@
 
     <!-- Initialize Swiper -->
     <script>
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            freeMode: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        freeMode: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
 
-                },
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 40,
-                },
-                1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 50,
-                },
             },
-        });
-
-
-        var swiper = new Swiper(".recentMy", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            freeMode: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                },
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 40,
-                },
-                1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 50,
-                },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 40,
             },
             1024: {
                 slidesPerView: 4,
                 spaceBetween: 50,
             },
         },
+    });
+
+    var swiper = new Swiper(".recentMy", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        freeMode: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 40,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 50,
+            },
+        },
+        1024: {
+            slidesPerView: 4,
+            spaceBetween: 50,
+        },
+    },
     });
     </script>
 
