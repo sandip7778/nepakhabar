@@ -35,10 +35,26 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name'=> 'required|string|unique:categories,name|min:2|max:255',
+            'name'=> 'required|string|min:2|max:255',
+            'footer_status' => 'required|boolean',
+            'header_status' => 'required|boolean',
+            'block' => 'required|unique:categories,block,NULL'
+
         ]);
 
-        $category = Category::create($validate);
+        // $category = Category::create($validate);
+        $block = $request->input('block');
+        if ($block == 'hide')
+        {
+            $block = null;
+        }
+
+        Category::create([
+            'name' => request()->get('name'),
+            'footer_status' => request()->get('footer_status'),
+            'header_status' => request()->get('header_status'),
+            'block' => $block,
+        ]);
 
         return redirect()->route('categories.index')->with('success','Category Created Successfully.');
     }
@@ -72,11 +88,29 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $validate = $request->validate([
-            'name'=> 'required|string|unique:categories,name|min:2|max:255',
-        ]);
 
-        $category->update($validate);
+        $validate = $request->validate([
+            'name'=> 'required|string|min:2|max:255',
+            'footer_status' => 'required|boolean',
+            'header_status' => 'required|boolean',
+            'block' => 'required|unique:categories,block,NULL'
+
+        ]);
+        // dd($request);
+        $block = $request->input('block');
+        if ($block == 'hide')
+        {
+            $block = null;
+        }
+
+        $category->update([
+            'name' => request()->get('name'),
+            'footer_status' => request()->get('footer_status'),
+            'header_status' => request()->get('header_status'),
+            'block' => $block,
+        ]);
+        // dd($category);
+
 
         return redirect()->route('categories.index')->with('success','Category Updated Successfully.');
     }

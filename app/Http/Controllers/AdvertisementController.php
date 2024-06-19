@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\Advertisement;
@@ -17,11 +18,8 @@ class AdvertisementController extends Controller
      */
     public function index()
     {
-        $advertisements = Advertisement::orderBy('created_at', 'DESC');
-        foreach ($advertisements as $advertisement) {
-            $advertisement->description = Purifier::clean($advertisement->description);
-        }
-        $advertisements = $advertisements->paginate(15);
+        $advertisements = Advertisement::orderBy('created_at', 'DESC')->paginate(15);
+
         return view('admin.page.advertisement.index', compact('advertisements'));
 
     }
@@ -43,7 +41,11 @@ class AdvertisementController extends Controller
             'c_name' => 'required|string|max:255',
             'ad_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'position' => 'required|string',
-            'ad_description' => 'required|string|min:10',
+            'url' => 'required|url',
+            'expiry_date' => 'required|date|after_or_equal:today',
+        ], [
+            'expiry_date.after_or_equal' => 'The expiry date must be today or later.',
+            // other custom error messages
         ]);
 
         $image = $request->file('ad_image')->getClientOriginalName();
@@ -54,10 +56,11 @@ class AdvertisementController extends Controller
 
         Advertisement::create([
             'name' => request()->get('c_name'),
-            'description' => request()->get('ad_description'),
+            'url' => request()->get('url'),
             'position' => request()->get('position'),
             'ad_path' => $ad_path,
             'status' => true,
+            'expiry_date' => request()->get('expiry_date'),
 
         ]);
         return redirect()->route('advertisements.index')->with('success', 'Advertisement created successfully.')->with('image', $ad_path);
@@ -88,7 +91,8 @@ class AdvertisementController extends Controller
             'c_name' => 'required|string|max:255',
             'ad_image' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'position' => 'required|string',
-            'ad_description' => 'required|string|min:10',
+            'url' => 'required|url',
+            'expiry_date' => 'required|date|after_or_equal:today',
         ]);
         if ($request->hasFile('ad_image')) {
             if ($advertisement->ad_path) {
@@ -100,17 +104,19 @@ class AdvertisementController extends Controller
             $ad_path = $request->ad_image->storeAs('He_images', $imageName, 'public');
             $advertisement->update([
                 'name' => request()->get('c_name'),
-                'description' => request()->get('ad_description'),
+                'url' => request()->get('url'),
                 'ad_path' => $ad_path,
                 'position' => request()->get('position'),
                 'status' => true,
+                'expiry_date' => request()->get('expiry_date'),
             ]);
         } else {
             $advertisement->update([
                 'name' => request()->get('c_name'),
-                'description' => request()->get('ad_description'),
+                'url' => request()->get('url'),
                 'position' => request()->get('position'),
                 'status' => true,
+                'expiry_date' => request()->get('expiry_date'),
             ]);
         }
         return redirect()->route('advertisements.index')->with('success', 'Advertisement updated.');

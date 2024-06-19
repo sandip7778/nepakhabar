@@ -73,7 +73,7 @@ class VideoController extends Controller
             'title' => 'required|string|min:3|max:255',
             'url' => 'required|url',
             'category' => 'required|exists:categories,id',
-            'description' => 'required|string|max:300',
+            'description' => 'required|string|max:255',
             ]);
 
         $video->update([

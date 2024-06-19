@@ -13,17 +13,25 @@
                         <div class="">
                             @foreach ($advertisements->take(1) as $advertisement)
                                 @if ($advertisement->position == 'header')
-                                    <img src="{{ $advertisement->ad_path }}" style="width:100%"
-                                        alt="{{ $advertisement->name }} Image">
+                                <a href="{{ $advertisement->url }}" target="_blank"><img src="{{ $advertisement->ad_path }}" style="width:100%"
+                                        alt="{{ $advertisement->name }} Image"></a>
                                 @endif
                             @endforeach
                         </div>
                     </div>
                     <div class="single-post">
+                        @if($post->path)
                         <div class="feature-img">
                             <img class="img-fluid" src="{{ Storage::url($post->path) }}" style="width:100%"
                                 alt="{{ $post->title }} Image">
                         </div>
+                     @else
+                        <div class="col-12 mt-3 video-items text-center ">
+                            <iframe src="{{ $post->link }}" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </div>
+                        @endif
                         <div class="blog_details">
                             <h2>{{ $post->title }}
                             </h2>
@@ -158,8 +166,8 @@
                         <div class="">
                             @foreach ($advertisements as $advertisement)
                                 @if ($advertisement->position == 'center1')
-                                    <img src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
-                                        alt="{{ $advertisement->name }} image">
+                                <a href="{{ $advertisement->url }}"  target="_blank"><img src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
+                                        alt="{{ $advertisement->name }} image"></a>
                                 @endif
                             @endforeach
                         </div>
@@ -172,8 +180,8 @@
                         @foreach ($advertisements as $advertisement)
                             @if ($advertisement->position == 'sidebar1')
                                 <aside class="single_sidebar_widget">
-                                    <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }} "
-                                        alt="{{ $advertisement->name }} image">
+                                    <a href="{{ $advertisement->url }}"  target="_blank"><img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }} "
+                                        alt="{{ $advertisement->name }} image"></a>
                                 </aside>
                             @endif
                         @endforeach
@@ -248,8 +256,8 @@
                         @foreach ($advertisements as $advertisement)
                             @if ($advertisement->position == 'sidebar2')
                                 <aside class="single_sidebar_widget">
-                                    <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }} "
-                                        alt="{{ $advertisement->name }} image">
+                                    <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }} "
+                                        alt="{{ $advertisement->name }} image"></a>
                                 </aside>
                             @endif
                         @endforeach

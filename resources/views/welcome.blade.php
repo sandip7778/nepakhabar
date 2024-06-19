@@ -28,42 +28,23 @@
                     <div class="row mb-5">
                         <div class="col-xl-12">
                             <div class="">
-                                <img src="assets_news/img/hero/header_card.jpg" style="width:100%" alt="">
+                                @foreach ($advertisements as $advertisement)
+                            @if ($advertisement->position == 'center1')
+                            <a href="{{ $advertisement->url }}" target="_blank"><img src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
+                                    alt="{{ $advertisement->name }} Image"></a>
+                            @endif
+                        @endforeach
                             </div>
                         </div>
                     </div>
                     @if ($posts->count())
                         @foreach ($posts as $index => $post)
-                            <div class="single-post border mb-3">
-                                <article>
-                                    <a href="{{ route('posts.show', $post->slug) }}">
-                                        <div class="blog_details justify-content-center">
-                                            <div class="row justify-content-center">
-                                                <h2 class="text-align-center">{{ $post->title }}</h2>
-                                            </div>
-
-                                            <ul class="blog-info-link row justify-content-center">
-                                                <li><a href="{{ route('categories.show', $post->category_id) }}">
-                                                        {{ $post->category->name }}</a></li>
-                                                <li>&nbsp; &nbsp; <i class="fa fa-calendar"></i>
-                                                    {{ toFormattedNepaliDate($post->created_at) }}
-                                                </li>
-                                                <li>&nbsp; &nbsp; <i class="fa fa-user"></i>
-                                                    {{ $post->user->name }}</li>
-                                            </ul>
-                                            <div class="row justify-content-center mt-3">
-                                                <img src="{{ Storage::url($post->path) }}" alt="" class="">
-                                            </div>
-                                        </div>
-                                    </a>
-
-                                </article>
-                            </div>
+                                @include('pages.shared.welcome_post')
                         @endforeach
                     @else
                         @if (request()->has('search'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                No posts found for the search term"{{ request()->input('search') }}".
+                                No posts found for the search term "{{ request()->input('search') }}".
                                 <button type="button" class="btn-close action_btn" data-bs-dismiss="alert"
                                     aria-label="Close">X</button>
                             </div>
@@ -115,16 +96,16 @@
                             @foreach ($advertisements as $advertisement)
                                 <aside class="single_sidebar_widget mb-5">
                                     @if ($advertisement->position == 'sidebar1')
-                                        <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }}"
-                                            alt="{{ $advertisement->name }} Image">
+                                    <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }}"
+                                            alt="{{ $advertisement->name }} Image"></a>
                                     @endif
                                     @if ($advertisement->position == 'sidebar2')
-                                        <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }}"
-                                            alt="{{ $advertisement->name }} Image">
+                                        <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }}"
+                                            alt="{{ $advertisement->name }} Image"></a>
                                     @endif
                                     @if ($advertisement->position == 'sidebar3')
-                                        <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }}"
-                                            alt="{{ $advertisement->name }} Image">
+                                        <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }}"
+                                            alt="{{ $advertisement->name }} Image"></a>
                                     @endif
 
                                 </aside>
@@ -142,9 +123,9 @@
                 <div class="row mb-5">
                     <div class="col-xl-12">
                         @foreach ($advertisements as $advertisement)
-                            @if ($advertisement->position == 'center1')
-                                <img src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
-                                    alt="{{ $advertisement->name }} Image">
+                            @if ($advertisement->position == 'center2')
+                            <a href="{{ $advertisement->url }}" target="_blank"><img src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
+                                    alt="{{ $advertisement->name }} Image"></a>
                             @endif
                         @endforeach
                     </div>
@@ -201,9 +182,9 @@
                 <div class="row mb-5">
                     <div class="col-xl-12">
                         @foreach ($advertisements as $advertisement)
-                            @if ($advertisement->position == 'center1')
-                                <img src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
-                                    alt="{{ $advertisement->name }} Image">
+                            @if ($advertisement->position == 'center3')
+                            <a href="{{ $advertisement->url }}" target="_blank"><img src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
+                                    alt="{{ $advertisement->name }} Image"></a>
                             @endif
                         @endforeach
                     </div>
@@ -213,48 +194,18 @@
         <hr>
 
         @foreach ($categories as $category)
-            @if ($category->id !== 1)
-                <div class="weekly2-news-area pt-50 pb-30 yelgray-bg mt-5">
-                    <div class="container">
-                        <div class="weekly2-wrapper">
-                            <!-- section Tittle -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="section-tittle mb-30">
-                                        <h1 class="text-white"><a
-                                                href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
-                                        </h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="swiper mySwiper">
-                                        <div class="swiper-wrapper">
-
-                                            @foreach ($category->posts as $post)
-                                                <div class="swiper-slide">
-                                                    <a href="{{ route('posts.show', $post->slug) }}">
-                                                        <div class="news_box">
-                                                            <div class="text_side">
-                                                                <H1 class="text_limit">{{ $post->title }}</H1>
-                                                            </div>
-                                                            <img src="{{ Storage::url($post->path) }}"
-                                                                alt="{{ $post->title }}">
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            @endforeach
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            @if ($category->block == 1)
+                @include('pages.shared.welcome_category')
+            @endif
+        @endforeach
+        @foreach ($categories as $category)
+            @if ($category->block == 2)
+                @include('pages.shared.welcome_category')
+            @endif
+        @endforeach
+        @foreach ($categories as $category)
+            @if ($category->block == 3)
+                @include('pages.shared.welcome_category')
             @endif
         @endforeach
 
@@ -268,8 +219,8 @@
                         <div class="">
                             @foreach ($advertisements as $advertisment)
                                 @if ($advertisement->position == 'center2')
-                                    <img src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
-                                        alt="{{ $advertisement->name }} Image">
+                                <a href="{{ $advertisement->url }}" target="_blank"><img src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
+                                        alt="{{ $advertisement->name }} Image"></a>
                                 @endif
                             @endforeach
                         </div>
@@ -287,7 +238,7 @@
                         @foreach ($videos->take(1) as $video)
                             <div class="video-items-active">
                                 <div class="video-items text-center">
-                                    <iframe src="{{ $video->url }}" frameborder="0"
+                                    <iframe src="{{ $video->link }}" frameborder="0"
                                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
                                 </div>
@@ -313,8 +264,8 @@
                                         <div class="">
                                             @foreach ($advertisements as $advertisement)
                                                 @if ($advertisement->position == 'footer')
-                                                    <img src="{{ Storage::url($advertisement->ad_path) }}"
-                                                        style="width:100%" alt="">
+                                                <a href="{{ $advertisement->url }}" target="_blank"><img src="{{ Storage::url($advertisement->ad_path) }}"
+                                                        style="width:100%" alt=""></a>
                                                 @endif
                                             @endforeach
                                         </div>
@@ -326,7 +277,7 @@
                             <div class="testmonial-nav text-center">
                                 @foreach ($videos->skip(1) as $video)
                                     <div class="single-video">
-                                        <iframe src="{{ $video->url }}" frameborder="0"
+                                        <iframe src="{{ $video->link }}" frameborder="0"
                                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                             allowfullscreen></iframe>
                                         <div class="video-intro">
@@ -358,7 +309,6 @@
                             <div class="recent dot-style d-flex dot-style">
                                 <div class="swiper recentMy">
                                     <div class="swiper-wrapper">
-
                                         @foreach ($recentArticles as $recentArticle)
                                             <div class="swiper-slide">
                                                 <div class="single-recent mb-100">
