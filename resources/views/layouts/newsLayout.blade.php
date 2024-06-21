@@ -30,7 +30,7 @@
 </head>
 
 <body>
-    
+
     <div class="side_nav_bar p-2">
         <div class="row mt-1 mr-2 justify-content-end">
             <i class="fas fa-window-close" id="close"></i>
@@ -184,8 +184,8 @@
                                             alt=""></a>
                                 </div>
                                 <li class="mb-2 text-white">सूचना विभाग दर्ता नम्बर : २८९८/२०७८-०७९ </li>
-                                <li class="mb-2 text-white">ईमेल: {{ $site->email }}</li>
-                                <li class="mb-2 text-white">फोन नं: {{ $site->phone }} </li>
+                                <li class="mb-2 text-white"><a href="mailto:{{ $site->email  }}">ईमेल: {{ $site->email }}</a></li>
+                                <li class="mb-2 text-white"><a href="tel:{{ $site->phone }}">फोन नं: {{ $site->phone }}</a> </li>
 
 
                                 <!-- social -->

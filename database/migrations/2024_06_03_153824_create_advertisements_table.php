@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('advertisements', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
+            $table->string('url');
             $table->string('ad_path');
             $table->string('position');
+            $table->date('expiry_date');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

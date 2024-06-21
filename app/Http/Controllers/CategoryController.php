@@ -35,10 +35,10 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name'=> 'required|string|min:2|max:255',
+            'name'=> 'required|string|unique:categories,name|min:2|max:255',
             'footer_status' => 'required|boolean',
             'header_status' => 'required|boolean',
-            'block' => 'required|unique:categories,block,NULL'
+            'block' => 'required'
 
         ]);
 
@@ -93,7 +93,7 @@ class CategoryController extends Controller
             'name'=> 'required|string|min:2|max:255',
             'footer_status' => 'required|boolean',
             'header_status' => 'required|boolean',
-            'block' => 'required|unique:categories,block,NULL'
+            'block' => 'required'
 
         ]);
         // dd($request);

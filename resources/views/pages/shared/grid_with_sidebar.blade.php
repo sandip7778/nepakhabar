@@ -7,7 +7,7 @@
                 @if ($advertisement->position == 'center2')
                 <a href="{{ $advertisement->url }}" target="_blank"><img
                         src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
-                        alt="{{ $advertisement->name }} Image"></a>
+                        alt="{{ $advertisement->name }}  फाेटाे"></a>
                 @endif
                 @endforeach
             </div>
@@ -38,7 +38,7 @@
                 @foreach ($trendings->take(1) as $trending)
                 <div class="trending-top mb-30">
                     <div class="trend-top-img">
-                        <img src="{{ Storage::url($trending->path) }}" alt="{{ $trending->title }}"
+                        <img src="{{ Storage::url($trending->path) }}" alt="{{ $trending->title }}  फाेटाे"
                             class="tranding_image">
                         <div class="trend-top-cap">
                             <h2 class="text_limit text-red">
@@ -66,7 +66,7 @@
                                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                                 allowfullscreen></iframe>
                                             @endif
-                                            
+
                                         </div>
                                         <div class="col-lg-8 col-sm-4">
                                             <div class="media-body pt-1">

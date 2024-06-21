@@ -77,6 +77,15 @@
                                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
+                                        <div class="col-lg-4 col-md-12">
+                                            <div class="form-group">
+                                                <label>Youtube Link</label>
+                                                <input type="url" name="youtube" class="form-control" value="{{ old('youtube',$post->youtube) }}">
+                                                @error('youtube')
+                                                    <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
                                         @if (Auth::user()->userType == 'admin')
                                         <div class="col-lg-4 col-md-12">
                                             <label class="f_text" for="exampleInputUsername1">Change Author</label>

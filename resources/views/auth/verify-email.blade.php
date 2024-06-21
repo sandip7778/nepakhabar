@@ -20,6 +20,11 @@
             </div>
         </form>
 
+        <div class="d-flex justify-content-end underline mx-4 text-gray-600">
+            <a  href="{{ route('profile.edit') }}">
+                {{ __('Change Gmail') }}
+            </a>
+        </div>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
 

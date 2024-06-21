@@ -7,7 +7,7 @@
                 @if ($advertisement->position == 'center3')
                 <a href="{{ $advertisement->url }}" target="_blank"><img
                         src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
-                        alt="{{ $advertisement->name }} Image"></a>
+                        alt="{{ $advertisement->name }}  फाेटाे"></a>
                 @endif
                 @endforeach
             </div>
@@ -45,13 +45,13 @@
                                             <H1 class="text_limit">{{ $post->title }}</H1>
                                         </div>
                                         @if ($post->path)
-                                        <img src="{{ Storage::url($post->path) }}" alt="{{ $post->title }}">
+                                        <img src="{{ Storage::url($post->path) }}" alt="{{ $post->title }} फाेटाे">
                                         @else
                                         <iframe src="{{ $post->link }}" frameborder="0"
                                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                             allowfullscreen></iframe>
                                         @endif
-                                       
+
                                     </div>
                                 </a>
                             </div>
