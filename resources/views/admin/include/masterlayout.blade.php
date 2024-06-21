@@ -125,6 +125,12 @@
                                     class="fas fa-fire"></i><span>Dashboard</span></a>
 
                         </li>
+                        <li class="menu-header">Home page block design</li>
+                        <li class="dropdown">
+                            <a href="#" class="nav-link"><i
+                                    class="fas fa-file"></i> <span>Block Design</span></a>
+                            
+                        </li>
                         <li class="menu-header">Manage Post</li>
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
@@ -135,7 +141,7 @@
                         </li>
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-columns"></i> <span>Manage Posts</span></a>
+                                    class="fas fa-pen-square"></i> <span>Manage Posts</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('posts.create') }}">Create Post</a></li>
                                 <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>
@@ -152,7 +158,7 @@
                         </li>
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
-                                <i class="fas fa-columns"></i> <span>Manage Comments</span></a>
+                                <i class="fas fa-comment"></i> <span>Manage Comments</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('comments') }}">Comments</a></li>
                             </ul>
@@ -160,7 +166,7 @@
                         @if (Auth::user()->isAdmin())
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-columns"></i> <span>Manage Users</span></a>
+                                    class="fas fa-users"></i> <span>Manage Users</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('guests.index') }}">Users</a></li>
 
@@ -168,7 +174,7 @@
                         </li>
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-columns"></i> <span>Manage Members</span></a>
+                                    class="fas fa-users"></i> <span>Manage Team Members</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('users.create') }}">Create Member</a></li>
                                 <li><a class="nav-link" href="{{ route('users.index') }}">Team Members</a></li>
@@ -176,14 +182,14 @@
                         </li>
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-columns"></i> <span>Manage Sites</span></a>
+                                    class="fas fa-network-wired"></i> <span>Manage Sites</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{route('site.show',1)}}">Site Setting</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-columns"></i> <span>Manage Videos</span></a>
+                                    class="fas fa-camera"></i> <span>Manage Videos</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{route('videos.index')}}">Youtube Videos</a></li>
                             </ul>
@@ -209,7 +215,7 @@
             <footer class="main-footer">
                 <div class="footer-left">
                     Copyright &copy; 2024-<?php echo date('Y'); ?> <div class="bullet"></div> Develope By <a
-                        href="http://linkupnepal.com/" target="_blank" rel="noopener noreferrer">Linkupnepal</a>
+                        href="http://linkupnepal.com/" target="_blank" rel="noopener noreferrer">Linkup Nepal Pvt. Ltd</a>
                 </div>
                 <div class="footer-right">
 

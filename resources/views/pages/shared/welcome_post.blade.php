@@ -1,11 +1,13 @@
-<div class="single-post border mb-3">
+
+<div class="single-post border__ mb-3">
     <article>
         <a href="{{ route('posts.show', $post->slug) }}">
-            <div class="blog_details justify-content-center">
-                <div class="row justify-content-center">
-                    <h2 class="text-align-center">{{ $post->title }}</h2>
+            <div class="justify-content-center">
+                <div class="col-lg-12">
+                    <div class="tranding_text_box">
+                        <h1 class="text_limit">{{ $post->title }}</h1>
+                    </div>
                 </div>
-
                 <ul class="blog-info-link row justify-content-center">
                     <li><a href="{{ route('categories.show', $post->category_id) }}">
                             {{ $post->category->name }}</a></li>
@@ -16,12 +18,15 @@
                         {{ $post->user->name }}</li>
                 </ul>
                 @if ($post->path)
-                <div class="row justify-content-center mt-3">
-                    <img src="{{ Storage::url($post->path) }}" alt="" class="">
+                <div class="col-lg-12">
+                    <div class="row justify-content-center mt-3 braking_p_img">
+                        <img src="{{ Storage::url($post->path) }}" alt="" class="tranding_image ">
+                    </div>
                 </div>
+
                 @else
                 <div class="col-12 mt-3 video-items text-center ">
-                    <iframe src="{{ $post->link }}" frameborder="0"
+                    <iframe src="{{ $post->link }}" frameborder="0" class="tranding_image"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>

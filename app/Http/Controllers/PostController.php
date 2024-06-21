@@ -86,7 +86,7 @@ class PostController extends Controller
         $post = Post::where('slug', $slug)->where('status', true)->firstOrFail();
         $post->description = Purifier::clean($post->description);
         // $posts = Post::orderBy('created_at','DESC')->get()->take(3);
-        $recentPosts = Post::orderBy('created_at', 'DESC')->get()->take(3);
+        $recentPosts = Post::orderBy('created_at', 'DESC')->get()->take(5);
         $post->increment('views');
 
         return view('pages.single_news', compact('post', 'recentPosts'));

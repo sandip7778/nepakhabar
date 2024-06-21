@@ -44,7 +44,7 @@
                                     @foreach ($posts as $index => $post)
                                     <tr>
                                         <td>{{ $index+1 }}</td>
-                                        <td>{{ $post->title }}</td>
+                                        <td class="text_limit">{{ $post->title }}</td>
                                         <td>{{ $post->category->name }}</td>
                                         <td>{{ $post->user->name }}</td>
                                         <td>{{ $post->likes->count()}}</td>
@@ -56,7 +56,7 @@
                                                 @if ($post->trending_status == true)
                                                     <button type="button" class="action_btn" data-toggle="tooltip"
                                                         data-placement="bottom" title="Disable">
-                                                        <i class="far fa-square-check"></i>checked icon
+                                                        <i class="far fa-check-circle icon_box"></i>
                                                     </button>
                                                 @else
                                                     <button type="button" class="action_btn" data-toggle="tooltip"

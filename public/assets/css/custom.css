@@ -8,6 +8,11 @@
 .p_white {
     color: white;
 }
+
+
+.card{
+    border: 1px solid #ddd;
+}
 .p_color {
     color: var(--primary);
 }
@@ -18,6 +23,14 @@
     background-color: white;
     color: var(--sidebar_color);
 }
+
+.text_limit {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+            line-clamp: 1;
+    -webkit-box-orient: vertical;
+ }
 
 #sidebar-wrapper {
     background-color: black;
@@ -73,6 +86,9 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu > li.active > a:before {
     color: var(--sidebar_color);
     padding: 5px;
     border-radius: 5px;
+}
+.icons_{
+    color: var(--primary);
 }
 .action_btn {
     background: none;

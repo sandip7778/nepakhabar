@@ -16,7 +16,7 @@ class NewsPageController extends Controller
 {
     public function index()
     {
-        $threeDay = Carbon::now()->subDays(3);
+        $threeDay = Carbon::now()->subDays(5);
         $sevenDay = Carbon::now()->subDays(7);
 
 

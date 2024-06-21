@@ -20,10 +20,10 @@
                     <div class="trending-bottom">
                         <div class="row">
                             @foreach ($teams as $team)
-                                <div class="col-lg-4 mb-5">
+                                <div class="col-lg-3 mb-5">
                                 <div class="single-bottom mb-35">
                                     <div class="trend-bottom-img mb-30 ">
-                                        <img src="{{ Storage::url($team->path) }}" class="zoom_in" alt="{{ $team->name }} image">
+                                        <img src="{{ Storage::url($team->path) }}" class="zoom_in post_img_h" alt="{{ $team->name }} image">
                                     </div>
                                     <div class="what-cap__">
                                         <span class="color1 Position_box">{{ Str::title($team->userType) }}</span>
