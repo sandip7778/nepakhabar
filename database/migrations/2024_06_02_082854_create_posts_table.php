@@ -19,7 +19,10 @@ return new class extends Migration
             $table->string('meta_tag')->nullable();
             $table->string('meta_keyword')->nullable();
             $table->string('path')->nullable();
+            $table->string('youtube')->nullable();
             $table->unsignedBigInteger('views')->default(0);
+            $table->unsignedInteger('share')->default(0);
+            $table->boolean('trending_status')->default(true);
             $table->boolean('status')->default(true);
             $table->longText('description');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();

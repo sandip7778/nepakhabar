@@ -82,13 +82,18 @@
                                             <label class="custom-control-label" for="remember-me">Remember Me</label>
                                         </div>
                                     </div>
-
+                                    <div class="d-flex justify-content-end mt-4 text-gray-600">
+                                        <a  href="{{ route('register') }}">
+                                            {{ __('Create Account?') }}
+                                        </a>
+                                    </div>
                                     <div class="form-group">
                                         <button type="submit" id="sing_in" class="btn btn-danger btn-lg btn-block"
                                             tabindex="4">
                                             Login
                                         </button>
                                     </div>
+
                                 </form>
                             </div>
                         </div>

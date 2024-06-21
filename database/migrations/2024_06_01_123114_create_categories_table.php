@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->boolean('header_status')->default(true);
+            $table->boolean('footer_status')->default(true);
+            $table->integer('block')->nullable();
             $table->timestamps();
         });
     }

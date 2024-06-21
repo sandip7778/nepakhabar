@@ -112,22 +112,38 @@ class PostController extends Controller
 
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'category' => 'required|exists:categories,id',
+            'meta_tag' => 'nullable|max:255',
+            'meta_keyword' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'youtube' => 'nullable|url',
             'description' => 'required|string|min:10',
             'user_id' => 'required|exists:users,id',
         ]);
+        if (!$request->hasFile('image') && !$request->filled('youtube')) {
+            return redirect()->back()->withErrors(['image' => 'Either an image or YouTube link is required.'])->withInput();
+        }elseif($request->hasFile('image') && $request->filled('youtube')){
+            return redirect()->back()->withErrors(['image' => 'Only image or Youtube link can be posted'])->withInput();
+        }
+        $path = null;
         if ($request->hasFile('image')) {
             if ($post->path) {
                 Storage::disk('public')->delete($post->path);
             }
             $image = $request->file('image')->getClientOriginalName();
-            $imageName = time() . '_' . $image;
-
+            $imageName = time() . '_' . str_replace(' ', '_', $image);
             $path = $request->image->storeAs('images', $imageName, 'public');
             $post->path = $path;
             $post->update($request->only('title', 'category_id', 'user_id', 'meta_tag', 'meta_keyword', 'path', 'description'));
-        } else {
+        } elseif ($request->filled('youtube')) {
+            if ($post->path) {
+                Storage::disk('public')->delete($post->path);
+            }
+            $post->path = $path;
+            $post->update($request->only('title', 'category_id', 'user_id', 'meta_tag', 'meta_keyword','path','youtube', 'description'));
+        }else{
             $post->update($request->only('title', 'category_id', 'user_id', 'meta_tag', 'meta_keyword', 'description'));
+
         }
         $post->slug == Str::slug($post->title);
         $post->save();

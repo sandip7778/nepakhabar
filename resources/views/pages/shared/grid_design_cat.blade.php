@@ -7,7 +7,7 @@
                 @if ($advertisement->position == 'center1')
                 <a href="{{ $advertisement->url }}" target="_blank"><img
                         src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
-                        alt="{{ $advertisement->name }} Image"></a>
+                        alt="{{ $advertisement->name }}  फाेटाे"></a>
                 @endif
                 @endforeach
             </div>
@@ -41,7 +41,7 @@
                                 <div class="single-bottom mb-35 p-2 card">
                                     <div class="trend-bottom-img mb-30">
                                         @if ($post->path)
-                                        <img src="{{ Storage::url($post->path) }}" alt="{{ $post->title }}"
+                                        <img src="{{ Storage::url($post->path) }}" alt="{{ $post->title }}  फाेटाे"
                                             class="post_img_h">
                                         @else
                                         <iframe src="{{ $post->link }}" frameborder="0" class="post_img_h"
@@ -49,7 +49,7 @@
                                             allowfullscreen></iframe>
                                         @endif
 
-                                       
+
                                     </div>
                                     <div class="trend-bottom-cap">
                                         <span class="color1">{{ $category->name }}</span>

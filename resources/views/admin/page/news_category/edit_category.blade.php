@@ -60,16 +60,16 @@
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <label>Block Design Position</label>
+                                <label>Block Design</label>
                                 <select class="form-control" name="block" required>
                                     <option value="hide" {{ old('block', $category->block) == 0 ? 'selected' : '' }}>
                                         Hide</option>
                                     <option value="1" {{ old('block', $category->block) == 1 ? 'selected' : '' }}>
-                                        Position 1</option>
+                                        Design 1</option>
                                     <option value="2" {{ old('block', $category->block) == 2 ? 'selected' : '' }}>
-                                        Position 2</option>
+                                        Design 2</option>
                                     <option value="3" {{ old('block', $category->block) == 3 ? 'selected' : '' }}>
-                                        Position 3</option>
+                                        Design 3</option>
                                 </select>
                                 @error('block')
                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>

@@ -20,7 +20,7 @@
                 @if ($post->path)
                 <div class="col-lg-12">
                     <div class="row justify-content-center mt-3 braking_p_img">
-                        <img src="{{ Storage::url($post->path) }}" alt="" class="tranding_image ">
+                        <img src="{{ Storage::url($post->path) }}" alt="{{ $post->title }}  फाेटाे" class="tranding_image ">
                     </div>
                 </div>
 

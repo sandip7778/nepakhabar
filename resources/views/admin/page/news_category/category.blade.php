@@ -56,16 +56,16 @@
                     <div class="col-md-6">
 
                         <div class="form-group">
-                            <label>Block Design Position</label>
+                            <label>Block Design </label>
                             <select class="form-control" name="block" required>
                                 <option value="hide" {{ old('block')=='hide' ? 'selected' : '' }}>
                                     Hide</option>
                                 <option value="1" {{ old('block')==1 ? 'selected' : '' }}>
-                                    Position 1</option>
+                                    Design 1</option>
                                 <option value="2" {{ old('block')==2 ? 'selected' : '' }}>
-                                    Position 2</option>
+                                    Design 2</option>
                                 <option value="3" {{ old('block')==3 ? 'selected' : '' }}>
-                                    Position 3</option>
+                                    Design 3</option>
                             </select>
                             @error('block')
                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
@@ -111,9 +111,6 @@
                     <div class="col-12">
                         <div class="card">
                             @include('admin.shared.success')
-                            @error('name')
-                                <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
-                            @enderror
                             <div class="card-header">
                                 <h4>Categories Data</h4>
                                 <div class="card-header-form">
@@ -137,7 +134,7 @@
                                                 <th>Total Posts</th>
                                                 <th>Show/Hide Header</th>
                                                 <th>Show/Hide Footer</th>
-                                                <th>Block Position</th>
+                                                <th>Block Design</th>
                                                 <th>Updated Date</th>
                                                 <th>Action</th>
                                             </tr>
@@ -150,7 +147,7 @@
                                                     <td>{{ $category->posts->count() }}</td>
                                                     <td>{{ $category->header_status?'Show':'Hide' }}</td>
                                                     <td>{{ $category->footer_status?'Show':'Hide' }}</td>
-                                                    <td> {{ $category->block == NULL?'Hidden': 'Position ' . $category->block }}</td>
+                                                    <td> {{ $category->block == NULL?'Hidden': 'Design ' . $category->block }}</td>
 
                                                     <td>{{ $category->updated_at->format('d-M-Y') }}</td>
                                                     <td class="d-flex justify-content-center align-items-center">
