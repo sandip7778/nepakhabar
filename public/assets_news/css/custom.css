@@ -6,11 +6,18 @@ body{
     font-weight: 800;
 }
 .ticker{height: 35px;}
+
 .facebook_page{
     width: 100%;
     height: 15rem;
     background-color: wheat;
     overflow: hidden;
+}
+.footer-tittle li a{
+    font-weight: 400;
+}
+.ftw400{
+    font-weight: 400;
 }
 .cursor{
     cursor: pointer;

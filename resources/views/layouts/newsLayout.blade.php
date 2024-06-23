@@ -183,10 +183,10 @@
                                     <a href="/"><img src="{{ asset('assets_news/img/logo/Logo-4.png') }}" class="logo_"
                                             alt=""></a>
                                 </div>
-                                <li class="mb-2 text-white">सूचना विभाग दर्ता नम्बर : २८९८/२०७८-०७९ </li>
-                                <li class="mb-2 text-white"><a href="mailto:{{ $site->email  }}">ईमेल:
+                                <li class="mb-2 text-white ftw400">सूचना विभाग दर्ता नम्बर : २८९८/२०७८-०७९ </li>
+                                <li class="mb-2 text-white ftw400"><a href="mailto:{{ $site->email  }}">ईमेल:
                                         {{ $site->email }}</a></li>
-                                <li class="mb-2 text-white"><a href="tel:{{ $site->phone }}">फोन नं:
+                                <li class="mb-2 text-white ftw400"><a href="tel:{{ $site->phone }}">फोन नं:
                                         {{ $site->phone }}</a> </li>
 
 
@@ -231,7 +231,7 @@
                         <div class="single-footer-caption mt-20">
                             <div class="footer-tittle">
                                 <h4>Pages</h4>
-                                <li class="mb-2"><a href="/">Home</a></li>
+                                <li class="mb-2"><a href="/" >Home</a></li>
                                 <li class="mb-2"><a href="{{ route('team') }}">Team Members</a></li>
                                 <li class="mb-2"><a href="{{ route('contactus') }}">Contact</a></li>
                                 <li class="mb-2"><a href="#">Terms of use</a></li>
@@ -243,14 +243,8 @@
                             <div class="footer-tittle">
                                 <h4>Facebook page</h4>
                             </div>
-                            <div class="facebook_page">
-                                <iframe
-                                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Flinkupnepalhosting&tabs=timeline&width=340&height=820&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=true&appId"
-                                    width="100%" height="820" style="border:none;overflow:hidden" scrolling="no"
-                                    frameborder="0" allowfullscreen="true"
-                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                              
-                            </div>
+                            
+                            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Flinkupnepalhosting&tabs=timeline&width=340&height=499&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=true&appId" width="340" height="290" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                         </div>
                     </div>
 

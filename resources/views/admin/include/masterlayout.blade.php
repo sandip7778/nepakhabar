@@ -145,7 +145,7 @@
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('posts.create') }}">Create Post</a></li>
                                 <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>
-                                <li><a class="nav-link" href="{{ route('tranding.show',1) }}">Tranding Post Show</a></li>
+                               
                             </ul>
                         </li>
                         {{-- <li class="menu-header">Starter</li> --}}
@@ -183,22 +183,22 @@
                         </li>
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                    class="fas fa-network-wired"></i> <span>Manage Sites</span></a>
+                                    class="fas fa-network-wired"></i> <span>Settings</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{route('site.show',1)}}">Site Setting</a></li>
+                                <li><a class="nav-link" href="{{ route('tranding.show',1) }}">Tranding Post Count</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                     class="fas fa-camera"></i> <span>Manage Videos</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{route('videos.index')}}">Youtube Videos</a></li>
+                                <li><a class="nav-link" href="#">Youtube Videos</a></li>
+                                {{-- Route {{route('videos.index')}} --}}
                             </ul>
                         </li>
                         @endif
                     </ul>
-
-                    
                 </aside>
             </div>
             @endif
