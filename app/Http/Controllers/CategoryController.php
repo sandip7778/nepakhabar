@@ -39,7 +39,6 @@ class CategoryController extends Controller
             'footer_status' => 'required|boolean',
             'header_status' => 'required|boolean',
             'block' => 'required'
-
         ]);
 
         // $category = Category::create($validate);
@@ -66,7 +65,7 @@ class CategoryController extends Controller
     {
         // dd($category);
         $threeDay = Carbon::now()->subDays(3);
-        $posts = Post::where('category_id', $id)->paginate(20);
+        $posts = Post::where('category_id', $id)->orderBy('updated_at','DESC')->paginate(20);
         foreach($posts as $post)
         {
             $post->description = Purifier::clean($post->description);

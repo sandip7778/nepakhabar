@@ -13,6 +13,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NewsPageController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\TrandinController;
 
 
 Route::middleware('auth')->group(function () {
@@ -39,6 +40,7 @@ Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(func
         Route::resource('/guests', GuestController::class);
         // Route::get('/site_info', [DashboardController::class, 'site_info'])->name('site_info');
         Route::resource('/site',SiteController::class)->only('show','update');
+        Route::resource('/tranding',TrandinController::class)->only('show','update');
         Route::resource('/videos',VideoController::class);
     });
 });

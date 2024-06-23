@@ -8,7 +8,9 @@
 .p_white {
     color: white;
 }
-
+.cursor{
+    cursor: pointer;
+}
 
 .card{
     border: 1px solid #ddd;

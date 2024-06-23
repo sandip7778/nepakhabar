@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(10);
         // foreach($posts as $post){
         //     $post->description = Purifier::clean($post->description);
         // }
@@ -48,6 +48,7 @@ class PostController extends Controller
             'meta_keyword' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'youtube' => 'nullable|url',
+            'trending_status' => 'required|boolean',
             'status' => 'required|boolean',
             'description' => 'required|string|min:10',
         ]);
@@ -69,6 +70,7 @@ class PostController extends Controller
             'meta_keyword' => request()->get('meta_keyword'),
             'path' => $path,
             'youtube' => request()->get('youtube'),
+            'trending_status' => request()->get('trending_status'),
             'status' => request()->get('status'),
             'description' => request()->get('description'),
             'user_id' => Auth::user()->id,
@@ -84,7 +86,8 @@ class PostController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->where('status', true)->firstOrFail();
-        $post->description = Purifier::clean($post->description);
+        $post->description = ($post->description);
+        // $post->description = Purifier::clean($post->description,'default');
         // $posts = Post::orderBy('created_at','DESC')->get()->take(3);
         $recentPosts = Post::orderBy('created_at', 'DESC')->get()->take(5);
         $post->increment('views');
@@ -120,9 +123,7 @@ class PostController extends Controller
             'description' => 'required|string|min:10',
             'user_id' => 'required|exists:users,id',
         ]);
-        if (!$request->hasFile('image') && !$request->filled('youtube')) {
-            return redirect()->back()->withErrors(['image' => 'Either an image or YouTube link is required.'])->withInput();
-        }elseif($request->hasFile('image') && $request->filled('youtube')){
+        if($request->hasFile('image') && $request->filled('youtube')){
             return redirect()->back()->withErrors(['image' => 'Only image or Youtube link can be posted'])->withInput();
         }
         $path = null;

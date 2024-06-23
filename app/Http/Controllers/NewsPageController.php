@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Video;
+use App\Models\tranding_post_show;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Mews\Purifier\Facades\Purifier;
@@ -18,7 +19,8 @@ class NewsPageController extends Controller
     {
         $threeDay = Carbon::now()->subDays(5);
         $sevenDay = Carbon::now()->subDays(7);
-
+        $tpsc = tranding_post_show::find(1);
+        $tpostcount = $tpsc->count_tranding;
 
         if (request()->has('search') && request()->get('search') != '') {
             $posts = Post::orderBy('created_at', 'DESC');
@@ -26,7 +28,7 @@ class NewsPageController extends Controller
                             ->orWhere('description', 'like', '%' . request()->get('search') . '%')
                             ->paginate(8);
         }else{
-            $posts = Post::where('status',true)->where('trending_status',true)->orderBy('updated_at','DESC')->get();
+            $posts = Post::where('status',true)->where('trending_status',true)->orderBy('updated_at','DESC')->limit($tpostcount)->get();
         }
 
 

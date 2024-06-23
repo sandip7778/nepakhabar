@@ -125,7 +125,7 @@
                                         @auth
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
-                                            <button type="submit" class="log-out-btn"><i
+                                            <button type="submit" class="log-out-btn cursor"><i
                                                     class="fas fa-sign-out-alt"></i>
                                                 &nbsp;</button>
                                         </form>
@@ -184,8 +184,10 @@
                                             alt=""></a>
                                 </div>
                                 <li class="mb-2 text-white">सूचना विभाग दर्ता नम्बर : २८९८/२०७८-०७९ </li>
-                                <li class="mb-2 text-white"><a href="mailto:{{ $site->email  }}">ईमेल: {{ $site->email }}</a></li>
-                                <li class="mb-2 text-white"><a href="tel:{{ $site->phone }}">फोन नं: {{ $site->phone }}</a> </li>
+                                <li class="mb-2 text-white"><a href="mailto:{{ $site->email  }}">ईमेल:
+                                        {{ $site->email }}</a></li>
+                                <li class="mb-2 text-white"><a href="tel:{{ $site->phone }}">फोन नं:
+                                        {{ $site->phone }}</a> </li>
 
 
                                 <!-- social -->
@@ -242,7 +244,12 @@
                                 <h4>Facebook page</h4>
                             </div>
                             <div class="facebook_page">
-                            <iframe width="100%" height="800px" src="https://linkupnepal.com/" frameborder="0" scrolling="yes"></iframe>
+                                <iframe
+                                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Flinkupnepalhosting&tabs=timeline&width=340&height=820&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=true&appId"
+                                    width="100%" height="820" style="border:none;overflow:hidden" scrolling="no"
+                                    frameborder="0" allowfullscreen="true"
+                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                              
                             </div>
                         </div>
                     </div>
@@ -261,8 +268,8 @@
                                     &copy;
                                     <script>
                                     document.write(new Date().getFullYear());
-                                    </script> All rights reserved {{ $site->siteName }} | Developed by <a href="https://linkupnepal.com"
-                                        target="_blank">Linkup Nepal Pvt ltd</a>
+                                    </script> All rights reserved {{ $site->siteName }} | Developed by <a
+                                        href="https://linkupnepal.com" target="_blank">Linkup Nepal Pvt ltd</a>
                                 </p>
                             </div>
                         </div>

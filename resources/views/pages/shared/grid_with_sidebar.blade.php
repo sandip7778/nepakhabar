@@ -33,16 +33,15 @@
         </div>
         <div class="row mt-5 ml-1">
             <div class="col-lg-8">
-
                 <!-- Trending Top -->
-                @foreach ($trendings->take(1) as $trending)
+                @foreach ($category->posts->take(1) as $posts_data)
                 <div class="trending-top mb-30">
                     <div class="trend-top-img">
-                        <img src="{{ Storage::url($trending->path) }}" alt="{{ $trending->title }}  फाेटाे"
+                        <img src="{{ Storage::url($posts_data->path) }}" alt="{{ $posts_data->title }}  फाेटाे"
                             class="tranding_image">
                         <div class="trend-top-cap">
                             <h2 class="text_limit text-red">
-                                <a href="{{ route('posts.show', $trending->slug) }}">{{ $trending->title }}</a>
+                                <a href="{{ route('posts.show', $posts_data->slug) }}">{{ $posts_data->title }}</a>
                             </h2>
                         </div>
                     </div>
@@ -57,9 +56,9 @@
                             <div class="card p-2 mb-1">
                                 <a href="{{ route('posts.show', $posts_data->slug) }}">
                                     <div class="flex_data">
-                                        <div class="">
+                                        <div class=""> 
                                             @if ($posts_data->path)
-                                            <img src="{{ Storage::url($posts_data->path) }}" alt="post"
+                                            <img src="{{ Storage::url($posts_data->path) }}" alt="{{$posts_data->title}}"
                                             class="side_post_img">
                                             @else
                                             <iframe src="{{ $posts_data->link }}" frameborder="0" class="side_post_img"
@@ -104,7 +103,7 @@
             <!-- size of sidebar ads boxads  height :300px width 350px  -->
             <div class="col-lg-4">
                 @foreach ($advertisements as $advertisement)
-                <aside class="single_sidebar_widget mb-5">
+                <aside class="single_sidebar_widget">
                     @if ($advertisement->position == 'sidebar1')
                     <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
                             src="{{ Storage::url($advertisement->ad_path) }}"

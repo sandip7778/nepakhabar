@@ -100,7 +100,7 @@
                             <div>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button type="submit" class="dropdown-item d-flex align-items-center text-danger">
+                                    <button type="submit" class="dropdown-item d-flex align-items-center text-danger cursor">
                                         <i class="fas fa-sign-out-alt"></i> <span class="ml-3 fw-bolder fs-6">Logout</span>
                                     </button>
                                 </form>
@@ -145,6 +145,7 @@
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('posts.create') }}">Create Post</a></li>
                                 <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>
+                                <li><a class="nav-link" href="{{ route('tranding.show',1) }}">Tranding Post Show</a></li>
                             </ul>
                         </li>
                         {{-- <li class="menu-header">Starter</li> --}}
@@ -197,13 +198,7 @@
                         @endif
                     </ul>
 
-                    <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-                        <a href="{{ route('index') }}" class="btn btn-danger btn-lg btn-block btn-icon-split"
-                            target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-rocket"></i> Website
-                        </a>
-
-                    </div>
+                    
                 </aside>
             </div>
             @endif
