@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy('updated_at', 'desc')->paginate(10);
+        $categories = Category::orderBy('position', 'asc')->paginate(10);
         $posts = Post::all();
         return view('admin.page.news_category.category' , compact('categories'));
     }
@@ -38,6 +38,7 @@ class CategoryController extends Controller
             'name'=> 'required|string|unique:categories,name|min:2|max:255',
             'footer_status' => 'required|boolean',
             'header_status' => 'required|boolean',
+            'position' => 'nullable|integer|digits_between:1,10|unique:categories,position',
             'block' => 'required'
         ]);
 
@@ -47,11 +48,17 @@ class CategoryController extends Controller
         {
             $block = null;
         }
+        $position = $request->input('position');
+        if ($position == 'NULL')
+        {
+            $position = null;
+        }
 
         Category::create([
             'name' => request()->get('name'),
             'footer_status' => request()->get('footer_status'),
             'header_status' => request()->get('header_status'),
+            'position' => $position,
             'block' => $block,
         ]);
 
@@ -92,6 +99,7 @@ class CategoryController extends Controller
             'name'=> 'required|string|min:2|max:255',
             'footer_status' => 'required|boolean',
             'header_status' => 'required|boolean',
+            'position' => 'nullable|integer|digits_between:1,10|unique:categories,position',
             'block' => 'required'
 
         ]);
@@ -101,11 +109,16 @@ class CategoryController extends Controller
         {
             $block = null;
         }
-
+        $position = $request->input('position');
+        if ($position == 'NULL')
+        {
+            $position = null;
+        }
         $category->update([
             'name' => request()->get('name'),
             'footer_status' => request()->get('footer_status'),
             'header_status' => request()->get('header_status'),
+            'position' => $position,
             'block' => $block,
         ]);
         // dd($category);

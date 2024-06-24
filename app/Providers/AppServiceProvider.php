@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $threeDay = Carbon::now()->subDays(3);
         Paginator::useBootstrapFive();
-        $categories = Category::orderBy('updated_at', 'ASC')->get();
+        $categories = Category::orderBy('position','ASC')->get();
         $latestpost = Post::where('created_at','>=',$threeDay)->inRandomOrder()->limit(6)->get();
         // $other = Category::find(1);
         $site = Site::find(1);
