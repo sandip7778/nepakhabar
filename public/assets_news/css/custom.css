@@ -99,7 +99,8 @@ a:hover{
    margin-right: 2rem;
 }
 .category_side a{color: var(--secondary_color);}
-.category_side li{
+
+.category_side .categro_item{
     color: black;
     width: 100%;
     background-color: rgb(244, 244, 244);
@@ -108,11 +109,18 @@ a:hover{
     border-radius: 3px;
     cursor: pointer;
 }
-.category_side li:hover {
+.category_side .categro_item:hover {
     background-color: var(--secondary_color);
     a{
         color: white;
     }
+}
+.profile{
+    background-color: var(--secondary_color);
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 3px;
+    cursor: pointer;
 }
 .side_icon__{
     background-color: rgb(19, 39, 56);

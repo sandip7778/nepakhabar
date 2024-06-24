@@ -39,20 +39,18 @@
             <a href="/"><img src="{{ asset('assets_news/img/logo/Logo-5.png') }}" class="logo_" alt=""></a>
         </div>
         <div class="mt-3 category_side align-items-center">
-            <li> <a href="{{ route('index') }}">होमपेज</a> </li>
+            <li class="categro_item"> <a href="{{ route('index') }}">होमपेज</a> </li>
             @foreach ($categories as $category)
             @if ($category->header_status == 1)
-            <li><a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
+            <li class="categro_item"><a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
             </li>
             @endif
             @endforeach
-            <li class="mt-5">
+            <li class="mt-2 profile">
                 @auth
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="log-out-btn"><i class="fas fa-sign-out-alt"></i>
-                        &nbsp;</button>
-                </form>
+                
+                    <a href="{{route('profile.edit') }}"><button type="submit" class="log-out-btn"><i class="fas fa-sign-out-alt"> Profile</i>
+                    &nbsp;</button></a>
 
                 @else
                 <a href="{{ route('login') }}"><i class="fas fa-user user_border"></i>
