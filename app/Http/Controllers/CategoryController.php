@@ -38,7 +38,6 @@ class CategoryController extends Controller
             'name'=> 'required|string|unique:categories,name|min:2|max:255',
             'footer_status' => 'required|boolean',
             'header_status' => 'required|boolean',
-            'position' => 'nullable|integer|digits_between:1,10|unique:categories,position',
             'block' => 'required'
         ]);
 
@@ -99,7 +98,6 @@ class CategoryController extends Controller
             'name'=> 'required|string|min:2|max:255',
             'footer_status' => 'required|boolean',
             'header_status' => 'required|boolean',
-            'position' => 'nullable|integer|digits_between:1,10|unique:categories,position',
             'block' => 'required'
 
         ]);

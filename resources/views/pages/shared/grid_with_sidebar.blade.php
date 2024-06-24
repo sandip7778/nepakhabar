@@ -56,7 +56,7 @@
                             <div class="card p-2 mb-1">
                                 <a href="{{ route('posts.show', $posts_data->slug) }}">
                                     <div class="flex_data">
-                                        <div class=""> 
+                                        <div class="">
                                             @if ($posts_data->path)
                                             <img src="{{ Storage::url($posts_data->path) }}" alt="{{$posts_data->title}}"
                                             class="side_post_img">
@@ -103,6 +103,7 @@
             <!-- size of sidebar ads boxads  height :300px width 350px  -->
             <div class="col-lg-4">
                 @foreach ($advertisements as $advertisement)
+                @if ($advertisement->category_id==$category->id)
                 <aside class="single_sidebar_widget">
                     @if ($advertisement->position == 'sidebar1')
                     <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
@@ -127,6 +128,7 @@
                     @endif
 
                 </aside>
+                @endif
                 @endforeach
             </div>
         </div>

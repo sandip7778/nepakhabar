@@ -47,6 +47,7 @@
                                                 @enderror
                                             </div>
                                         </div>
+
                                         <div class="col-lg-4 col-md-12">
                                             <div class="form-group">
                                                 <label>Position</label>
@@ -67,6 +68,24 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                        <div class="col-lg-4 col-md-12">
+                                            <div class="form-group">
+                                                <label>Advertisement Category</label>
+
+                                                <select class="form-control" name="category" required>
+                                                    <option value="NULL" selected>No Category</option>
+                                                    @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}"
+                                                        {{ old('category') ? 'selected' : '' }}>{{ $category->name }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('category')
+                                                <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
                                         <div class="col-lg-4 col-md-12">
                                             <label class="f_text" for="ad_image">Images</label>
                                             <input type="file" name="ad_image" class="form-control"  accept=".png, .jpeg, .jpg, .gif, .svg" required>

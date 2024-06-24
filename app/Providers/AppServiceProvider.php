@@ -30,7 +30,6 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
         $categories = Category::orderBy('position','ASC')->get();
         $latestpost = Post::where('created_at','>=',$threeDay)->inRandomOrder()->limit(6)->get();
-        // $other = Category::find(1);
         $site = Site::find(1);
 
         // advertisements catching
@@ -47,7 +46,6 @@ class AppServiceProvider extends ServiceProvider
         }
 
         View::share('categories', $categories);
-        // View::share('other', $other);
         View::share('site', $site);
         View::share('advertisements',$advertisements);
         View::share('latestpost',$latestpost);

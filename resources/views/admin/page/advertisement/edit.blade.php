@@ -51,19 +51,6 @@
                                             <div class="form-group">
                                                 <label>Position</label>
                                                 <select class="form-control" name="position" required>
-<<<<<<< HEAD
-                                               
-                                                        <option value="{{ $advertisement->position}}" selected>{{ $advertisement->position}}</option>
-                                                        <option value="header" >Header</option>
-                                                        <option value="center1" >Center 1</option>
-                                                        <option value="center2" >Center 2</option>
-                                                        <option value="center3" >Center 3</option>
-                                                        <option value="sidebar1" >Sidebar 1</option>
-                                                        <option value="sidebar2" >Sidebar 2</option>
-                                                        <option value="sidebar3" >Sidebar 3</option>
-                                                        <option value="sidebar4" >Sidebar 4</option>
-                                                        <option value="footer" >Footer</option>
-=======
                                                     <option value="" selected>Select Position</option>
                                                         <option value="header" {{ old('position',$advertisement->position) == 'header' ? 'selected' : '' }}>Header</option>
                                                         <option value="center1" {{ old('position',$advertisement->position) == 'center1' ? 'selected' : '' }}>Center 1</option>
@@ -74,10 +61,26 @@
                                                         <option value="sidebar3" {{ old('position',$advertisement->position) == 'sidebar3' ? 'selected' : '' }}>Sidebar 3</option>
                                                         <option value="sidebar4" {{ old('position',$advertisement->position) == 'sidebar4' ? 'selected' : '' }}>Sidebar 4</option>
                                                         <option value="footer" {{ old('position',$advertisement->position) == 'footer' ? 'selected' : '' }}>Footer</option>
->>>>>>> refs/remotes/origin/main
                                                 </select>
                                                 @error('position')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12">
+                                            <div class="form-group">
+                                                <label>Advertisement Category</label>
+
+                                                <select class="form-control" name="category" required>
+                                                    <option value="NULL" selected>No Category</option>
+                                                    @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}"
+                                                        {{ old('category', $advertisement->category_id) == $category->id? 'selected' : '' }}>{{ $category->name }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('category')
+                                                <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
                                         </div>

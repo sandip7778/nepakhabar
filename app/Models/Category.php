@@ -16,6 +16,10 @@ class Category extends Model
         return $this->hasMany(Post::class)->orderBy('updated_at','DESC');
     }
 
+    public function advertisements()
+    {
+        return $this->hasMany(Advertisement::class)->orderBy('updated_at','DESC');
+    }
     public function videos()
     {
         return $this->hasMany(Video::class);

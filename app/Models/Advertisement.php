@@ -10,7 +10,7 @@ class Advertisement extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','url','position','ad_path','status','expiry_date'];
+    protected $fillable = ['name','url','category_id','position','ad_path','status','expiry_date'];
     protected $dates = ['expiry_date'];
 
     // Event handler for when model is retrieved
@@ -24,6 +24,10 @@ class Advertisement extends Model
         });
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
     // Check if the advertisement has expired
     public function hasExpired()
     {
