@@ -10,7 +10,7 @@
                 <h1>Advertisement Create</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="{{ route('posts.index') }}">Post</a></div>
+                    <div class="breadcrumb-item"><a href="{{ route('advertisements.index') }}">Advertisements</a></div>
                     <div class="breadcrumb-item">Advertisement Create</div>
                 </div>
             </div>

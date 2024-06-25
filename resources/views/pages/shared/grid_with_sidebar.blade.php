@@ -105,34 +105,34 @@
             <div class="col-lg-4">
                 @foreach ($advertisements as $advertisement)
                     @if ($advertisement->category_id == $category->id)
-                        <aside class="single_sidebar_widget mb-4">
                             @if ($advertisement->position == 'sidebar1')
-                                <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
+                        <aside class="single_sidebar_widget mb-4">
+                            <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
                                         src="{{ Storage::url($advertisement->ad_path) }}"
                                         alt="{{ $advertisement->name }} Image"></a>
-                            @endif
                         </aside>
-                        <aside class="single_sidebar_widget mb-4">
+                        @endif
                             @if ($advertisement->position == 'sidebar2')
-                                <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
+                        <aside class="single_sidebar_widget mb-4">
+                            <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
                                         src="{{ Storage::url($advertisement->ad_path) }}"
                                         alt="{{ $advertisement->name }} Image"></a>
-                            @endif
                         </aside>
-                        <aside class="single_sidebar_widget mb-4">
+                        @endif
                             @if ($advertisement->position == 'sidebar3')
-                                <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
-                                        src="{{ Storage::url($advertisement->ad_path) }}"
-                                        alt="{{ $advertisement->name }} Image"></a>
-                            @endif
-                        </aside>
                         <aside class="single_sidebar_widget mb-4">
-                            @if ($advertisement->position == 'sidebar4')
                                 <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
                                         src="{{ Storage::url($advertisement->ad_path) }}"
                                         alt="{{ $advertisement->name }} Image"></a>
-                            @endif
                         </aside>
+                        @endif
+                            @if ($advertisement->position == 'sidebar4')
+                        <aside class="single_sidebar_widget mb-4">
+                                <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
+                                        src="{{ Storage::url($advertisement->ad_path) }}"
+                                        alt="{{ $advertisement->name }} Image"></a>
+                        </aside>
+                            @endif
                     @endif
                 @endforeach
             </div>

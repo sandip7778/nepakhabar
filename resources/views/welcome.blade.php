@@ -109,37 +109,36 @@
                         <!-- size of sidebar ads boxads  height :300px width 350px  -->
                         <div class="col-lg-4">
                             @foreach ($advertisements as $advertisement)
-                                <aside class="single_sidebar_widget mb-5">
-                                    @if ($advertisement->position == 'sidebar1' && $advertisement->category_id == null)
+                                @if ($advertisement->position == 'sidebar1' && $advertisement->category_id == null)
+                                    <aside class="single_sidebar_widget mb-5">
                                         <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
                                                 src="{{ Storage::url($advertisement->ad_path) }}"
                                                 alt="{{ $advertisement->name }} Image"></a>
-                                    @endif
-                                </aside>
-                                <aside class="single_sidebar_widget mb-5">
-                                    @if ($advertisement->position == 'sidebar2' && $advertisement->category_id == null)
+                                    </aside>
+                                @endif
+                                @if ($advertisement->position == 'sidebar2' && $advertisement->category_id == null)
+                                    <aside class="single_sidebar_widget mb-5">
                                         <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
                                                 src="{{ Storage::url($advertisement->ad_path) }}"
                                                 alt="{{ $advertisement->name }} Image"></a>
-                                    @endif
-                                </aside>
+                                    </aside>
+                                @endif
 
-                                <aside class="single_sidebar_widget mb-5">
-                                    @if ($advertisement->position == 'sidebar3' && $advertisement->category_id == null)
+                                @if ($advertisement->position == 'sidebar3' && $advertisement->category_id == null)
+                                    <aside class="single_sidebar_widget mb-5">
                                         <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
                                                 src="{{ Storage::url($advertisement->ad_path) }}"
                                                 alt="{{ $advertisement->name }} Image"></a>
-                                    @endif
-                                </aside>
+                                    </aside>
+                                @endif
 
-                                <aside class="single_sidebar_widget mb-5">
-                                    @if ($advertisement->position == 'sidebar4' && $advertisement->category_id == null)
+                                @if ($advertisement->position == 'sidebar4' && $advertisement->category_id == null)
+                                    <aside class="single_sidebar_widget mb-5">
                                         <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
                                                 src="{{ Storage::url($advertisement->ad_path) }}"
                                                 alt="{{ $advertisement->name }} Image"></a>
-                                    @endif
-
-                                </aside>
+                                    </aside>
+                                @endif
                             @endforeach
                         </div>
                     </div>

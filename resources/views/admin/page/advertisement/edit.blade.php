@@ -9,7 +9,7 @@
                 <h1>Advertisement Edit</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="{{ route('posts.index') }}">Post</a></div>
+                    <div class="breadcrumb-item"><a href="{{ route('advertisements.index') }}">Advertisements</a></div>
                     <div class="breadcrumb-item">Advertisement Edit</div>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                                         <div class="col-lg-4 col-md-12 mt-3">
                                             <div class="form-group">
                                                 <label>Goto Link</label>
-                                                <input type="url"  name="url" class="form-control" value="{{ old('url',$advertisement->description) }}" required></input>
+                                                <input type="url"  name="url" class="form-control" value="{{ old('url',$advertisement->url) }}" required></input>
                                                 @error('url')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
@@ -117,7 +117,7 @@
                                             </div>
                                         @endif
 
-                                        <div class="col-lg-8 col-md-12">
+                                        <div class="col-12 mt-3">
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-danger">Publish</button>
                                             </div>
