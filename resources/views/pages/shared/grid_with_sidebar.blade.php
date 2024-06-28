@@ -121,14 +121,16 @@
                         @endif
                             @if ($advertisement->position == 'sidebar3')
                         <aside class="single_sidebar_widget mb-4">
-                                <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
+                                <a href="{{ $advertisement->url }}" target="_blank">
+                                    <img class="side_bar_ads"
                                         src="{{ Storage::url($advertisement->ad_path) }}"
                                         alt="{{ $advertisement->name }} Image"></a>
                         </aside>
                         @endif
                             @if ($advertisement->position == 'sidebar4')
                         <aside class="single_sidebar_widget mb-4">
-                                <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
+                                <a href="{{ $advertisement->url }}" target="_blank">
+                                    <img class="side_bar_ads"
                                         src="{{ Storage::url($advertisement->ad_path) }}"
                                         alt="{{ $advertisement->name }} Image"></a>
                         </aside>

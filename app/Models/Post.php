@@ -18,15 +18,20 @@ class Post extends Model
 
         // Automatically generate a slug when saving the model
         static::creating(function ($post) {
-            $post->slug = Str::slug($post->title);
+            $post->slug = $post->generateSlug();
         });
 
         // Optionally, update the slug when updating the model
         static::updating(function ($post) {
-            $post->slug = Str::slug($post->title);
+            $post->slug = $post->generateSlug();
         });
 
 
+    }
+
+    public function generateSlug()
+    {
+        return $this->id . '-' . Str::slug($this->title);
     }
 
 

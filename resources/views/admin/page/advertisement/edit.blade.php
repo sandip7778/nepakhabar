@@ -52,15 +52,20 @@
                                                 <label>Position</label>
                                                 <select class="form-control" name="position" required>
                                                     <option value="" selected>Select Position</option>
-                                                        <option value="header" {{ old('position',$advertisement->position) == 'header' ? 'selected' : '' }}>Header</option>
-                                                        <option value="center1" {{ old('position',$advertisement->position) == 'center1' ? 'selected' : '' }}>Center 1</option>
-                                                        <option value="center2" {{ old('position',$advertisement->position) == 'center2' ? 'selected' : '' }}>Center 2</option>
-                                                        <option value="center3" {{ old('position',$advertisement->position) == 'center3' ? 'selected' : '' }}>Center 3</option>
-                                                        <option value="sidebar1" {{ old('position',$advertisement->position) == 'sidebar1' ? 'selected' : '' }}>Sidebar 1</option>
-                                                        <option value="sidebar2" {{ old('position',$advertisement->position) == 'sidebar2' ? 'selected' : '' }}>Sidebar 2</option>
-                                                        <option value="sidebar3" {{ old('position',$advertisement->position) == 'sidebar3' ? 'selected' : '' }}>Sidebar 3</option>
-                                                        <option value="sidebar4" {{ old('position',$advertisement->position) == 'sidebar4' ? 'selected' : '' }}>Sidebar 4</option>
-                                                        <option value="footer" {{ old('position',$advertisement->position) == 'footer' ? 'selected' : '' }}>Footer</option>
+                                                        <option value="header" {{ old('position',$advertisement->position) == 'header' ? 'selected' : '' }}>Home Page- Header</option>
+                                                        <option value="center1" {{ old('position',$advertisement->position) == 'center1' ? 'selected' : '' }}>Home Page- Center 1</option>
+                                                        <option value="center2" {{ old('position',$advertisement->position) == 'center2' ? 'selected' : '' }}>Home Page- Center 2</option>
+                                                        <option value="center3" {{ old('position',$advertisement->position) == 'center3' ? 'selected' : '' }}>Home Page- Center 3</option>
+                                                        <option value="sidebar1" {{ old('position',$advertisement->position) == 'sidebar1' ? 'selected' : '' }}>Home Page- Sidebar 1</option>
+                                                        <option value="sidebar2" {{ old('position',$advertisement->position) == 'sidebar2' ? 'selected' : '' }}>Home Page- Sidebar 2</option>
+                                                        <option value="sidebar3" {{ old('position',$advertisement->position) == 'sidebar3' ? 'selected' : '' }}>Home Page- Sidebar 3</option>
+                                                        <option value="sidebar4" {{ old('position',$advertisement->position) == 'sidebar4' ? 'selected' : '' }}>Home Page- Sidebar 4</option>
+                                                        <option value="footer" {{ old('position',$advertisement->position) == 'footer' ? 'selected' : '' }}>Home Page- Footer</option>
+                                                        <option value="abovePicture" {{ old('position',$advertisement->position) == 'abovePicture' ? 'selected' : '' }}>Show News- Above Picture/Youtube</option>
+                                                        <option value="belowTitle" {{ old('position',$advertisement->position) == 'belowTitle' ? 'selected' : '' }}>Show News- Below Title</option>
+                                                        <option value="aboveLike" {{ old('position',$advertisement->position) == 'aboveLike' ? 'selected' : '' }}>Show News- Above Like/Share</option>
+                                                        <option value="belowLike" {{ old('position',$advertisement->position) == 'belowLike' ? 'selected' : '' }}>Show News- Below Like/Share</option>
+                                                        <option value="betweenText" {{ old('position',$advertisement->position) == 'betweenText' ? 'selected' : '' }}>Show News- Between Text</option>
                                                 </select>
                                                 @error('position')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>

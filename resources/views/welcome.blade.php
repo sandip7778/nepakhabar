@@ -166,8 +166,6 @@
             @endif
         @endforeach
 
-
-
         <div class="weekly2-news-area pt-50 pb-50 mt-50 mb-50 dark-bg">
             <div class="container">
                 <div class="weekly2-wrapper">

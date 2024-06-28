@@ -107,7 +107,7 @@ Create News
                                         @enderror
                                     </div>
                                     <div class="col-lg-4 col-md-12">
-                                        <label class="f_text" for="exampleInputUsername1">Is Tranding</label>
+                                        <label class="f_text" for="exampleInputUsername1">Is Trending</label>
                                         <select class="form-control" name="trending_status" value="{{ old('trending_status') }}"
                                             required>
                                             <option value="0">No</option>
@@ -120,9 +120,9 @@ Create News
                                     </div>
                                     <div class="col-lg-12 col-md-12 mt-3">
                                         <div class="form-group">
-                                            <label>Post Description</label>
+                                            <label>Post Description (for Advertisement : {{Advertisement}})</label>
                                             <textarea class="summernote" name="description"
-                                                value="{{ old('description') }}" required></textarea>
+                                                 required>{{ old('description') }}</textarea>
                                             @error('description')
                                             <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                             @enderror

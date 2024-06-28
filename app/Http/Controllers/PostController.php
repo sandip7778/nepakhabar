@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertisement;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
@@ -41,20 +42,25 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'title' => 'required|unique:posts,title|string|max:255',
-            'category' => 'required|exists:categories,id',
-            'meta_tag' => 'nullable|max:255',
-            'meta_keyword' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'youtube' => 'nullable|url',
-            'trending_status' => 'required|boolean',
-            'status' => 'required|boolean',
-            'description' => 'required|string|min:10',
-        ]);
+        $request->validate(
+            [
+                'title' => 'required|string|max:255',
+                'category' => 'required|exists:categories,id',
+                'meta_tag' => 'nullable|max:255',
+                'meta_keyword' => 'nullable|string|max:255',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'youtube' => ['nullable', 'url', 'regex:/^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})$/'],
+                'trending_status' => 'required|boolean',
+                'status' => 'required|boolean',
+                'description' => 'required|string|min:10',
+            ],
+            [
+                'youtube.regex' => 'Must be a valid youtube link. Eg.https://www.youtube.com/watch?v=Cb6wuzOurPc'
+            ]
+        );
         if (!$request->hasFile('image') && !$request->filled('youtube')) {
             return redirect()->back()->withErrors(['image' => 'Either an image or YouTube link is required.'])->withInput();
-        }elseif($request->hasFile('image') && $request->filled('youtube')){
+        } elseif ($request->hasFile('image') && $request->filled('youtube')) {
             return redirect()->back()->withErrors(['image' => 'Only image or Youtube link can be posted'])->withInput();
         }
         $path = null;
@@ -63,7 +69,7 @@ class PostController extends Controller
             $imageName = time() . '_' . str_replace(' ', '_', $image);
             $path = $request->image->storeAs('images', $imageName, 'public');
         }
-         Post::create([
+        $post = Post::create([
             'title' => request()->get('title'),
             'category_id' => request()->get('category'),
             'meta_tag' => request()->get('meta_tag'),
@@ -74,8 +80,9 @@ class PostController extends Controller
             'status' => request()->get('status'),
             'description' => request()->get('description'),
             'user_id' => Auth::user()->id,
-            'slug' => Str::slug($request->get('title')),
         ]);
+        $post->slug = $post->id . '-' . Str::slug($post->title);
+        $post->save();
         return redirect()->route('posts.index')->with('success', 'Post created successfully.')->with('image', $path);
 
     }
@@ -86,13 +93,16 @@ class PostController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->where('status', true)->firstOrFail();
-        $post->description = ($post->description);
-        // $post->description = Purifier::clean($post->description,'default');
-        // $posts = Post::orderBy('created_at','DESC')->get()->take(3);
+        $description = $post->description;
+        $textAds = Advertisement::where('position','betweenText')->where('status',true)->inRandomOrder()->get();
+
+        $advertisementView = view('pages.shared.advertisement_within_text',compact('textAds'))->render();
+
+        $modified_description = str_replace('{{Advertisement}}', $advertisementView, $description);
         $recentPosts = Post::orderBy('created_at', 'DESC')->get()->take(5);
         $post->increment('views');
 
-        return view('pages.single_news', compact('post', 'recentPosts'));
+        return view('pages.single_news', compact('post', 'recentPosts','textAds','modified_description','advertisementView'));
     }
 
     /**
@@ -113,17 +123,22 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $slug)->firstOrFail();
 
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'category' => 'required|exists:categories,id',
-            'meta_tag' => 'nullable|max:255',
-            'meta_keyword' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'youtube' => 'nullable|url',
-            'description' => 'required|string|min:10',
-            'user_id' => 'required|exists:users,id',
-        ]);
-        if($request->hasFile('image') && $request->filled('youtube')){
+        $request->validate(
+            [
+                'title' => 'required|string|max:255',
+                'category' => 'required|exists:categories,id',
+                'meta_tag' => 'nullable|max:255',
+                'meta_keyword' => 'nullable|string|max:255',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'youtube' => ['nullable', 'url', 'regex:/^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})$/'],
+                'description' => 'required|string|min:10',
+                'user_id' => 'required|exists:users,id',
+            ],
+            [
+                'youtube.regex' => 'Must be a valid youtube link. Eg.https://www.youtube.com/watch?v=Cb6wuzOurPc'
+            ]
+        );
+        if ($request->hasFile('image') && $request->filled('youtube')) {
             return redirect()->back()->withErrors(['image' => 'Only image or Youtube link can be posted'])->withInput();
         }
         $path = null;
@@ -141,12 +156,11 @@ class PostController extends Controller
                 Storage::disk('public')->delete($post->path);
             }
             $post->path = $path;
-            $post->update($request->only('title', 'category_id', 'user_id', 'meta_tag', 'meta_keyword','path','youtube', 'description'));
-        }else{
+            $post->update($request->only('title', 'category_id', 'user_id', 'meta_tag', 'meta_keyword', 'path', 'youtube', 'description'));
+        } else {
             $post->update($request->only('title', 'category_id', 'user_id', 'meta_tag', 'meta_keyword', 'description'));
 
         }
-        $post->slug == Str::slug($post->title);
         $post->save();
 
         return redirect()->route('posts.index')->with('success', 'Post updated successfully.');

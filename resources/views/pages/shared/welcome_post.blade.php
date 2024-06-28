@@ -29,6 +29,7 @@
                     <iframe src="{{ $post->link }}" frameborder="0" class="tranding_image"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
+
                 </div>
                 @endif
 

@@ -30,20 +30,15 @@ class NewsPageController extends Controller
         }else{
             $posts = Post::where('status',true)->where('trending_status',true)->orderBy('updated_at','DESC')->limit($tpostcount)->get();
         }
-
-
         $videos = Video::inRandomOrder()->limit(5)->get();
         $recentArticles = Post::where('status',true)->orderBy('updated_at', 'DESC')->get()->take(10);
-
         $trendings = Post::where('created_at','>=',$threeDay)->where('status',true)->orderBy('created_at','DESC')->limit(7)->get();
         $weeklyTopPosts = Post::where('created_at','>=',$sevenDay)->where('status',true)->orderBy('created_at','DESC')->limit(15)->get();
-
 
         foreach ($videos as $video)
         {
             $video->description = Purifier::clean($video->description);
         }
-
 
         return view('welcome', compact('posts','videos','trendings','weeklyTopPosts','recentArticles'));
     }
@@ -78,5 +73,4 @@ class NewsPageController extends Controller
         $posts = Post::where('created_at','<=',$sevenDay)->orderBy('views','DESC')->take(15);
         return view('pages.contact', compact('posts'));
     }
-
 }
