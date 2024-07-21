@@ -28,7 +28,7 @@ class NewsPageController extends Controller
                             ->orWhere('description', 'like', '%' . request()->get('search') . '%')
                             ->paginate(8);
         }else{
-            $posts = Post::where('status',true)->where('trending_status',true)->orderBy('updated_at','DESC')->limit($tpostcount)->get();
+            $posts = Post::where('status',true)->where('trending_status','!=',0)->orderBy('trending_status','ASC')->limit($tpostcount)->get();
         }
         $videos = Video::inRandomOrder()->limit(5)->get();
         $recentArticles = Post::where('status',true)->orderBy('updated_at', 'DESC')->get()->take(10);

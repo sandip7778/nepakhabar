@@ -22,6 +22,15 @@ NepaKhabar-{{ $post->title }}
                     </div>
                 </div>
                 <div class="single-post">
+                    <div class="d-flex justify-content-center ">
+                        <h3 style="color:red;">{{ $post->context }}</h3>
+                    </div>
+                    <div class="tranding_text_box ">
+                        <h2 class="">{{ $post->title }}</h2>
+                    </div>
+                    {{-- <div class="tranding_text_box ">
+                        <h5>{{ $post->sub_title }}</h5>
+                    </div> --}}
                     @if($post->path)
                     <div class="feature-img">
                         <img class="img-fluid" src="{{ Storage::url($post->path) }}" class="tranding_image"
@@ -34,9 +43,10 @@ NepaKhabar-{{ $post->title }}
                             allowfullscreen></iframe>
                     </div>
                     @endif
+                    <span style="font-weight: 500">{{ $post->image_desc }}</span>
+
+
                     <div class="blog_details">
-                        <h2>{{ $post->title }}
-                        </h2>
                         <ul class="blog-info-link mt-3 mb-4">
                             <li><a href="#">{{ $post->category->name }}</a></li>
                             <li>&nbsp; &nbsp; <i class="fa fa-calendar"></i>
@@ -201,18 +211,8 @@ NepaKhabar-{{ $post->title }}
         <div class="col-lg-4">
             <div class="blog_right_sidebar">
                 <aside class="">
-                    @foreach ($advertisements as $advertisement)
-                    @if ($advertisement->position == 'sidebar4')
-                    <aside class="single_sidebar_widget">
-                        <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }} "
-                            alt="{{ $advertisement->name }} image">
-                    </aside>
-                    @endif
-                    @endforeach
-                </aside>
-                <aside class="">
-                    @foreach ($advertisements as $advertisement)
-                    @if ($advertisement->position == 'sidebar2')
+                    @foreach ($singlePageAdvertisements as $advertisement)
+                    @if ($advertisement->position == 'aboveRecent')
                     <aside class="single_sidebar_widget">
                         <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }} "
                             alt="{{ $advertisement->name }} image">
@@ -252,8 +252,8 @@ NepaKhabar-{{ $post->title }}
 
 
                 <aside class="single_sidebar_widget instagram_feeds">
-                    @foreach ($advertisements as $advertisement)
-                    @if ($advertisement->position == 'sidebar1')
+                    @foreach ($singlePageAdvertisements as $advertisement)
+                    @if ($advertisement->position == 'belowRecent')
                     <aside class="single_sidebar_widget">
                         <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }} "
                             alt="{{ $advertisement->name }} image">
@@ -261,18 +261,6 @@ NepaKhabar-{{ $post->title }}
                     @endif
                     @endforeach
                 </aside>
-                <aside class="single_sidebar_widget instagram_feeds">
-                    @foreach ($advertisements as $advertisement)
-                    @if ($advertisement->position == 'sidebar3')
-                    <aside class="single_sidebar_widget">
-                        <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }} "
-                            alt="{{ $advertisement->name }} image">
-                    </aside>
-                    @endif
-                    @endforeach
-
-                </aside>
-
             </div>
         </div>
     </div>

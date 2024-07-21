@@ -65,7 +65,8 @@
                                                         <option value="belowTitle" {{ old('position',$advertisement->position) == 'belowTitle' ? 'selected' : '' }}>Show News- Below Title</option>
                                                         <option value="aboveLike" {{ old('position',$advertisement->position) == 'aboveLike' ? 'selected' : '' }}>Show News- Above Like/Share</option>
                                                         <option value="belowLike" {{ old('position',$advertisement->position) == 'belowLike' ? 'selected' : '' }}>Show News- Below Like/Share</option>
-                                                        <option value="betweenText" {{ old('position',$advertisement->position) == 'betweenText' ? 'selected' : '' }}>Show News- Between Text</option>
+                                                        <option value="aboveRecent" {{ old('position',$advertisement->position) == 'aboveRecent' ? 'selected' : '' }}>Show News- Above Recent</option>
+                                                        <option value="belowRecent" {{ old('position',$advertisement->position) == 'belowRecent' ? 'selected' : '' }}>Show News- Below Recent</option>
                                                 </select>
                                                 @error('position')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>

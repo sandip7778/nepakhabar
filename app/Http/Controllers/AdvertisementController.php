@@ -42,25 +42,24 @@ class AdvertisementController extends Controller
             'c_name' => 'required|string|max:255',
             'ad_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'position' => 'required|string',
-            'category_id'=>'nullable',
             'url' => 'required|url',
             'expiry_date' => 'required|date|after_or_equal:today',
         ], [
             'expiry_date.after_or_equal' => 'The expiry date must be today or later.',
             // other custom error messages
         ]);
-        $category= request()->input('category');
-        if ($category == 'NULL')
-        {
-            $category = null;
-        }
-        $position = request()->get('position');
-        if ($category && !Str::contains($position,'sidebar'))
-        {
-            throw ValidationException::withMessages([
-                'position' => ['Only sidebar positions can be chosen with this category.'],
-            ]);
-        }
+        // $category= request()->input('category');
+        // if ($category == 'NULL')
+        // {
+        //     $category = null;
+        // }
+        // $position = request()->get('position');
+        // if ($category && !Str::contains($position,'sidebar'))
+        // {
+        //     throw ValidationException::withMessages([
+        //         'position' => ['Only sidebar positions can be chosen with this category.'],
+        //     ]);
+        // }
         $image = $request->file('ad_image')->getClientOriginalName();
         $imageName = time() . '_' . $image;
 
@@ -70,8 +69,7 @@ class AdvertisementController extends Controller
         Advertisement::create([
             'name' => request()->get('c_name'),
             'url' => request()->get('url'),
-            'position' => $position,
-            'category_id'=>$category,
+            'position' => request()->get('position'),
             'ad_path' => $ad_path,
             'status' => true,
             'expiry_date' => request()->get('expiry_date'),
@@ -105,22 +103,21 @@ class AdvertisementController extends Controller
             'c_name' => 'required|string|max:255',
             'ad_image' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'position' => 'required|string',
-            'category'=>'nullable',
             'url' => 'required|url',
             'expiry_date' => 'required|date|after_or_equal:today',
         ]);
-        $category= request()->input('category');
-        if ($category == 'NULL')
-        {
-            $category = null;
-        }
-        $position = request()->get('position');
-        if ($category && !Str::contains($position,'sidebar'))
-        {
-            throw ValidationException::withMessages([
-                'position' => ['Only sidebar positions can be chosen with this category.'],
-            ]);
-        }
+        // $category= request()->input('category');
+        // if ($category == 'NULL')
+        // {
+        //     $category = null;
+        // }
+        // $position = request()->get('position');
+        // if ($category && !Str::contains($position,'sidebar'))
+        // {
+        //     throw ValidationException::withMessages([
+        //         'position' => ['Only sidebar positions can be chosen with this category.'],
+        //     ]);
+        // }
         if ($request->hasFile('ad_image')) {
             if ($advertisement->ad_path) {
                 Storage::disk('public')->delete($advertisement->ad_path);
@@ -133,8 +130,7 @@ class AdvertisementController extends Controller
                 'name' => request()->get('c_name'),
                 'url' => request()->get('url'),
                 'ad_path' => $ad_path,
-                'position' =>$position,
-                'category_id'=>$category,
+                'position' => request()->get('position'),
                 'status' => true,
                 'expiry_date' => request()->get('expiry_date'),
             ]);
@@ -143,7 +139,6 @@ class AdvertisementController extends Controller
                 'name' => request()->get('c_name'),
                 'url' => request()->get('url'),
                 'position' => request()->get('position'),
-                'category_id'=>$category,
                 'status' => true,
                 'expiry_date' => request()->get('expiry_date'),
             ]);

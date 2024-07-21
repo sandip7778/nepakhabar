@@ -129,7 +129,7 @@
                         <li class="dropdown">
                             <a href="#" class="nav-link"><i
                                     class="fas fa-file"></i> <span>Block Design</span></a>
-                            
+
                         </li>
                         <li class="menu-header">Manage Post</li>
                         <li class="dropdown">
@@ -145,7 +145,7 @@
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('posts.create') }}">Create Post</a></li>
                                 <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>
-                               
+
                             </ul>
                         </li>
                         {{-- <li class="menu-header">Starter</li> --}}
@@ -186,7 +186,7 @@
                                     class="fas fa-network-wired"></i> <span>Settings</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{route('site.show',1)}}">Site Setting</a></li>
-                                <li><a class="nav-link" href="{{ route('tranding.show',1) }}">Tranding Post Count</a></li>
+                                <li><a class="nav-link" href="{{ route('tranding.show',1) }}">Trending Post Count</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">

@@ -66,14 +66,15 @@
                                                         <option value="belowTitle" >Show News- Below Title</option>
                                                         <option value="aboveLike" >Show News- Above Like/Share</option>
                                                         <option value="belowLike" >Show News- Below Like/Share</option>
-                                                        <option value="betweenText" >Show News- Between Text</option>
+                                                        <option value="aboveRecent" >Show News- Above Recent</option>
+                                                        <option value="belowRecent" >Show News- Below Recent</option>
                                                 </select>
                                                 @error('position')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-12">
+                                        {{-- <div class="col-lg-4 col-md-12">
                                             <div class="form-group">
                                                 <label>Advertisement Category</label>
 
@@ -89,7 +90,7 @@
                                                 <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="col-lg-4 col-md-12">
                                             <label class="f_text" for="ad_image">Images</label>

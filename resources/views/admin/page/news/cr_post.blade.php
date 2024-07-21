@@ -31,7 +31,7 @@ Create News
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12">
                                         <div class="form-group">
-                                            <label>Post Title</label>
+                                            <label>Post Title*</label>
                                             <input type="text" name="title" class="form-control"
                                                 value="{{ old('title') }}" required>
                                             @error('title')
@@ -41,7 +41,27 @@ Create News
                                     </div>
                                     <div class="col-lg-4 col-md-12">
                                         <div class="form-group">
-                                            <label>Post Categories</label>
+                                            <label>Sub-Title</label>
+                                            <input type="text" name="sub_title" class="form-control"
+                                                value="{{ old('sub_title') }}">
+                                            @error('sub_title')
+                                            <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <label>Context</label>
+                                            <input type="text" name="context" class="form-control"
+                                                value="{{ old('context') }}" placeholder="नयाँ वर्ष">
+                                            @error('context')
+                                            <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="form-group">
+                                            <label>Post Categories*</label>
 
                                             <select class="form-control" name="category" required>
                                                 <option value="" selected>Select</option>
@@ -97,7 +117,17 @@ Create News
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-12">
-                                        <label class="f_text" for="exampleInputUsername1">Select Status</label>
+                                        <div class="form-group">
+                                            <label>Image/Youtube Description</label>
+                                            <input type="text" name="image_desc" class="form-control"
+                                                value="{{ old('image_desc') }}">
+                                            @error('image_desc')
+                                            <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <label class="f_text" for="select status">Select Status*</label>
                                         <select class="form-control" name="status" value="{{ old('status') }}" required>
                                             <option value="1" >Active</option>
                                             <option value="0">Disable</option>
@@ -107,20 +137,21 @@ Create News
                                         @enderror
                                     </div>
                                     <div class="col-lg-4 col-md-12">
-                                        <label class="f_text" for="exampleInputUsername1">Is Trending</label>
+                                        <label class="f_text" for="exampleInputUsername1">Trending No.*</label>
                                         <select class="form-control" name="trending_status" value="{{ old('trending_status') }}"
                                             required>
-                                            <option value="0">No</option>
-                                            <option value="1">Yes</option>
-
+                                            <option value="0">Hide</option>
+                                            @for ($i=1;$i<=$trendingCount;$i++)
+                                            <option value="{{ $i }}" {{ old('trending_status') ? 'selected' : '' }}>{{ $i }}</option>
+                                            @endfor
                                         </select>
-                                        @error('status')
+                                        @error('trending_status')
                                         <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="col-lg-12 col-md-12 mt-3">
                                         <div class="form-group">
-                                            <label>Post Description (for Advertisement : {{Advertisement}})</label>
+                                            <label>Post Description*</label>
                                             <textarea class="summernote" name="description"
                                                  required>{{ old('description') }}</textarea>
                                             @error('description')
