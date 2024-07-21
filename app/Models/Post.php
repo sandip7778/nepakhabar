@@ -10,7 +10,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','slug','category_id','user_id','share','trending_status','youtube', 'meta_tag','meta_keyword','path','status','description'];
+    protected $fillable = ['title','sub_title','slug','category_id','user_id','share','trending_status','youtube','image_desc', 'meta_tag','meta_keyword','path','status','context','description'];
 
     public static function boot()
     {
@@ -18,15 +18,20 @@ class Post extends Model
 
         // Automatically generate a slug when saving the model
         static::creating(function ($post) {
-            $post->slug = Str::slug($post->title);
+            $post->slug = $post->generateSlug();
         });
 
         // Optionally, update the slug when updating the model
         static::updating(function ($post) {
-            $post->slug = Str::slug($post->title);
+            $post->slug = $post->generateSlug();
         });
 
 
+    }
+
+    public function generateSlug()
+    {
+        return $this->id . '-' . Str::slug($this->title);
     }
 
 

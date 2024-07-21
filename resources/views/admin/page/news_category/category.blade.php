@@ -23,6 +23,38 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Choose Position</label>
+                            <select class="form-control" name="position" required>
+                                <option value="NULL" {{ old('position')==null ? 'selected' : '' }}>None
+                                </option>
+                                <option value="1" {{ old('position')==1 ? 'selected' : '' }}>Position 1
+                                </option>
+                                <option value="2" {{ old('position')==2 ? 'selected' : '' }}>Position 2
+                                </option>
+                                <option value="3" {{ old('position')==3 ? 'selected' : '' }}>Position 3
+                                </option>
+                                <option value="4" {{ old('position')==4 ? 'selected' : '' }}>Position 4
+                                </option>
+                                <option value="5" {{ old('position')==5 ? 'selected' : '' }}>Position 5
+                                </option>
+                                <option value="6" {{ old('position')==6 ? 'selected' : '' }}>Position 6
+                                </option>
+                                <option value="7" {{ old('position')==7 ? 'selected' : '' }}>Position 7
+                                </option>
+                                <option value="8" {{ old('position')==8 ? 'selected' : '' }}>Position 8
+                                </option>
+                                <option value="9" {{ old('position')==9 ? 'selected' : '' }}>Position 9
+                                </option>
+                                <option value="10" {{ old('position')==10 ? 'selected' : '' }}>Position 10
+                                </option>
+                            </select>
+                            @error('position')
+                                <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
@@ -132,24 +164,23 @@
                                                 <th>SN</th>
                                                 <th>Name</th>
                                                 <th>Total Posts</th>
+                                                <th>Position</th>
                                                 <th>Show/Hide Header</th>
                                                 <th>Show/Hide Footer</th>
                                                 <th>Block Design</th>
-                                                <th>Updated Date</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($categories as $key => $category)
+                                            @foreach ($categories as $index => $category)
                                                 <tr>
-                                                    <td>{{ $key + 1 }}</td>
+                                                    <td>{{ $index + 1 }}</td>
                                                     <td>{{ $category->name }}</td>
                                                     <td>{{ $category->posts->count() }}</td>
+                                                    <td>{{ $category->position == NULL?'Not Defined':'Position '. $category->position }}</td>
                                                     <td>{{ $category->header_status?'Show':'Hide' }}</td>
                                                     <td>{{ $category->footer_status?'Show':'Hide' }}</td>
                                                     <td> {{ $category->block == NULL?'Hidden': 'Design ' . $category->block }}</td>
-
-                                                    <td>{{ $category->updated_at->format('d-M-Y') }}</td>
                                                     <td class="d-flex justify-content-center align-items-center">
                                                         <form class="pointer d-inline"
                                                             action="{{ route('categories.destroy', $category->id) }}"

@@ -8,17 +8,29 @@ NepaKhabar-{{ $post->title }}
     <div class="container">
         <div class="row">
             <div class="col-lg-8 posts-list">
-                <div class=" mb-2">
-                    <div class="">
-                        @foreach ($advertisements->take(1) as $advertisement)
-                        @if ($advertisement->position == 'footer')
-                        <a href="{{ $advertisement->url }}" target="_blank"><img src="{{ $advertisement->ad_path }}"
-                                style="width:100%" alt="{{ $advertisement->name }} Image"></a>
-                        @endif
-                        @endforeach
+                <div class="row mb-3">
+                    <div class="col-xl-12">
+                        <div class="">
+                            @foreach ($advertisements as $advertisement)
+                                @if ($advertisement->position == 'abovePicture')
+                                    <a href="{{ $advertisement->url }}" target="_blank"><img
+                                            src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
+                                            alt="{{ $advertisement->name }} Image"></a>
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 <div class="single-post">
+                    <div class="d-flex justify-content-center ">
+                        <h3 style="color:red;">{{ $post->context }}</h3>
+                    </div>
+                    <div class="tranding_text_box ">
+                        <h2 class="">{{ $post->title }}</h2>
+                    </div>
+                    {{-- <div class="tranding_text_box ">
+                        <h5>{{ $post->sub_title }}</h5>
+                    </div> --}}
                     @if($post->path)
                     <div class="feature-img">
                         <img class="img-fluid" src="{{ Storage::url($post->path) }}" class="tranding_image"
@@ -31,9 +43,10 @@ NepaKhabar-{{ $post->title }}
                             allowfullscreen></iframe>
                     </div>
                     @endif
+                    <span style="font-weight: 500">{{ $post->image_desc }}</span>
+
+
                     <div class="blog_details">
-                        <h2>{{ $post->title }}
-                        </h2>
                         <ul class="blog-info-link mt-3 mb-4">
                             <li><a href="#">{{ $post->category->name }}</a></li>
                             <li>&nbsp; &nbsp; <i class="fa fa-calendar"></i>
@@ -42,10 +55,36 @@ NepaKhabar-{{ $post->title }}
                             <li>&nbsp; &nbsp; <i class="fa fa-user"></i>
                                 {{ $post->user->name }}</li>
                         </ul>
+                        <div class="row mb-3">
+                            <div class="col-xl-12">
+                                <div class="">
+                                    @foreach ($advertisements as $advertisement)
+                                        @if ($advertisement->position == 'belowTitle')
+                                            <a href="{{ $advertisement->url }}" target="_blank"><img
+                                                    src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
+                                                    alt="{{ $advertisement->name }} Image"></a>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
                         <div class="description-post">
-                            {!! $post->description !!}
+                            {!! $modified_description!!}
                         </div>
 
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-xl-12">
+                        <div class="">
+                            @foreach ($advertisements as $advertisement)
+                                @if ($advertisement->position == 'aboveLike')
+                                    <a href="{{ $advertisement->url }}" target="_blank"><img
+                                            src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
+                                            alt="{{ $advertisement->name }} Image"></a>
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 <div class="navigation-top">
@@ -80,6 +119,19 @@ NepaKhabar-{{ $post->title }}
                             <li><a href="{{ route('posts.share', ['post' => $post, 'network' => 'linkedin']) }}"
                                     target="_blank"><i class="fab fa-linkedin share_icon"></i></a></li>
                         </ul>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-xl-12">
+                        <div class="">
+                            @foreach ($advertisements as $advertisement)
+                                @if ($advertisement->position == 'belowLike')
+                                    <a href="{{ $advertisement->url }}" target="_blank"><img
+                                            src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
+                                            alt="{{ $advertisement->name }} Image"></a>
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 <div class="comments-area">
@@ -159,18 +211,8 @@ NepaKhabar-{{ $post->title }}
         <div class="col-lg-4">
             <div class="blog_right_sidebar">
                 <aside class="">
-                    @foreach ($advertisements as $advertisement)
-                    @if ($advertisement->position == 'sidebar4')
-                    <aside class="single_sidebar_widget">
-                        <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }} "
-                            alt="{{ $advertisement->name }} image">
-                    </aside>
-                    @endif
-                    @endforeach
-                </aside>
-                <aside class="">
-                    @foreach ($advertisements as $advertisement)
-                    @if ($advertisement->position == 'sidebar2')
+                    @foreach ($singlePageAdvertisements as $advertisement)
+                    @if ($advertisement->position == 'aboveRecent')
                     <aside class="single_sidebar_widget">
                         <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }} "
                             alt="{{ $advertisement->name }} image">
@@ -208,19 +250,17 @@ NepaKhabar-{{ $post->title }}
                     @endforeach
                 </aside>
 
-            
+
                 <aside class="single_sidebar_widget instagram_feeds">
-                    @foreach ($advertisements as $advertisement)
-                    @if ($advertisement->position == 'sidebar1')
+                    @foreach ($singlePageAdvertisements as $advertisement)
+                    @if ($advertisement->position == 'belowRecent')
                     <aside class="single_sidebar_widget">
                         <img class="side_bar_ads" src="{{ Storage::url($advertisement->ad_path) }} "
                             alt="{{ $advertisement->name }} image">
                     </aside>
                     @endif
                     @endforeach
-
                 </aside>
-
             </div>
         </div>
     </div>

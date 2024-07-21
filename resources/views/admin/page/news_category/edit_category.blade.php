@@ -24,6 +24,38 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Choose Position</label>
+                                <select class="form-control" name="position" required >
+                                    <option value="NULL" {{ old('position',$category->position)==null ? 'selected' : '' }}>None
+                                    </option>
+                                    <option value="1" {{ old('position',$category->position)==1 ? 'selected' : '' }}>Position 1
+                                    </option>
+                                    <option value="2" {{ old('position',$category->position)==2 ? 'selected' : '' }}>Position 2
+                                    </option>
+                                    <option value="3" {{ old('position',$category->position)==3 ? 'selected' : '' }}>Position 3
+                                    </option>
+                                    <option value="4" {{ old('position',$category->position)==4 ? 'selected' : '' }}>Position 4
+                                    </option>
+                                    <option value="5" {{ old('position',$category->position)==5 ? 'selected' : '' }}>Position 5
+                                    </option>
+                                    <option value="6" {{ old('position',$category->position)==6 ? 'selected' : '' }}>Position 6
+                                    </option>
+                                    <option value="7" {{ old('position',$category->position)==7 ? 'selected' : '' }}>Position 7
+                                    </option>
+                                    <option value="8" {{ old('position',$category->position)==8 ? 'selected' : '' }}>Position 8
+                                    </option>
+                                    <option value="9" {{ old('position',$category->position)==9 ? 'selected' : '' }}>Position 9
+                                    </option>
+                                    <option value="10" {{ old('position',$category->position)==10 ? 'selected' : '' }}>Position 10
+                                    </option>
+                                </select>
+                                @error('position')
+                                    <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
 
                             <div class="form-group">
                                 <label>Show/Hide Header</label>

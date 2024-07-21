@@ -28,6 +28,7 @@
                                             <th>SN</th>
                                             <th>Name</th>
                                             <th>Link</th>
+                                            <th>Category</th>
                                             <th>Position</th>
                                             <th>Status</th>
                                             <th>Create Date</th>
@@ -42,7 +43,8 @@
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ $advertisement->name }}</td>
-                                                <td>{{ $advertisement->url }}</td>
+                                                <td class="text_limit">{{ $advertisement->url }}</td>
+                                                <td>{{ $advertisement->category?$advertisement->category->name:'Not Assigned' }}</td>
                                                 <td>{{ $advertisement->position }}</td>
 
                                                 <td>

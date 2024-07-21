@@ -7,15 +7,18 @@ NepaKhabar-{{ $post->category->name }}
 
 @section('content')
 
+<h2 class="mt-20 ml-50 "><span class="badge bg-danger text-white fs-3 pt-2">{{ $post->category->name }}</span></h2>
 
-<div class="weekly2-news-area gray-bg pt-50 pb-30 mt-50 mb-50">
+<div class="weekly2-news-area gray-bg pt-50 pb-30 mt-30 mb-50">
     <div class="container ">
         <div class="row">
             <div class="col-lg-12">
                 <div class="trending-bottom">
-                   
+                    @foreach ($posts->take(1) as $post)
+                        @include('pages.shared.welcome_post')
+                    @endforeach
                     <div class="row">
-                        @foreach ($posts as $trending)
+                        @foreach ($posts->skip(1) as $trending)
                         <div class="col-lg-3 p-2 pt-1">
                             <div class="single-bottom mb-35 p-2 card">
                                 <div class="trend-bottom-img mb-30">
