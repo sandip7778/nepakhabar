@@ -2,15 +2,14 @@
     <article>
         <a href="{{ route('posts.show', $post->slug) }}">
             <div class="justify-content-center">
-
                 <div class="col-lg-12">
-                    <div class="d-flex justify-content-center ">
-                        <h3 style="color:red;">{{ $post->context }}</h3>
+                    <div class="d-flex justify-content-center mb-4">
+                        <h1 class="latest_news ">{{ $post->context }}</h1>
                     </div>
-                    <div class="tranding_text_box ">
-                        <h1 class="">{{ $post->title }}</h1>
+                    <div class="tranding_text_box mb-2">
+                        <h1 class="text_title_h1 text_limit">{{ $post->title }}</h1>
                     </div>
-                    <h4 style="font-weight: 600">{{ $post->sub_title }}</h4>
+                    <h4 style="" class="sub_heading text_center mb-3 text_limit">{{ $post->sub_title }}</h4>
                 </div>
                 <ul class="blog-info-link row justify-content-center">
                     <li><a href="{{ route('categories.show', $post->category_id) }}">
@@ -24,19 +23,19 @@
                 @if ($post->path)
                 <div class="col-lg-12">
                     <div class="row justify-content-center mt-3 braking_p_img">
-                        <img src="{{ Storage::url($post->path) }}" alt="{{ $post->title }}  फाेटाे"
+                        <img src="{{ Storage::url($post->path) }}" alt="{{ $post->title }}"
                             class="tranding_image">
                     </div>
-                <span style="font-weight: 500">{{ $post->image_desc }}</span>
+                    <p class="text_center text_limit mt-3">{{ $post->image_desc }}</p>
 
                 </div>
 
                 @else
                 <div class="col-12 mt-3 video-items ">
-                    <iframe src="{{ $post->link }}" frameborder="0" class="tranding_image"
+                    <iframe src="{{ $post->link }}" frameborder="0" width="100%" height="600" class=""
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
-                        <span style="font-weight: 500">{{ $post->image_desc }}</span>
+                        <p class="mt-3 text_center text_limit">{{ $post->image_desc }}</p>
                 </div>
                 @endif
             </div>

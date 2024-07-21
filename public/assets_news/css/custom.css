@@ -6,7 +6,7 @@ body{
     font-weight: 800;
 }
 .ticker{height: 35px;}
-
+.text_center{text-align: center;}
 .facebook_page{
     width: 100%;
     height: 15rem;
@@ -43,14 +43,14 @@ body{
     font-weight: 900;
 }
 .tipni{color: white;}
-.text_title_h1{font-weight: 900;  color: var(--secondary_color);}
+.text_title_h1{font-weight: 900; font-size: 3.5rem;  color: var(--secondary_color);}
 .np-trand-sub-tex{font-size: 22px; font-weight: 400; margin-top: 24px; margin-bottom: 24px; text-align: center; opacity: 68;}
 .border__{
     /* border-top: 1px solid rgb(190, 190, 190); */
     border-bottom: 1px solid rgb(190, 190, 190);
 }
 
-.text_limit {overflow: hidden; display: -webkit-box; text-overflow: ellipsis;word-wrap: break-word; -webkit-line-clamp: 2; line-clamp: 2;-webkit-box-orient: vertical;line-height: 1.8em;
+.text_limit {overflow: hidden; display: -webkit-box; text-overflow: ellipsis;word-wrap: break-word; -webkit-line-clamp: 2; line-clamp: 2;-webkit-box-orient: vertical;line-height: 1.5em;
  }
 
  .action_btn {
@@ -214,8 +214,9 @@ a:hover{
 }
 .tranding_image{
     width: 100%;
+    /* min-width: 1200px; */
     height: 100%;
-    max-height: 650px;
+    max-height: 900px;
     object-fit: cover;
     border-radius: 5px;
 }
@@ -424,7 +425,6 @@ a:hover{
 .blog_right_sidebar .single_sidebar_widget{padding: 0px;}
 .comments-area{margin: 0px;}
 .comment-form{margin: 0px;}
-
 @media screen and (max-width: 1000px) {
     .category_manu{
         display: none;
@@ -439,4 +439,8 @@ a:hover{
         font-weight: 900;
     }
     /* .side_post_img{width: 100%; height: 150px;} */
+}
+@media screen and (max-width: 600px) {
+   .text_title_h1{font-size: 22px;}
+   .sub_heading{font-size: 14px;}
 }

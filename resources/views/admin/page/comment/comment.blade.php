@@ -81,13 +81,13 @@
                                                                     action="{{ route('posts.comments.store', $comment->post->slug) }}"
                                                                     method="POST">
                                                                     @csrf
-                                                                    <input type="hidden" name="post_id"
+                                                                    <input type="hidden" name="post_id" 
                                                                         value="{{ $comment->post->id }}">
                                                                     <input type="hidden" name="parent_id"
                                                                         value="{{ $comment->id }}">
-                                                                    <textarea name="content" required></textarea>
+                                                                    <textarea name="content" class="form-control" required ></textarea>
                                                                     <button type="submit"
-                                                                        class="btn-outline-info btn-sm">Reply</button>
+                                                                    class="btn btn-danger mt-2 mb-2">Reply</button>
                                                                 </form>
                                                                 {{-- <a href="#" class="btn-reply text-uppercase">reply</a> --}}
                                                             </div>

@@ -6,7 +6,7 @@
                 @foreach ($advertisements as $advertisement)
                 @if ($advertisement->position == 'center1')
                 <a href="{{ $advertisement->url }}" target="_blank"><img
-                        src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
+                        src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%; height: 95px;"
                         alt="{{ $advertisement->name }}  फाेटाे"></a>
                 @endif
                 @endforeach

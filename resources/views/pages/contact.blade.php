@@ -54,7 +54,7 @@ NepaKhabar-Contact-Us
                             <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                             <div class="media-body">
                                 <h3><a href="tel:{{ $site->phone }}">{{ $site->phone }}</a></h3>
-                                <p>Mon to Fri 9am to 6pm</p>
+                                <p>Call US</p>
                             </div>
                         </div>
                         <div class="media contact-info">

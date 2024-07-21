@@ -6,7 +6,7 @@
                 @foreach ($advertisements as $advertisement)
                     @if ($advertisement->position == 'center2')
                         <a href="{{ $advertisement->url }}" target="_blank"><img
-                                src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%"
+                                src="{{ Storage::url($advertisement->ad_path) }}" style="width:100%; height: 95px;"
                                 alt="{{ $advertisement->name }}  फाेटाे"></a>
                     @endif
                 @endforeach
@@ -37,7 +37,7 @@
                 @foreach ($category->posts->take(1) as $posts_data)
                     <div class="trending-top mb-30">
                         <div class="trend-top-img">
-                            <img src="{{ Storage::url($posts_data->path) }}" alt="{{ $posts_data->title }}  फाेटाे"
+                            <img src="{{ Storage::url($posts_data->path) }}" alt="{{ $posts_data->title }}"
                                 class="tranding_image">
                             <div class="trend-top-cap">
                                 <h2 class="text_limit text-red">
@@ -104,7 +104,7 @@
             <!-- size of sidebar ads boxads  height :300px width 350px  -->
             <div class="col-lg-4">
                 @foreach ($advertisements as $advertisement)
-                    @if ($advertisement->category_id == $category->id)
+                 
                             @if ($advertisement->position == 'sidebar1')
                         <aside class="single_sidebar_widget mb-4">
                             <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
@@ -135,7 +135,7 @@
                                         alt="{{ $advertisement->name }} Image"></a>
                         </aside>
                             @endif
-                    @endif
+               
                 @endforeach
             </div>
         </div>

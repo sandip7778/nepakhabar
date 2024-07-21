@@ -22,32 +22,31 @@ NepaKhabar-{{ $post->title }}
                     </div>
                 </div>
                 <div class="single-post">
-                    <div class="d-flex justify-content-center ">
+                    {{-- <div class="d-flex justify-content-center ">
                         <h3 style="color:red;">{{ $post->context }}</h3>
-                    </div>
-                    <div class="tranding_text_box ">
-                        <h2 class="">{{ $post->title }}</h2>
-                    </div>
-                    {{-- <div class="tranding_text_box ">
-                        <h5>{{ $post->sub_title }}</h5>
                     </div> --}}
+                    <div class="tranding_text_box ">
+                        <h1 class="text_title_h1 text_limit">{{ $post->title }}</h1>
+                    </div>
+                   <div class="tranding_text_box ">
+                        <h5>{{ $post->sub_title }}</h5>
+                    </div>
                     @if($post->path)
                     <div class="feature-img mt-4">
                         <img class="img-fluid" src="{{ Storage::url($post->path) }}" class="tranding_image"
-                            alt="{{ $post->title }} Image">
+                            alt="{{ $post->title }}">
                     </div>
                     @else
                     <div class="col-12 mt-3 video-items text-center ">
-                        <iframe src="{{ $post->link }}" frameborder="0" class="tranding_image"
+                        <iframe src="{{ $post->link }}" frameborder="0"  width="100%" height="600" class="tranding_image"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                     </div>
                     @endif
-                    <span style="font-weight: 500">{{ $post->image_desc }}</span>
-
+                    <p class="mt-3">{{ $post->image_desc }}</p>
 
                     <div class="blog_details">
-                        <ul class="blog-info-link mt-3 mb-4">
+                        <ul class="blog-info-link mt-2 mb-4">
                             <li><a href="#">{{ $post->category->name }}</a></li>
                             <li>&nbsp; &nbsp; <i class="fa fa-calendar"></i>
                                 {{ toFormattedNepaliDate($post->created_at) }}
@@ -121,7 +120,7 @@ NepaKhabar-{{ $post->title }}
                         </ul>
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mt-3">
                     <div class="col-xl-12">
                         <div class="">
                             @foreach ($advertisements as $advertisement)
