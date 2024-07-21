@@ -19,8 +19,9 @@ NepaKhabar-{{ $post->title }}
                     </div>
                 </div>
                 <div class="single-post">
+                    <h2 class="mt-2 text_title_h1">{{ $post->title }}</h2>
                     @if($post->path)
-                    <div class="feature-img">
+                    <div class="feature-img mt-4">
                         <img class="img-fluid" src="{{ Storage::url($post->path) }}" class="tranding_image"
                             alt="{{ $post->title }} Image">
                     </div>
@@ -32,8 +33,8 @@ NepaKhabar-{{ $post->title }}
                     </div>
                     @endif
                     <div class="blog_details">
-                        <h2>{{ $post->title }}
-                        </h2>
+                        {{-- Sub Heading Title  --}}
+                    <p class="">{{ $post->title }}</p>
                         <ul class="blog-info-link mt-3 mb-4">
                             <li><a href="#">{{ $post->category->name }}</a></li>
                             <li>&nbsp; &nbsp; <i class="fa fa-calendar"></i>
@@ -66,7 +67,7 @@ NepaKhabar-{{ $post->title }}
                                 </form>
                                 @endif
                                 <span><i class="fas fa-eye"></i> &nbsp; {{ $post->views }} views</span>
-                            </span>Share This Post On Your Friends
+                            </span>
                         </p>
                         <span>{{ $post->share }} shares</span>
                         <ul class="social-icons">
@@ -208,7 +209,7 @@ NepaKhabar-{{ $post->title }}
                     @endforeach
                 </aside>
 
-            
+
                 <aside class="single_sidebar_widget instagram_feeds">
                     @foreach ($advertisements as $advertisement)
                     @if ($advertisement->position == 'sidebar1')

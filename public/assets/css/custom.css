@@ -1,5 +1,6 @@
 :root {
     --primary: rgb(242, 79, 19);
+    /* --primar_s_c:  */
     --sidebar_color: rgb(201, 60, 8);
     --sidebar_color_ligh: rgba(255, 244, 240, 0.852);
     --border_light: rgba(252, 200, 181, 0.852);
@@ -35,7 +36,7 @@
  }
 
 #sidebar-wrapper {
-    background-color: black;
+    background-color: rgb(95, 50, 230);
     color: white;
     height: 100%;
 }
@@ -156,3 +157,21 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu > li.active > a:before {
     width: 150px;
     height: 150px;
 }
+
+
+.add_product_img_box{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    height: 5rem;  padding: 10px;  background-color: rgb(251, 251, 251);
+border: 1px dashed rgb(39, 17, 179);   border-radius: 5px;
+text-align: center;
+}
+#add_pro_forom form input[type="file"]{display: none;}
+.add_product_img_box label{width: 100%; height: 100%; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; }
+#images{display: flex;}
+#images img{width: 8rem;height: 8rem; border-radius: 5px; background-color: aliceblue; padding: 5px; margin: 5px;}
+
+.min_w{min-width: 10rem}
