@@ -9,6 +9,7 @@ use App\Models\Advertisement;
 use Illuminate\Support\Str;
 use Mews\Purifier\Facades\Purifier;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdvertisementController extends Controller
@@ -47,7 +48,18 @@ class AdvertisementController extends Controller
             'expiry_date.after_or_equal' => 'The expiry date must be today or later.',
             // other custom error messages
         ]);
-
+        // $category= request()->input('category');
+        // if ($category == 'NULL')
+        // {
+        //     $category = null;
+        // }
+        // $position = request()->get('position');
+        // if ($category && !Str::contains($position,'sidebar'))
+        // {
+        //     throw ValidationException::withMessages([
+        //         'position' => ['Only sidebar positions can be chosen with this category.'],
+        //     ]);
+        // }
         $image = $request->file('ad_image')->getClientOriginalName();
         $imageName = time() . '_' . $image;
 
@@ -94,6 +106,18 @@ class AdvertisementController extends Controller
             'url' => 'required|url',
             'expiry_date' => 'required|date|after_or_equal:today',
         ]);
+        // $category= request()->input('category');
+        // if ($category == 'NULL')
+        // {
+        //     $category = null;
+        // }
+        // $position = request()->get('position');
+        // if ($category && !Str::contains($position,'sidebar'))
+        // {
+        //     throw ValidationException::withMessages([
+        //         'position' => ['Only sidebar positions can be chosen with this category.'],
+        //     ]);
+        // }
         if ($request->hasFile('ad_image')) {
             if ($advertisement->ad_path) {
                 Storage::disk('public')->delete($advertisement->ad_path);

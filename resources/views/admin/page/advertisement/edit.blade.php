@@ -9,7 +9,7 @@
                 <h1>Advertisement Edit</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="{{ route('posts.index') }}">Post</a></div>
+                    <div class="breadcrumb-item"><a href="{{ route('advertisements.index') }}">Advertisements</a></div>
                     <div class="breadcrumb-item">Advertisement Edit</div>
                 </div>
             </div>
@@ -51,33 +51,42 @@
                                             <div class="form-group">
                                                 <label>Position</label>
                                                 <select class="form-control" name="position" required>
-<<<<<<< HEAD
-                                               
-                                                        <option value="{{ $advertisement->position}}" selected>{{ $advertisement->position}}</option>
-                                                        <option value="header" >Header</option>
-                                                        <option value="center1" >Center 1</option>
-                                                        <option value="center2" >Center 2</option>
-                                                        <option value="center3" >Center 3</option>
-                                                        <option value="sidebar1" >Sidebar 1</option>
-                                                        <option value="sidebar2" >Sidebar 2</option>
-                                                        <option value="sidebar3" >Sidebar 3</option>
-                                                        <option value="sidebar4" >Sidebar 4</option>
-                                                        <option value="footer" >Footer</option>
-=======
                                                     <option value="" selected>Select Position</option>
-                                                        <option value="header" {{ old('position',$advertisement->position) == 'header' ? 'selected' : '' }}>Header</option>
-                                                        <option value="center1" {{ old('position',$advertisement->position) == 'center1' ? 'selected' : '' }}>Center 1</option>
-                                                        <option value="center2" {{ old('position',$advertisement->position) == 'center2' ? 'selected' : '' }}>Center 2</option>
-                                                        <option value="center3" {{ old('position',$advertisement->position) == 'center3' ? 'selected' : '' }}>Center 3</option>
-                                                        <option value="sidebar1" {{ old('position',$advertisement->position) == 'sidebar1' ? 'selected' : '' }}>Sidebar 1</option>
-                                                        <option value="sidebar2" {{ old('position',$advertisement->position) == 'sidebar2' ? 'selected' : '' }}>Sidebar 2</option>
-                                                        <option value="sidebar3" {{ old('position',$advertisement->position) == 'sidebar3' ? 'selected' : '' }}>Sidebar 3</option>
-                                                        <option value="sidebar4" {{ old('position',$advertisement->position) == 'sidebar4' ? 'selected' : '' }}>Sidebar 4</option>
-                                                        <option value="footer" {{ old('position',$advertisement->position) == 'footer' ? 'selected' : '' }}>Footer</option>
->>>>>>> refs/remotes/origin/main
+                                                        <option value="header" {{ old('position',$advertisement->position) == 'header' ? 'selected' : '' }}>Home Page- Header</option>
+                                                        <option value="center1" {{ old('position',$advertisement->position) == 'center1' ? 'selected' : '' }}>Home Page- Center 1</option>
+                                                        <option value="center2" {{ old('position',$advertisement->position) == 'center2' ? 'selected' : '' }}>Home Page- Center 2</option>
+                                                        <option value="center3" {{ old('position',$advertisement->position) == 'center3' ? 'selected' : '' }}>Home Page- Center 3</option>
+                                                        <option value="sidebar1" {{ old('position',$advertisement->position) == 'sidebar1' ? 'selected' : '' }}>Home Page- Sidebar 1</option>
+                                                        <option value="sidebar2" {{ old('position',$advertisement->position) == 'sidebar2' ? 'selected' : '' }}>Home Page- Sidebar 2</option>
+                                                        <option value="sidebar3" {{ old('position',$advertisement->position) == 'sidebar3' ? 'selected' : '' }}>Home Page- Sidebar 3</option>
+                                                        <option value="sidebar4" {{ old('position',$advertisement->position) == 'sidebar4' ? 'selected' : '' }}>Home Page- Sidebar 4</option>
+                                                        <option value="footer" {{ old('position',$advertisement->position) == 'footer' ? 'selected' : '' }}>Home Page- Footer</option>
+                                                        <option value="abovePicture" {{ old('position',$advertisement->position) == 'abovePicture' ? 'selected' : '' }}>Show News- Above Picture/Youtube</option>
+                                                        <option value="belowTitle" {{ old('position',$advertisement->position) == 'belowTitle' ? 'selected' : '' }}>Show News- Below Title</option>
+                                                        <option value="aboveLike" {{ old('position',$advertisement->position) == 'aboveLike' ? 'selected' : '' }}>Show News- Above Like/Share</option>
+                                                        <option value="belowLike" {{ old('position',$advertisement->position) == 'belowLike' ? 'selected' : '' }}>Show News- Below Like/Share</option>
+                                                        <option value="aboveRecent" {{ old('position',$advertisement->position) == 'aboveRecent' ? 'selected' : '' }}>Show News- Above Recent</option>
+                                                        <option value="belowRecent" {{ old('position',$advertisement->position) == 'belowRecent' ? 'selected' : '' }}>Show News- Below Recent</option>
                                                 </select>
                                                 @error('position')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-12">
+                                            <div class="form-group">
+                                                <label>Advertisement Category</label>
+
+                                                <select class="form-control" name="category" required>
+                                                    <option value="NULL" selected>No Category</option>
+                                                    @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}"
+                                                        {{ old('category', $advertisement->category_id) == $category->id? 'selected' : '' }}>{{ $category->name }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('category')
+                                                <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
                                         </div>
@@ -92,7 +101,7 @@
                                         <div class="col-lg-4 col-md-12 mt-3">
                                             <div class="form-group">
                                                 <label>Goto Link</label>
-                                                <input type="url"  name="url" class="form-control" value="{{ old('url',$advertisement->description) }}" required></input>
+                                                <input type="url"  name="url" class="form-control" value="{{ old('url',$advertisement->url) }}" required></input>
                                                 @error('url')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>
                                                 @enderror
@@ -114,7 +123,7 @@
                                             </div>
                                         @endif
 
-                                        <div class="col-lg-8 col-md-12">
+                                        <div class="col-12 mt-3">
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-danger">Publish</button>
                                             </div>

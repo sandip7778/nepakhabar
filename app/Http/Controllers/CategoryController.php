@@ -16,9 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy('updated_at', 'desc')->paginate(10);
+        $categories = Category::orderBy('position', 'asc')->paginate(10);
         $posts = Post::all();
-        return view('admin.page.news_category.category' , compact('categories'));
+        return view('admin.page.news_category.category', compact('categories'));
     }
 
     /**
@@ -35,27 +35,32 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'name'=> 'required|string|unique:categories,name|min:2|max:255',
+            'name' => 'required|string|unique:categories,name|min:2|max:255',
             'footer_status' => 'required|boolean',
             'header_status' => 'required|boolean',
+            'position' => 'unique:categories,position',
             'block' => 'required'
         ]);
 
         // $category = Category::create($validate);
         $block = $request->input('block');
-        if ($block == 'hide')
-        {
+        if ($block == 'hide') {
             $block = null;
+        }
+        $position = $request->input('position');
+        if ($position == 'NULL') {
+            $position = null;
         }
 
         Category::create([
             'name' => request()->get('name'),
             'footer_status' => request()->get('footer_status'),
             'header_status' => request()->get('header_status'),
+            'position' => $position,
             'block' => $block,
         ]);
 
-        return redirect()->route('categories.index')->with('success','Category Created Successfully.');
+        return redirect()->route('categories.index')->with('success', 'Category Created Successfully.');
     }
 
     /**
@@ -65,13 +70,12 @@ class CategoryController extends Controller
     {
         // dd($category);
         $threeDay = Carbon::now()->subDays(3);
-        $posts = Post::where('category_id', $id)->orderBy('updated_at','DESC')->paginate(20);
-        foreach($posts as $post)
-        {
+        $posts = Post::where('category_id', $id)->orderBy('updated_at', 'DESC')->paginate(20);
+        foreach ($posts as $post) {
             $post->description = Purifier::clean($post->description);
         }
-        $trendings = Post::where('updated_at','>=',$threeDay)->inRandomOrder()->limit(3)->get();
-        return view('pages.category', compact('posts','trendings'));
+        $trendings = Post::where('updated_at', '>=', $threeDay)->inRandomOrder()->limit(3)->get();
+        return view('pages.category', compact('posts', 'trendings'));
     }
 
     /**
@@ -89,7 +93,7 @@ class CategoryController extends Controller
     {
 
         $validate = $request->validate([
-            'name'=> 'required|string|min:2|max:255',
+            'name' => 'required|string|min:2|max:255',
             'footer_status' => 'required|boolean',
             'header_status' => 'required|boolean',
             'block' => 'required'
@@ -97,21 +101,38 @@ class CategoryController extends Controller
         ]);
         // dd($request);
         $block = $request->input('block');
-        if ($block == 'hide')
-        {
+        if ($block == 'hide') {
             $block = null;
         }
+        $position = $request->input('position');
+        if ($position == 'NULL') {
+            $position = null;
+        }
+        // dd(intval($position));
+        if ($category->position == intval($position)) {
+            $category->update([
+                'name' => request()->get('name'),
+                'footer_status' => request()->get('footer_status'),
+                'header_status' => request()->get('header_status'),
+                'block' => $block,
+            ]);
+        } else {
+            $request->validate([
+                'position' => 'unique:categories,position',
+            ]);
+            $category->update([
+                'name' => request()->get('name'),
+                'footer_status' => request()->get('footer_status'),
+                'header_status' => request()->get('header_status'),
+                'position' => $position,
+                'block' => $block,
+            ]);
 
-        $category->update([
-            'name' => request()->get('name'),
-            'footer_status' => request()->get('footer_status'),
-            'header_status' => request()->get('header_status'),
-            'block' => $block,
-        ]);
+        }
         // dd($category);
 
 
-        return redirect()->route('categories.index')->with('success','Category Updated Successfully.');
+        return redirect()->route('categories.index')->with('success', 'Category Updated Successfully.');
     }
 
     /**
@@ -120,6 +141,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('categories.index')->with('success','Category Deleted Successfully.');
+        return redirect()->route('categories.index')->with('success', 'Category Deleted Successfully.');
     }
 }

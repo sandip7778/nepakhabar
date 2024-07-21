@@ -45,7 +45,7 @@ Route::middleware(['auth', 'verified','role:admin|editor|reporter'])->group(func
     });
 });
 
-
+//  maintenance auth start
 Route::controller(NewsPageController::class)->group(function(){
     Route::get('/','index')->name('index');
     Route::get('/teams','team')->name('team');
@@ -57,13 +57,15 @@ Route::controller(NewsPageController::class)->group(function(){
 
 Route::resource('categories', CategoryController::class)->only('show');
 Route::resource('posts', PostController::class)->parameters(['posts' => 'slug'])->only('show');
+Route::get('posts/{post}/share/{network}',[NewsPageController::class,'share'])->name('posts.share');
+
+//  maintenance auth end
 
 Route::middleware('auth')->group(function(){
     Route::resource('posts.comments',CommentController::class)->shallow();
     Route::post('posts/{post}/like',[LikeController::class,'like'])->name('posts.like');
     Route::post('posts/{post}/unlike',[LikeController::class,'unlike'])->name('posts.unlike');
 });
-Route::get('posts/{post}/share/{network}',[NewsPageController::class,'share'])->name('posts.share');
 
 
 

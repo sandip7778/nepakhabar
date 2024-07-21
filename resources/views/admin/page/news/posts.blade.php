@@ -34,7 +34,7 @@
                                         <th>Likes</th>
                                         <th>Comment</th>
                                         <th>Views</th>
-                                        <th>Trending Status</th>
+                                        <th>Trending No.</th>
                                         <th>Status</th>
                                         <th>Create Date</th>
                                         <th>Action</th>
@@ -51,7 +51,12 @@
                                         <td>{{ $post->comments->count() }}</td>
                                         <td>{{ $post->views }}</td>
                                         <td>
-                                            <a href="{{ route('posts.changeTrendingStatus', $post->slug) }}"
+                                            @if ($post->trending_status == 0)
+                                            <span class="text-danger">Hidden</span>
+                                            @else
+                                            {{ $post->trending_status }}
+                                            @endif
+                                             {{-- <a href="{{ route('posts.changeTrendingStatus', $post->slug) }}"
                                                 class="action_btn">
                                                 @if ($post->trending_status == true)
                                                     <button type="button" class="action_btn" data-toggle="tooltip"
@@ -64,7 +69,7 @@
                                                         <i class="far fa-square "></i>
                                                     </button>
                                                 @endif
-                                            </a>
+                                            </a> --}}
 
                                         <td>
                                             @if ( $post->status== 1)
