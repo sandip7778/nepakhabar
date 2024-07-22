@@ -145,6 +145,7 @@
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('posts.create') }}">Create Post</a></li>
                                 <li><a class="nav-link" href="{{ route('posts.index') }}">Manage Post</a></li>
+                                <li><a class="nav-link" href="{{ route('posts.trendingPosts') }}">Manage Trending Post</a></li>
 
                             </ul>
                         </li>
@@ -154,6 +155,7 @@
                                 <i class="fas fa-columns"></i> <span>Manage Advertisment</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('advertisements.create') }}">Create Advertisement</a></li>
+                                <li><a class="nav-link" href="{{ route('advertisements.createWithCategory') }}"> Create Category Ad</a></li>
                                 <li><a class="nav-link" href="{{ route('advertisements.index') }}">Advertisement</a></li>
                             </ul>
                         </li>

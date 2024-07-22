@@ -68,6 +68,7 @@ class PostController extends Controller
                 'youtube.regex' => 'Must be a valid youtube link. Eg.https://www.youtube.com/watch?v=Cb6wuzOurPc'
             ]
         );
+
         if($request->get('trending_status') != 0){
             $request->validate(['trending_status' => 'unique:posts,trending_status,0']);
         }
@@ -206,33 +207,32 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('success', 'Post deleted successfully...');
     }
 
+    public function trendingPosts()
+    {
+        $posts = Post::where('trending_status','!=',0)->orderBy('trending_status','ASC')->paginate(10);
+        return view('admin.page.news.trendingPosts', compact('posts'));
+    }
+
     public function changeStatus(Request $request, $slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
-        // dd($user -> status);
-        if ($post && $post->status == true) {
-            $post->update(['status' => false, 'trending_status' => 0]);
+            $post->update(['trending_status' => 0]);
             // dd($post->status);
-            return redirect()->back()->with('success', 'Post disabled successfully.');
-        } else if ($post && $post->status == false) {
-            $post->update(['status' => true]);
-            return redirect()->back()->with('success', 'Post enabled successfully.');
+            return redirect()->back()->with('success', 'Post removed from trending.');
+    }
+
+    public function changeTrendingStatus(Request $request, $slug)
+    {
+        $post = Post::where('slug', $slug)->firstOrFail();
+        // dd($user -> status);
+        if ($post && $post->trending_status == true) {
+            $post->update(['trending_status' => false]);
+            // dd($post->status);
+            return redirect()->back()->with('success', 'Post removed from trending.');
+        } else if ($post && $post->trending_status == false) {
+            $post->update(['trending_status' => true]);
+            return redirect()->back()->with('success', 'Post shown to trending.');
         }
         return response("Post may not exist.");
     }
-
-//     public function changeTrendingStatus(Request $request, $slug)
-//     {
-//         $post = Post::where('slug', $slug)->firstOrFail();
-//         // dd($user -> status);
-//         if ($post && $post->trending_status == true) {
-//             $post->update(['trending_status' => false]);
-//             // dd($post->status);
-//             return redirect()->back()->with('success', 'Post removed from trending.');
-//         } else if ($post && $post->trending_status == false) {
-//             $post->update(['trending_status' => true]);
-//             return redirect()->back()->with('success', 'Post shown to trending.');
-//         }
-//         return response("Post may not exist.");
-//     }
 }

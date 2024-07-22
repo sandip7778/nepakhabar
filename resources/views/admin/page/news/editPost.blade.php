@@ -150,7 +150,7 @@
                                         @endif
                                         <div class="col-lg-12 col-md-12 mt-3">
                                             <div class="form-group">
-                                                <label>Post Description*</label>
+                                                <label>Post Description* (For advertisement write {Advertisement})</label>
                                                 <textarea class="summernote"  name="description" required>{{ old('description',$post->description) }}</textarea>
                                                 @error('description')
                                                     <span class="d-block mt-2 fs-6 text-danger">{{ $message }}</span>

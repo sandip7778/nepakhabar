@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="row mt-5">
-                        @foreach ($category->posts as $post)
+                        @foreach ($category->posts->take(8) as $post)
                         <div class="col-lg-3">
                             <a href="{{ route('posts.show', $post->slug) }}">
                                 <div class="single-bottom mb-35 p-2 card">
