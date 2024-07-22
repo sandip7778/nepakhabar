@@ -48,12 +48,12 @@ class AdvertisementController extends Controller
             'expiry_date.after_or_equal' => 'The expiry date must be today or later.',
             // other custom error messages
         ]);
-        // $category= request()->input('category');
-        // if ($category == 'NULL')
-        // {
-        //     $category = null;
-        // }
-        // $position = request()->get('position');
+        $category= request()->input('category');
+        if ($category == 'NULL')
+        {
+            $category = null;
+        }
+        $position = request()->get('position');
         // if ($category && !Str::contains($position,'sidebar'))
         // {
         //     throw ValidationException::withMessages([
@@ -63,13 +63,14 @@ class AdvertisementController extends Controller
         $image = $request->file('ad_image')->getClientOriginalName();
         $imageName = time() . '_' . $image;
 
-        // dd($imageName);
+        // dd($category);
         $ad_path = $request->ad_image->storeAs('He_Images', $imageName, 'public');
 
         Advertisement::create([
             'name' => request()->get('c_name'),
             'url' => request()->get('url'),
-            'position' => request()->get('position'),
+            'position' => $position,
+            'category_id' => $category,
             'ad_path' => $ad_path,
             'status' => true,
             'expiry_date' => request()->get('expiry_date'),
@@ -106,18 +107,18 @@ class AdvertisementController extends Controller
             'url' => 'required|url',
             'expiry_date' => 'required|date|after_or_equal:today',
         ]);
-        // $category= request()->input('category');
-        // if ($category == 'NULL')
-        // {
-        //     $category = null;
-        // }
-        // $position = request()->get('position');
-        // if ($category && !Str::contains($position,'sidebar'))
-        // {
-        //     throw ValidationException::withMessages([
-        //         'position' => ['Only sidebar positions can be chosen with this category.'],
-        //     ]);
-        // }
+        $category= request()->input('category');
+        if ($category == 'NULL')
+        {
+            $category = null;
+        }
+        $position = request()->get('position');
+        if ($category && !Str::contains($position,'sidebar'))
+        {
+            throw ValidationException::withMessages([
+                'position' => ['Only sidebar positions can be choosen with this category. Select All Category instead.'],
+            ]);
+        }
         if ($request->hasFile('ad_image')) {
             if ($advertisement->ad_path) {
                 Storage::disk('public')->delete($advertisement->ad_path);
@@ -130,7 +131,8 @@ class AdvertisementController extends Controller
                 'name' => request()->get('c_name'),
                 'url' => request()->get('url'),
                 'ad_path' => $ad_path,
-                'position' => request()->get('position'),
+                'position' => $position,
+                'category_id' => $category,
                 'status' => true,
                 'expiry_date' => request()->get('expiry_date'),
             ]);
@@ -167,5 +169,10 @@ class AdvertisementController extends Controller
             return redirect()->route('advertisements.index')->with('success', 'Advertisement enabled successfully.');
         }
         return response("Advertisement may not exist.", Response::HTTP_BAD_REQUEST);
+    }
+
+    public function createWithCategory()
+    {
+        return view('admin.page.advertisement.createWithCategory');
     }
 }

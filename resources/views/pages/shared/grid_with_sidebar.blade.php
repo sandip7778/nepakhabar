@@ -51,7 +51,7 @@
                 <div class="trending-bottom">
                     <div class="row">
 
-                        @foreach ($category->posts as $posts_data)
+                        @foreach ($category->posts->take(8) as $posts_data)
                             <div class="col-lg-6">
                                 <div class="card p-2 mb-1">
                                     <a href="{{ route('posts.show', $posts_data->slug) }}">
@@ -104,7 +104,7 @@
             <!-- size of sidebar ads boxads  height :300px width 350px  -->
             <div class="col-lg-4">
                 @foreach ($advertisements as $advertisement)
-                 
+
                             @if ($advertisement->position == 'sidebar1')
                         <aside class="single_sidebar_widget mb-4">
                             <a href="{{ $advertisement->url }}" target="_blank"><img class="side_bar_ads"
@@ -135,7 +135,7 @@
                                         alt="{{ $advertisement->name }} Image"></a>
                         </aside>
                             @endif
-               
+
                 @endforeach
             </div>
         </div>

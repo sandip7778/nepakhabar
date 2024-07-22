@@ -62,7 +62,7 @@ Create News
 
                                         <div class="col-lg-12 col-md-12 mt-3">
                                             <div class="form-group">
-                                                <label>Post Description*</label>
+                                                <label>Post Description* (For advertisement write {Advertisement} )</label>
                                                 <textarea class="summernote" name="description"
                                                     required>{{ old('description') }}</textarea>
                                                 @error('description')
@@ -117,7 +117,7 @@ Create News
                                             <div class="form-group">
                                                 <label>Post Categories*</label>
                                                 <select class="form-control" name="category" required>
-                                                    <option value="" selected>Select</option>
+                                                    <option value="" selected disabled hidden>Select Category</option>
                                                     @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}"
                                                         {{ old('category') ? 'selected' : '' }}>{{ $category->name }}

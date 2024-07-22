@@ -37,7 +37,7 @@
                 <div class="col-12">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
-                            @foreach ($category->posts as $post)
+                            @foreach ($category->posts->take(15) as $post)
                             <div class="swiper-slide">
                                 <a href="{{ route('posts.show', $post->slug) }}">
                                     <div class="news_box">
