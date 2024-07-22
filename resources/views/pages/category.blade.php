@@ -7,13 +7,12 @@ NepaKhabar-{{ $post->category->name }}
 
 @section('content')
 
-<h2 class="mt-20 ml-50 "><span class="badge bg-danger text-white fs-3 pt-2">{{ $post->category->name }}</span></h2>
-
 <div class="weekly2-news-area gray-bg pt-50 pb-30 mt-30 mb-50">
     <div class="container ">
         <div class="row">
             <div class="col-lg-12">
                 <div class="trending-bottom">
+                <h2 class="mt-20 ml-50 "><span class="badge bg-danger text-white fs-3">{{ $post->category->name }}</span></h2>
                     @foreach ($posts->take(1) as $post)
                         @include('pages.shared.welcome_post')
                     @endforeach

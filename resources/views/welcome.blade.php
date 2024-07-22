@@ -9,18 +9,20 @@
                     <!-- Trending Tittle -->
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="trending-tittle">
-                                <h1 class="latest_news">ताजा समाचार</h1>
-                                <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
-                                <div class="trending-animated">
-                                    <ul id="js-news" class="p-1">
-                                        @foreach ($posts as $post)
-                                            <li class="news-item">{{ $post->title }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-
+                           <div class="Braking_new">
+                            <h1 class="latest_news hide_mbl_">ताजा समाचार</h1>
+                            <div class="blink_me"></div>
+                            <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
+                            <div class="flex">
+                                
+                                <ul id="js-news" class="p-1">
+                                    @foreach ($posts as $post)
+                                    <li class="news-item">{{ $post->title }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
+
+                        </div>
                         </div>
                     </div>
                     <div class="row mb-5">
