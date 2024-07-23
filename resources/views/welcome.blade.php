@@ -43,6 +43,7 @@
                         @foreach ($posts as $index => $post)
                             @include('pages.shared.welcome_post')
                         @endforeach
+                        {{ $posts->links() }}
                     @else
                         @if (request()->has('search'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -96,7 +97,11 @@
 
                                                 </div>
                                                 <div class="trend-bottom-cap">
-                                                    <span class="color1">{{ $trending->category->name }}</span>
+                                                    <span class="color1">
+                                                        @foreach ($trending->categories as $category)
+                                                            {{ $category->name }} &nbsp;|&nbsp;
+                                                        @endforeach
+                                                    </span>
                                                     <h4 class="text_limit"><a
                                                             href="{{ route('posts.show', $trending->slug) }}">{{ $trending->title }}</a>
                                                     </h4>
@@ -206,7 +211,11 @@
 
                                                     </div>
                                                     <div class="weekly2-caption">
-                                                        <span class="color1">{{ $post->category->name }}</span>
+                                                        <span class="color1">
+                                                            @foreach ($post->categories as $category)
+                                                                {{ $category->name }} &nbsp;|&nbsp;
+                                                            @endforeach
+                                                        </span>
                                                         <p>{{ toFormattedNepaliDate($post->created_at) }}</p>
                                                         <h4 class="text_limit text-dark"><a
                                                                 href="{{ route('posts.show', $post->slug) }}">{{ $post->title }}</a>

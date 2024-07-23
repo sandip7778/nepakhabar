@@ -66,16 +66,17 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Category $category)
     {
         // dd($category);
         $threeDay = Carbon::now()->subDays(3);
-        $posts = Post::where('category_id', $id)->orderBy('updated_at', 'DESC')->paginate(20);
-        foreach ($posts as $post) {
-            $post->description = Purifier::clean($post->description);
-        }
+        // $posts = Post::where('category_id', $id)->orderBy('updated_at', 'DESC')->paginate(20);
+        // foreach ($posts as $post) {
+        //     $post->description = Purifier::clean($post->description);
+        // }
+        $posts = $category->posts()->orderBy('updated_at', 'DESC')->paginate(25);
         $trendings = Post::where('updated_at', '>=', $threeDay)->inRandomOrder()->limit(3)->get();
-        return view('pages.category', compact('posts', 'trendings'));
+        return view('pages.category', compact('category', 'trendings', 'posts'));
     }
 
     /**

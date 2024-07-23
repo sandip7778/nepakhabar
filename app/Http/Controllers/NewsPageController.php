@@ -22,13 +22,17 @@ class NewsPageController extends Controller
         $tpsc = tranding_post_show::find(1);
         $tpostcount = $tpsc->count_tranding;
 
-        if (request()->has('search') && request()->get('search') != '') {
+        $search = request()->get('search');
+        if (request()->has('search') && $search != '') {
             $posts = Post::orderBy('created_at', 'DESC');
-            $posts = $posts->orwhere('title', 'like', '%' . request()->get('search') . '%')
-                            ->orWhere('description', 'like', '%' . request()->get('search') . '%')
-                            ->paginate(8);
+            $posts = $posts->where('status', true)
+                            ->where(function ($query) use ($search) {
+                                $query->where('title', 'like', '%' . $search . '%')
+                                ->orWhere('description', 'like', '%' . $search . '%');
+                            })
+                            ->paginate(10);
         }else{
-            $posts = Post::where('status',true)->where('trending_status','!=',0)->orderBy('trending_status','ASC')->limit($tpostcount)->get();
+            $posts = Post::where('status',true)->where('trending_status','!=',0)->orderBy('trending_status','ASC')->limit($tpostcount)->paginate(10);
         }
         $videos = Video::inRandomOrder()->limit(5)->get();
         $recentArticles = Post::where('status',true)->orderBy('updated_at', 'DESC')->get()->take(10);
@@ -70,7 +74,7 @@ class NewsPageController extends Controller
 
     public function contactUs(){
         $sevenDay = Carbon::now()->subDays(7);
-        $posts = Post::where('created_at','<=',$sevenDay)->orderBy('views','DESC')->take(15);
+        $posts = Post::where('created_at','<=',$sevenDay)->where('status', true)->orderBy('views','DESC')->take(15);
         return view('pages.contact', compact('posts'));
     }
 }

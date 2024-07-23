@@ -1,9 +1,9 @@
 @extends('layouts.newsLayout')
-@foreach ($posts as $post)
+{{-- @foreach ($posts as $post) --}}
 @section('title')
-NepaKhabar-{{ $post->category->name }}
+NepaKhabar-{{ $category->name }}
 @endsection
-@endforeach
+{{-- @endforeach --}}
 
 @section('content')
 
@@ -12,10 +12,13 @@ NepaKhabar-{{ $post->category->name }}
         <div class="row">
             <div class="col-lg-12">
                 <div class="trending-bottom">
-                <h2 class="mt-20 ml-50 "><span class="badge bg-danger text-white fs-3">{{ $post->category->name }}</span></h2>
-                    @foreach ($posts->take(1) as $post)
-                        @include('pages.shared.welcome_post')
-                    @endforeach
+                    <h2 class="mt-20 ml-50 "><span class="badge bg-danger text-white fs-3">{{ $category->name }}</span></h2>
+                    @if ($posts->isEmpty())
+                        <p>No posts available in this category.</p>
+                    @else
+                        @foreach ($posts->take(1) as $post)
+                            @include('pages.shared.welcome_post')
+                        @endforeach
                     <div class="row">
                         @foreach ($posts->skip(1) as $trending)
                         <div class="col-lg-3 p-2 pt-1">
@@ -33,7 +36,10 @@ NepaKhabar-{{ $post->category->name }}
                             </div>
                         </div>
                         @endforeach
+                        {{ $posts->links() }}
+                    @endif
                     </div>
+
                 </div>
             </div>
             <!-- Riht content -->

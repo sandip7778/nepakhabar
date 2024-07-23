@@ -12,7 +12,7 @@
                     <div class="card-header">
                         <h4>Trending Posts Data</h4>
                     </div>
-                    @include('admin.shared.success')
+                    @include('admin.shared.error')
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-striped mb-0">
@@ -20,7 +20,7 @@
                                     <tr>
                                         <th>SN</th>
                                         <th>Title</th>
-                                        <th>Category</th>
+                                        <th>Categories</th>
                                         <th>Trending No.</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -31,7 +31,11 @@
                                     <tr>
                                         <td>{{ $index+1 }}</td>
                                         <td class="text_limit">{{ $post->title }}</td>
-                                        <td>{{ $post->category->name }}</td>
+                                        <td>
+                                            @foreach ($post->categories as $category)
+                                                <li>{{ $category->name }},</li>
+                                            @endforeach
+                                        </td>
                                         <td>
                                             @if ($post->trending_status == 0)
                                             <span class="text-danger">Hidden</span>
