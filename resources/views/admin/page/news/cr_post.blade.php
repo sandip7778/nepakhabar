@@ -14,8 +14,6 @@
                 </div>
             </div>
             <div class="section-body">
-                <!-- <h2 class="section-title">Advanced Forms</h2>
-                    <p class="section-lead">We provide advanced input fields, such as date picker, color picker, and so on.</p> -->
                 <div class="row card">
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="">
@@ -59,7 +57,6 @@
                                                     @enderror
                                                 </div>
                                             </div>
-
                                             <div class="col-lg-12 col-md-12 mt-3">
                                                 <div class="form-group">
                                                     <label>Post Description* (For advertisement write {Advertisement}
@@ -70,7 +67,6 @@
                                                     @enderror
                                                 </div>
                                             </div>
-
                                         </div>
 
                                         <!-- Right Side Section  -->
@@ -116,8 +112,10 @@
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group">
                                                     <label>Post Categories*</label>
-                                                    <select class="form-control" name="category_ids[]" size="4" multiple required>
-                                                        <option value="" selected disabled hidden>Select Category
+                                                    <select class="form-control" name="category_ids[]" multiple
+                                                        multiselect-search="true" multiselect-select-all="true" required>
+                                                        <option value="" selected disabled hidden>Select
+                                                            Category
                                                         </option>
                                                         @foreach ($categories as $category)
                                                             <option value="{{ $category->id }}"
@@ -153,7 +151,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
-                                                <label class="f_text" for="exampleInputUsername1">Trending No.*</label>
+                                                <label class="f_text" for="exampleInputUsername1">Trending
+                                                    No.*</label>
                                                 <select class="form-control" name="trending_status"
                                                     value="{{ old('trending_status') }}" required>
                                                     <option value="0">Hide</option>
@@ -172,13 +171,10 @@
 
                                         </div>
 
-
-
-
                                         <!-- <h4>New SEO Section</h4>    -->
                                         <div class="col-lg-8 col-md-12">
                                             <div class="row">
-                                                <div class="col-lg-6 col-md-12">
+                                                <div class="col-lg-4 col-md-12">
                                                     <div class="form-group">
                                                         <label>Meta Keyword</label>
                                                         <input type="text" name="meta_keyword" class="form-control"
@@ -189,7 +185,7 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 col-md-12">
+                                                <div class="col-lg-4 col-md-12">
                                                     <div class="form-group">
                                                         <label>Meta Tag</label>
                                                         <input type="text" name="meta_tag" class="form-control"
@@ -201,16 +197,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-
-
-
-
-
-                                        <div class="col-lg-8 col-md-12">
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-danger">Publish</button>
+                                            <div class="col-lg-8 col-md-12">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-danger">Publish</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

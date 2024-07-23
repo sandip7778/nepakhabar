@@ -4,7 +4,9 @@
             <div class="justify-content-center">
                 <div class="col-lg-12">
                     <div class="d-flex justify-content-center mb-4">
+                    @if ($post->context)
                         <h1 class="latest_news ">{{ $post->context }}</h1>
+                    @endif
                     </div>
                     <div class="tranding_text_box mb-2">
                         <h1 class="text_title_h1 text_limit">{{ $post->title }}</h1>

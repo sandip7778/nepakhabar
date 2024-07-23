@@ -425,6 +425,23 @@ a:hover{
 .blog_right_sidebar .single_sidebar_widget{padding: 0px;}
 .comments-area{margin: 0px;}
 .comment-form{margin: 0px;}
+
+.Braking_new{width: 100%; display: flex; align-items: center; margin-top: 14px; margin-bottom: 14px; padding-right: 14px;}
+.blink_me{
+    display: none;
+    min-width: 24px;
+    min-height: 24px;
+    background-color: red;
+    border-radius: 50%;
+    animation: blinker 1s linear infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
 @media screen and (max-width: 1000px) {
     .category_manu{
         display: none;
@@ -441,6 +458,8 @@ a:hover{
     /* .side_post_img{width: 100%; height: 150px;} */
 }
 @media screen and (max-width: 600px) {
+    .hide_mbl_{display: none;}
+    .blink_me{display: block; }
    .text_title_h1{font-size: 22px;}
    .sub_heading{font-size: 14px;}
 }
