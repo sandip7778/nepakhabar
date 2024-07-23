@@ -60,9 +60,9 @@
                                             <div class="form-group">
                                                 <label>Post Categories</label>
 
-                                                <select class="form-control" name="category" required>
+                                                <select class="form-control" name="category_ids[]" size="4" multiple required>
                                                     @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}" {{ old('category',$category->name) == $post->category->name ? 'selected':'' }}>{{ $category->name }}</option>
+                                                        <option value="{{ $category->id }}" {{ old('category_ids[]', $post->categories->contains($category->id)) ? 'selected':'' }}>{{ $category->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('category')

@@ -10,7 +10,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','sub_title','slug','category_id','user_id','share','trending_status','youtube','image_desc', 'meta_tag','meta_keyword','path','status','context','description'];
+    protected $fillable = ['title','sub_title','slug','user_id','share','trending_status','youtube','image_desc', 'meta_tag','meta_keyword','path','status','context','description'];
 
     public static function boot()
     {
@@ -25,19 +25,16 @@ class Post extends Model
         static::updating(function ($post) {
             $post->slug = $post->generateSlug();
         });
-
-
     }
-
     public function generateSlug()
     {
         return $this->id . '-' . Str::slug($this->title);
     }
 
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class);
     }
     public function user()
     {

@@ -47,7 +47,13 @@ NepaKhabar-{{ $post->title }}
 
                     <div class="blog_details">
                         <ul class="blog-info-link mt-2 mb-4">
-                            <li><a href="#">{{ $post->category->name }}</a></li>
+                            <li>
+                                @foreach ($post->categories as $category)
+                                    <a href="{{ route('categories.show', $category) }}">
+                                        {{ $category->name }} &nbsp;|&nbsp;
+                                    </a>
+                                @endforeach
+                            </li>
                             <li>&nbsp; &nbsp; <i class="fa fa-calendar"></i>
                                 {{ toFormattedNepaliDate($post->created_at) }}
                             </li>

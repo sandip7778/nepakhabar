@@ -12,8 +12,13 @@
                     <h4 style="" class="sub_heading text_center mb-3 text_limit">{{ $post->sub_title }}</h4>
                 </div>
                 <ul class="blog-info-link row justify-content-center">
-                    <li><a href="{{ route('categories.show', $post->category_id) }}">
-                            {{ $post->category->name }}</a></li>
+                    <li>
+                        @foreach ($post->categories as $category)
+                        <a href="{{ route('categories.show', $category) }}">
+                            {{ $category->name }} &nbsp;|&nbsp;
+                        </a>
+                        @endforeach
+                    </li>
                     <li>&nbsp; &nbsp; <i class="fa fa-calendar"></i>
                         {{ toFormattedNepaliDate($post->created_at) }}
                     </li>

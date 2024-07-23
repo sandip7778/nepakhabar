@@ -54,7 +54,8 @@ class PostController extends Controller
                 'title' => 'required|string|max:255',
                 'sub_title' => 'nullable|string|max:400',
                 'context' => 'nullable|string|max:255',
-                'category' => 'required|exists:categories,id',
+                'category_ids' => 'required|array',
+                'category_ids.*' => 'exists:categories,id',
                 'meta_tag' => 'nullable|max:255',
                 'meta_keyword' => 'nullable|string|max:255',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -87,7 +88,7 @@ class PostController extends Controller
             'title' => request()->get('title'),
             'sub_title' => request()->get('sub_title'),
             'context' => request()->get('context'),
-            'category_id' => request()->get('category'),
+            // 'category_id' => request()->get('category'),
             'meta_tag' => request()->get('meta_tag'),
             'meta_keyword' => request()->get('meta_keyword'),
             'path' => $path,
@@ -99,6 +100,7 @@ class PostController extends Controller
             'user_id' => Auth::user()->id,
         ]);
         $post->slug = $post->id . '-' . Str::slug($post->title);
+        $post->categories()->sync($request->input('category_ids', []));
         $post->save();
         return redirect()->route('posts.index')->with('success', 'Post created successfully.')->with('image', $path);
 
@@ -118,7 +120,7 @@ class PostController extends Controller
         $modified_description = str_replace('{Advertisement}', $advertisementView, $description);
 
         $singlePageAdvertisements = Advertisement::where('status', true)->inRandomOrder()->get();
-        $recentPosts = Post::orderBy('created_at', 'DESC')->get()->take(5);
+        $recentPosts = Post::where('status', true)->orderBy('created_at', 'DESC')->get()->take(5);
         $post->increment('views');
 
         return view('pages.single_news', compact('post', 'recentPosts','textAds','modified_description','advertisementView','singlePageAdvertisements'));
@@ -150,7 +152,8 @@ class PostController extends Controller
                 'title' => 'required|string|max:255',
                 'sub_title' => 'nullable|string|max:400',
                 'context' => 'nullable|string|max:255',
-                'category' => 'required|exists:categories,id',
+                'category_ids' => 'required|array',
+                'category_ids.*' => 'exists:categories,id',
                 'meta_tag' => 'nullable|max:255',
                 'meta_keyword' => 'nullable|string|max:255',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -181,17 +184,18 @@ class PostController extends Controller
             $imageName = time() . '_' . str_replace(' ', '_', $image);
             $path = $request->image->storeAs('images', $imageName, 'public');
             $post->path = $path;
-            $post->update($request->only('title','sub_title','context', 'category_id', 'user_id', 'meta_tag', 'meta_keyword', 'path','image_desc','trending_status', 'description'));
+            $post->update($request->only('title','sub_title','context', 'user_id', 'meta_tag', 'meta_keyword', 'path','image_desc','trending_status', 'description'));
         } elseif ($request->filled('youtube')) {
             if ($post->path) {
                 Storage::disk('public')->delete($post->path);
             }
             $post->path = $path;
-            $post->update($request->only('title','sub_title','context', 'category_id', 'user_id', 'meta_tag', 'meta_keyword', 'path', 'youtube', 'image_desc', 'trending_status', 'description'));
+            $post->update($request->only('title','sub_title','context', 'user_id', 'meta_tag', 'meta_keyword', 'path', 'youtube', 'image_desc', 'trending_status', 'description'));
         } else {
-            $post->update($request->only('title','sub_title','context', 'category_id', 'user_id', 'meta_tag', 'meta_keyword', 'image_desc', 'trending_status', 'description'));
+            $post->update($request->only('title','sub_title','context', 'user_id', 'meta_tag', 'meta_keyword', 'image_desc', 'trending_status', 'description'));
 
         }
+        $post->categories()->sync($request->input('category_ids', []));
         $post->save();
 
         return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
@@ -216,23 +220,20 @@ class PostController extends Controller
     public function changeStatus(Request $request, $slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
-            $post->update(['trending_status' => 0]);
-            // dd($post->status);
-            return redirect()->back()->with('success', 'Post removed from trending.');
+        if ($post && $post->status == true) {
+            $post->update(['trending_status' => 0,'status'=>false]);
+            return redirect()->back()->with('error', 'Post disabled and removed from trending.');
+        }else if ($post && $post->trending_status == false) {
+            $post->update(['status' => true]);
+            return redirect()->back()->with('success', 'Post enabled');
+        }
+        return response("Post may not exist.");
     }
 
     public function changeTrendingStatus(Request $request, $slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
-        // dd($user -> status);
-        if ($post && $post->trending_status == true) {
-            $post->update(['trending_status' => false]);
-            // dd($post->status);
-            return redirect()->back()->with('success', 'Post removed from trending.');
-        } else if ($post && $post->trending_status == false) {
-            $post->update(['trending_status' => true]);
-            return redirect()->back()->with('success', 'Post shown to trending.');
-        }
-        return response("Post may not exist.");
+        $post->update(['trending_status' => 0]);
+        return redirect()->back()->with('error', 'Post removed from trending.');
     }
 }
