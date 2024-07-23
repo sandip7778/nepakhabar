@@ -62,7 +62,8 @@ Create News
 
                                         <div class="col-lg-12 col-md-12 mt-3">
                                             <div class="form-group">
-                                                <label>Post Description* (For advertisement write {Advertisement} )</label>
+                                                <label>Post Description* (For advertisement write {Advertisement}
+                                                    )</label>
                                                 <textarea class="summernote" name="description"
                                                     required>{{ old('description') }}</textarea>
                                                 @error('description')
@@ -116,8 +117,9 @@ Create News
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
                                                 <label>Post Categories*</label>
-                                                <select class="form-control" name="category" required>
-                                                    <option value="" selected disabled hidden>Select Category</option>
+                                                <select class="form-control" name="category"
+                                                    multiple multiselect-search="true" multiselect-select-all="true" required>
+                                                
                                                     @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}"
                                                         {{ old('category') ? 'selected' : '' }}>{{ $category->name }}
@@ -129,6 +131,7 @@ Create News
                                                 @enderror
                                             </div>
                                         </div>
+
 
                                         <div class="col-lg-12 col-md-12">
                                             <div class="form-group">
@@ -160,9 +163,6 @@ Create News
 
 
                                     </div>
-
-
-
 
                                     <!-- <h4>New SEO Section</h4>    -->
                                     <div class="col-lg-8 col-md-12">
